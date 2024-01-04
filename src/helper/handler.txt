@@ -1,0 +1,2943 @@
+
+
+
+accum = 0
+
+back_access = 0                 //back_tag === 1
+back_job = 0                    //back_tag === 2
+back_model = 0                  //back_tag === 3
+back_instrument = 0             //back_tag === 4
+back_infra = 0                  //back_tag === 5
+back_specs = 0                  //back_tag === 6
+back_tables = 0                 //back_tag === 7
+back_test_data = 0              //back_tag === 8
+back_entity = 0                 //back_tag === 9
+back_biz_func = 0               //back_tag === 10
+back_end_point = 0              //back_tag === 11
+back_IO_data = 0                //back_tag === 12
+back_web_client = 0             //back_tag === 13
+back_brocker = 0                //back_tag === 14
+back_r_and_d = 0                //back_tag === 15
+back_unit_test = 0              //back_tag === 16
+back_log = 0                    //back_tag === 17
+back_migration = 0              //back_tag === 18
+back_comments = 0               //back_tag === 19
+back_auto_label = 0
+back_user_label_sp = 0
+back_user_label_hr = 0
+back_user_nazvanie = ""
+back_user_description = ""
+back_user_comments = ""
+//create_date заполняется на бэке
+back_user_id = 0
+//status заполняется на бэке
+back_status = 0
+//1.
+var back_access_string = new Array(13);
+back_access_string[0] = "У разработчика есть все необходимые доступы к ресурсам инфрастуктуры и лицензии."
+back_access_string[1] = "У разработчика нет одного из доступов к ресурсам инфрастуктуры и/или лицензий, которые будет легко получить за незначительное время."
+back_access_string[2] = "У разработчика нет доступа к нескольким ресурсам инфрастуктуры и/или лицензий, получить которые можно за 1-2 дня."
+back_access_string[3] = "У разработчика нет доступа к половине ресурсов инфрастуктуры и/или лицензий, получить которые можно за 3-5 дней."
+back_access_string[5] = "У разработчика нет доступа к большей части инфрастуктуры и/или лицензий, на получение этих доступов потребуется значителтное время."
+back_access_string[8] = "У разработчика нет доступа к инфрастуктуре и нет лицензий, на получение этих доступов потребуется много время."
+back_access_string[13] = ""
+//2.
+var back_job_string = new Array(13);
+back_job_string[0] = "Разработчику понятны формулировка задачи и бизнес логика, которую необходимо реализовать."
+back_job_string[1] = "Разработчику не понятны небольшая часть описания задачи и некоторые функции бизнес логики, которую необходимо реализовать."
+back_job_string[2] = "Разработчику не понятны примерно половина описания задачи и примерно половина функций бизнес логики, которую необходимо реализовать."
+back_job_string[3] = "Разработчику не понятны бОльшая часть описания задачи и и бОльшая часть функции бизнес логики, которую необходимо реализовать."
+back_job_string[5] = "Разработчику не понятны все описания задачи и все функции бизнес логики, которую необходимо реализовать."
+back_job_string[8] = ""
+back_job_string[13] = ""
+//3.
+var back_model_string = new Array(13);
+back_model_string[0] = "Разработчику понятна структура модели данных и атрибутивный состав таблиц."
+back_model_string[1] = "Разработчику не понятна небольшая часть структуры модели данных и/или назначение некоторых атрибутов."
+back_model_string[2] = "Разработчику не понятна примерно половина структуры модели данных и/или назначение половины атрибутов."
+back_model_string[3] = "Разработчику не понятна бОльшая часть структуры модели данных и/или назначение бОльшей части атрибутов."
+back_model_string[5] = "Разработчику не понятна вся структура модели данных и атрибутивный состав таблиц."
+back_model_string[8] = ""
+back_model_string[13] = ""
+//4.
+var back_instrument_string = new Array(13);
+back_instrument_string[0] = "Из необходимых инструментов разработки, все хорошо знакомы разработчику и у него имеется достаточный опыт их использования."
+back_instrument_string[1] = "Из необходимых инструментов разработки, все, кроме одного, хорошо знакомы разработчику, и у него имеется достаточный опыт их использования всех кроме одного."
+back_instrument_string[2] = "Из необходимых инструменты разработки, большая часть знакомы разработчику, и у него имеется достаточный опыт их использования с остальными опыта нет или его недостаточно."
+back_instrument_string[3] = "Из необходимых инструменты разработки, половина, хорошо знакомы разработчику, и у него имеется достаточный опыт их использования с остальными опыта нет или его недостаточно."
+back_instrument_string[5] = "Из необходимых инструменты разработки, большая часть не знакомы и опыта их использования недостаточно."
+back_instrument_string[8] = "Из необходимых инструменты разработки, все не знакомы и опыта их использования нет."
+back_instrument_string[13] = ""
+//5.
+var back_infra_string = new Array(13);
+back_infra_string[0] = "Все элементы инфраструктуры корректно настроены и работают стабильно."
+back_infra_string[1] = "Все элементы инфраструктуры корректно настроены но некоторые работают иногда не стабильно."
+back_infra_string[2] = ""
+back_infra_string[3] = "Некоторые элементы инфраструктуры настроены не вполне корректно и работают не стабильно."
+back_infra_string[5] = ""
+back_infra_string[8] = "Некоторые элементы инфраструктуры не корректно настроены и работают нестабильно."
+back_infra_string[13] = ""
+//6.
+var back_specs_string = new Array(13);
+back_specs_string[0] = ""
+back_specs_string[1] = "Все спецификации в наличии, их содержание полно и корректно."
+back_specs_string[2] = "Все спецификаци в наличии, но их содержание не полно и/или не корректно."
+back_specs_string[3] = "Часть спецификаций отсутствует."
+back_specs_string[5] = "Спецификации полностью отсутствуют."
+back_specs_string[8] = ""
+back_specs_string[13] = ""
+//7.
+var back_tables_string = new Array(13);
+back_tables_string[0] = "Все таблицы в БД созданы, атрибутивный состав полон и корректен и все необходимые связи по ключам определены."
+back_tables_string[1] = "Все таблицы в БД созданы, но их атрибутивный состав не полон и/или не корректен и/или не все необходимые связи по ключам определены."
+back_tables_string[2] = "Небольшая часть таблиц в БД не созданы, их атрибутивный состав ещё не сформирован."
+back_tables_string[3] = "Примерно половина таблиц в БД не созданы, их атрибутивный состав ещё не сформирован."
+back_tables_string[5] = "Большая часть таблиц в БД не созданы, их атрибутивный состав ещё не сформирован."
+back_tables_string[8] = "Таблицы в БД не созданы, их атрибутивный состав неопределён."
+back_tables_string[13] = ""
+//8.
+var back_test_data_string = new Array(13);
+back_test_data_string[0] = "Необходимые тестовые данные в таблицы внесены, они полны и корректны."
+back_test_data_string[1] = ""
+back_test_data_string[2] = "Часть необходимых тестовых данных в таблицы не внесены или некорректны и/или не определена часть связей."
+back_test_data_string[3] = ""
+back_test_data_string[5] = "Необходимые тестовые данные в таблицах полностью отсутствуют."
+back_test_data_string[8] = ""
+back_test_data_string[13] = ""
+//9.
+var back_entity_string = new Array(13);
+back_entity_string[0] = "В задаче не будут использоваться сущности."
+back_entity_string[1] = "В задаче будет использовано от 1 до 10 сущностей."
+back_entity_string[2] = "В задаче будет использовано от 11 до 20 сущностей."
+back_entity_string[3] = "В задаче будет использовано от 21 до 30 сущностей."
+back_entity_string[5] = "В задаче будет использовано от 31 до 40 сущностей."
+back_entity_string[8] = "В задаче будет использовано от 41 до 50 сущностей."
+back_entity_string[13] = ""
+//10.
+var back_biz_func_string = new Array(13);
+back_biz_func_string[0] = "В задаче не будут реализовываться функции бизнес/прикладной логики."
+back_biz_func_string[1] = "В бизнес логике задачи потребуется реализовать от 1 до 10 функции бизнес/прикладной логики."
+back_biz_func_string[2] = "В бизнес логике задачи потребуется реализовать от 11 до 20 функции бизнес/прикладной логики."
+back_biz_func_string[3] = "В бизнес логике задачи потребуется реализовать от 21 до 30 функции бизнес/прикладной логики."
+back_biz_func_string[5] = "В бизнес логике задачи потребуется реализовать от 31 до 40 функции бизнес/прикладной логики."
+back_biz_func_string[8] = "В бизнес логике задачи потребуется реализовать от 41 до 50 функции бизнес/прикладной логики."
+back_biz_func_string[13] = ""
+//11.
+var back_end_point_string = new Array(13);
+back_end_point_string[0] = "В задаче не будут реализовываться ендпоинты."
+back_end_point_string[1] = "Потребуется реализовать API с количеством ендпоинтов от 1 до 10."
+back_end_point_string[2] = "Потребуется реализовать API с количеством ендпоинтов от 11 до 20."
+back_end_point_string[3] = "Потребуется реализовать API с количеством ендпоинтов от 21 до 30."
+back_end_point_string[5] = "Потребуется реализовать API с количеством ендпоинтов от 31 до 40."
+back_end_point_string[8] = "Потребуется реализовать API с количеством ендпоинтов от 41 до 50."
+back_end_point_string[13] = ""
+//12.
+var back_IO_data_string = new Array(13);
+back_IO_data_string[0] = "В задаче не будут использоваться входные/выходные данные."
+back_IO_data_string[1] = "Разработчику понятны все форматы входных и выходных данных для ендпоинтов / брокера сообщений / web-клиента."
+back_IO_data_string[2] = "Разработчику понятны только часть форматов входных и выходных данных для ендпоинтов / брокера сообщений / web-клиента."
+back_IO_data_string[3] = "Разработчику НЕ понятны форматы входных и выходных данных для ендпоинтов / брокера сообщений / web-клиента."
+back_IO_data_string[5] = ""
+back_IO_data_string[8] = ""
+back_IO_data_string[13] = ""
+//13.
+var back_web_client_string = new Array(13);
+back_web_client_string[0] = "В задаче не будут реализовываться REST вызовы смежных сервисов с помощью web-слиентов."
+back_web_client_string[1] = "Потребуется реализовать REST вызовы смежных сервисов с помощью web-слиентов в от 1 до 10 бизнес-функций."
+back_web_client_string[2] = "Потребуется реализовать REST вызовы смежных сервисов с помощью web-слиентов в от 11 до 20 бизнес-функций."
+back_web_client_string[3] = "Потребуется реализовать REST вызовы смежных сервисов с помощью web-слиентов в от 21 до 30 бизнес-функций."
+back_web_client_string[5] = "Потребуется реализовать REST вызовы смежных сервисов с помощью web-слиентов в от 31 до 40 бизнес-функций."
+back_web_client_string[8] = "Потребуется реализовать REST вызовы смежных сервисов с помощью web-слиентов в от 41 до 50 бизнес-функций."
+back_web_client_string[13] = ""
+//14.
+var back_brocker_string = new Array(13);
+back_brocker_string[0] = "В задаче не требуется реализовывать передачу/получение сообщений через брокера."
+back_brocker_string[1] = "Потребуется реализовать передачу/получение сообщений в/от брокера в от 1 до 10 бизнес-функцях."
+back_brocker_string[2] = "Потребуется реализовать передачу/получение сообщений в/от брокера в от 11 до 20 бизнес-функцях."
+back_brocker_string[3] = "Потребуется реализовать передачу/получение сообщений в/от брокера в от 21 до 30 бизнес-функцях."
+back_brocker_string[5] = "Потребуется реализовать передачу/получение сообщений в/от брокера в от 31 до 40 бизнес-функцях."
+back_brocker_string[8] = "Потребуется реализовать передачу/получение сообщений в/от брокера в от 41 до 50 бизнес-функцях."
+back_brocker_string[13] = ""
+//15.
+var back_r_and_d_string = new Array(13);
+back_r_and_d_string[0] = "В задаче не потребуется проводить исследование (R&D) работы новых модулей/библиотек/компонентов."
+back_r_and_d_string[1] = "Потребуется провести исследование (R&D) работы одного-двух модулей/библиотек/компонентов."
+back_r_and_d_string[2] = ""
+back_r_and_d_string[3] = "Потребуется провести исследование (R&D) работы от 3 до 5 модулей/библиотек/компонентов."
+back_r_and_d_string[5] = ""
+back_r_and_d_string[8] = "Потребуется провести исследование (R&D) работы от 6 до 10 модулей/библиотек/компонентовх."
+back_r_and_d_string[13] = "Потребуется провести исследование (R&D) работы более 10 модулей/библиотек/компонентовх."
+//16.
+var back_unit_test_string = new Array(13);
+back_unit_test_string[0] = "Покрывать unit-тестами методы не требуется."
+back_unit_test_string[1] = "Покрывать unit-тестами требуется лишь единичные методы."
+back_unit_test_string[2] = "Покрыть тестами необходимо менее 30 % методов."
+back_unit_test_string[3] = "Покрыть тестами необходимо от 30 до 50 % методов."
+back_unit_test_string[5] = "Покрыть тестами необходимо от 50 до 70 % методов."
+back_unit_test_string[8] = "Покрыть тестами необходимо от 70 до 90 % методов."
+back_unit_test_string[13] = ""
+//17.
+var back_log_string = new Array(13);
+back_log_string[0] = "Логировать события/методы не требуется."
+back_log_string[1] = "Требуется логировать единичные события/методы."
+back_log_string[2] = "Требуется логировать меньшую часть событий/методов."
+back_log_string[3] = "Требуется логировать примерно половину событий/методов."
+back_log_string[5] = "Требуется логировать большую часть событий/методов"
+back_log_string[8] = "Требуется логировать почти все события/методы."
+back_log_string[13] = ""
+//18.
+var back_migration_string = new Array(13);
+back_migration_string[0] = "Создавать скрипты миграции не требуется."
+back_migration_string[1] = "Создавать потребуется лишь единичные скрипты миграции."
+back_migration_string[2] = "Создавать потребуется небольшое количество скриптов миграции."
+back_migration_string[3] = "Создавать потребуется умеренное количество скриптов миграции."
+back_migration_string[5] = "Создавать потребуется большое количество скриптов миграции."
+back_migration_string[8] = "Создавать потребуется очень большое количество скриптов миграции."
+back_migration_string[13] = ""
+//19.
+var back_comments_string = new Array(13);
+back_comments_string[0] = "Писать комментарии не потребуется."
+back_comments_string[1] = "Требуется писать комментарии только для самых алгоритмически сложных фрагментов кода."
+back_comments_string[2] = "Требуется писать комментарии для сигнатур классов и методов, логически обособленных блоков кода и для алгоритмически сложных фрагментов кода."
+back_comments_string[3] = "Требуется писать комментарии для большинства строк кода."
+// back_comments_string[2] = "Требуется писать комментарии для алгоритмически сложных фрагментов кода, а так же для сигнатур классов и методов."
+// back_comments_string[3] = "Требуется писать комментарии для сигнатур классов и методов, логически обособленных блоков кода и для алгоритмически сложных фрагментов кода."
+// back_comments_string[5] = "Требуется писать комментарии для заголовков классов, полей класса, сигнатур методов локальных переменных, логически обособленных блоков кода и для алгоритмически сложных фрагментов кода."
+back_comments_string[5] = ""
+back_comments_string[8] = ""
+back_comments_string[13] = ""
+
+
+function chooseBackendVariant(back_tag, obj) {
+
+	console.log(back_tag, obj)
+	for (const v of obj) {
+		if(v.checked){
+			accum = accum + Number(v.value)
+
+			if(back_tag === 1) {
+			    back_access = Number(v.value)
+                document.querySelector("form").outerHTML =
+                "<form name = frm>" +
+                "<div id=\"variant\">\n" +
+                "<label id=\"lbl\">2. Выберите вариант уровня понимания задачи: </label>" +
+                "<p>\n" +
+                "<input type=\"radio\" id=\"job0\" name=\"job\" value=\"0\">\n" +
+                "<label for=\"job0\">1. "+back_job_string[0]+" [0 storypoints]</label>\n" +
+                "</p>\n" +
+                "<p>\n" +
+                "<input type=\"radio\" id=\"job1\" name=\"job\" value=\"1\" checked=\"checked\">\n" +
+                "<label for=\"job1\">2. "+back_job_string[1]+" [1 storypoints]</label>\n" +
+                "</p>\n" +
+                "<p>\n" +
+                "<input type=\"radio\" id=\"job2\" name=\"job\" value=\"2\">\n" +
+                "<label for=\"job2\">3. "+back_job_string[2]+" [2 storypoints]</label>\n" +
+                "</p>\n" +
+                "<p>\n" +
+                "<input type=\"radio\" id=\"job3\" name=\"job\" value=\"3\">\n" +
+                "<label for=\"job3\">4. "+back_job_string[3]+" [3 storypoints]</label>\n" +
+                "</p>\n" +
+                "<p>\n" +
+                "<input type=\"radio\" id=\"job5\" name=\"job\" value=\"5\">\n" +
+                "<label for=\"job5\">5. "+back_job_string[5]+" [5 storypoints]</label>\n" +
+                "</p>\n" +
+                "<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(2, job)\">Далее</button>\n" +
+                "</div>" +
+                "</form>"
+			}
+			if(back_tag === 2) {
+			 back_job = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">3. Выберите вариант уровня понимания модели данных: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model0\" name=\"model\" value=\"0\">\n" +
+					"<label for=\"model0\">1. "+back_model_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model1\" name=\"model\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"model1\">2. "+back_model_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model2\" name=\"model\" value=\"2\">\n" +
+					"<label for=\"model2\">3. "+back_model_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model3\" name=\"model\" value=\"3\">\n" +
+					"<label for=\"model3\">4. "+back_model_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model5\" name=\"model\" value=\"5\">\n" +
+					"<label for=\"model5\">5. "+back_model_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(3, model)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 3) {
+			    back_model = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">4. Выберите вариант уровня владения инструментарием: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument0\" name=\"instrument\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"instrument0\">1. "+back_instrument_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument1\" name=\"instrument\" value=\"1\">\n" +
+					"<label for=\"instrument1\">2. "+back_instrument_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument2\" name=\"instrument\" value=\"2\">\n" +
+					"<label for=\"instrument2\">3. "+back_instrument_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument3\" name=\"instrument\" value=\"3\">\n" +
+					"<label for=\"instrument3\">4. "+back_instrument_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument5\" name=\"instrument\" value=\"5\">\n" +
+					"<label for=\"instrument5\">5. "+back_instrument_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument8\" name=\"instrument\" value=\"8\">\n" +
+					"<label for=\"instrument8\">6. "+back_instrument_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(4, instrument)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 4) {
+			    back_instrument = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">5. Выберите вариант состояния инфраструктуры: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra0\" name=\"infra\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"infra0\">1. "+back_infra_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra1\" name=\"infra\" value=\"1\">\n" +
+					"<label for=\"infra1\">2. "+back_infra_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra3\" name=\"infra\" value=\"3\">\n" +
+					"<label for=\"infra3\">3. "+back_infra_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra8\" name=\"infra\" value=\"8\">\n" +
+					"<label for=\"infra8\">4. "+back_infra_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(5, infra)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 5) {
+			    back_infra = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">6. Выберите вариант состояния спецификаций: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs0\" name=\"specs\" value=\"1\">\n" +
+					"<label for=\"specs0\">1. "+back_specs_string[1]+"  [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs1\" name=\"specs\" value=\"2\" checked=\"checked\">\n" +
+					"<label for=\"specs1\">2. "+back_specs_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs3\" name=\"specs\" value=\"3\">\n" +
+					"<label for=\"specs3\">3. "+back_specs_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs5\" name=\"specs\" value=\"5\">\n" +
+					"<label for=\"specs5\">4. "+back_specs_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(6, specs)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 6) {
+			    back_specs = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">7. Выберите степень готовности таблиц в БД: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"tables0\" name=\"tables\" value=\"0\">\n" +
+					"<label for=\"tables0\">1. "+back_tables_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"tables1\" name=\"tables\" value=\"1\">\n" +
+					"<label for=\"tables1\">2. "+back_tables_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"tables2\" name=\"tables\" value=\"2\" checked=\"checked\">\n" +
+					"<label for=\"tables2\">3. "+back_tables_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"tables3\" name=\"tables\" value=\"3\">\n" +
+					"<label for=\"tables3\">4. "+back_tables_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"tables5\" name=\"tables\" value=\"5\">\n" +
+					"<label for=\"tables5\">5. "+back_tables_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"tables8\" name=\"tables\" value=\"8\">\n" +
+					"<label for=\"tables8\">6. "+back_tables_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(7, tables)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 7) {
+			    back_tables = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">8. Выберите вариант уровня заполнения таблиц тестовыми данными: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_data0\" name=\"test_data\" value=\"0\">\n" +
+					"<label for=\"test_data0\">1. "+back_test_data_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_data2\" name=\"test_data\" value=\"2\">\n" +
+					"<label for=\"test_data2\">2. "+back_test_data_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_data5\" name=\"test_data\" value=\"5\" checked=\"checked\">\n" +
+					"<label for=\"test_data5\">3. "+back_test_data_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(8, test_data)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 8) {
+			    back_test_data = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">9. Выберите вариант количесва сущностей: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"entity0\" name=\"entity\" value=\"0\">\n" +
+					"<label for=\"entity0\">1. "+back_entity_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"entity1\" name=\"entity\" value=\"1\">\n" +
+					"<label for=\"entity1\">2. "+back_entity_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"entity2\" name=\"entity\" value=\"2\" checked=\"checked\">\n" +
+					"<label for=\"entity2\">3. "+back_entity_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"entity3\" name=\"entity\" value=\"3\">\n" +
+					"<label for=\"entity3\">4. "+back_entity_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"entity5\" name=\"entity\" value=\"5\">\n" +
+					"<label for=\"entity5\">5. "+back_entity_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"entity8\" name=\"entity\" value=\"8\">\n" +
+					"<label for=\"entity8\">6. "+back_entity_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(9, entity)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 9) {
+			    back_entity = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">10. Выберите вариант количества реализуемых бизнес-функций: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"biz_func0\" name=\"biz_func\" value=\"0\">\n" +
+					"<label for=\"biz_func0\">1. "+back_biz_func_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"biz_func1\" name=\"biz_func\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"biz_func1\">2. "+back_biz_func_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"biz_func2\" name=\"biz_func\" value=\"2\">\n" +
+					"<label for=\"biz_func2\">3. "+back_biz_func_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"biz_func3\" name=\"biz_func\" value=\"3\">\n" +
+					"<label for=\"biz_func3\">4. "+back_biz_func_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"biz_func5\" name=\"biz_func\" value=\"5\">\n" +
+					"<label for=\"biz_func5\">5. "+back_biz_func_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"biz_func8\" name=\"biz_func\" value=\"8\">\n" +
+					"<label for=\"biz_func8\">6. "+back_biz_func_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(10, biz_func)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 10) {
+			    back_biz_func = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">11. Выберите вариант количества реализуемых ендпоинтов: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"end_point0\" name=\"end_point\" value=\"0\">\n" +
+					"<label for=\"end_point0\">1. "+back_end_point_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"end_point1\" name=\"end_point\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"end_point1\">2. "+back_end_point_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"end_point2\" name=\"end_point\" value=\"2\">\n" +
+					"<label for=\"end_point2\">3. "+back_end_point_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"end_point3\" name=\"end_point\" value=\"3\">\n" +
+					"<label for=\"end_point3\">4. "+back_end_point_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"end_point5\" name=\"end_point\" value=\"5\">\n" +
+					"<label for=\"end_point5\">5. "+back_end_point_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"end_point8\" name=\"end_point\" value=\"8\">\n" +
+					"<label for=\"end_point8\">6. "+back_end_point_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(11, end_point)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 11) {
+			    back_end_point = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">12. Выберите вариант уровня понимания структуры и содержания наборов входных/выходных данных: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"IO_data0\" name=\"IO_data\" value=\"0\">\n" +
+					"<label for=\"IO_data0\">1. "+back_IO_data_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"IO_data1\" name=\"IO_data\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"IO_data1\">2. "+back_IO_data_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"IO_data2\" name=\"IO_data\" value=\"2\">\n" +
+					"<label for=\"IO_data2\">3. "+back_IO_data_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"IO_data3\" name=\"IO_data\" value=\"3\">\n" +
+					"<label for=\"IO_data3\">4. "+back_IO_data_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(12, IO_data)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 12) {
+			    back_IO_data = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">13. Выберите вариант использования REST вызовов смежных сервисов с помощью web-слиентов : </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"web_client0\" name=\"web_client\" value=\"0\">\n" +
+					"<label for=\"web_client0\">1. "+back_web_client_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"web_client1\" name=\"web_client\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"web_client1\">2. "+back_web_client_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"web_client2\" name=\"web_client\" value=\"2\">\n" +
+					"<label for=\"web_client2\">3. "+back_web_client_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"web_client3\" name=\"web_client\" value=\"3\">\n" +
+					"<label for=\"web_client3\">4. "+back_web_client_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"web_client5\" name=\"web_client\" value=\"5\">\n" +
+					"<label for=\"web_client5\">5. "+back_web_client_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"web_client8\" name=\"web_client\" value=\"8\">\n" +
+					"<label for=\"web_client8\">6. "+back_web_client_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(13, web_client)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 13) {
+			    back_web_client = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">14. Выберите вариант количества случаев использования брокера сообщений: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"brocker0\" name=\"brocker\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"brocker0\">1. "+back_brocker_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"brocker1\" name=\"brocker\" value=\"1\">\n" +
+					"<label for=\"brocker1\">2. "+back_brocker_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"brocker2\" name=\"brocker\" value=\"2\">\n" +
+					"<label for=\"brocker2\">3. "+back_brocker_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"brocker3\" name=\"brocker\" value=\"3\">\n" +
+					"<label for=\"brocker3\">4. "+back_brocker_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"brocker5\" name=\"brocker\" value=\"5\">\n" +
+					"<label for=\"brocker5\">5. "+back_brocker_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"brocker8\" name=\"brocker\" value=\"8\">\n" +
+					"<label for=\"brocker8\">6. "+back_brocker_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(14, brocker)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 14) {
+			    back_brocker = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">15. Выберите вариант возможности провести исследование (R&D) работы новых модулей/библиотек/компонентов: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"r_and_d0\" name=\"r_and_d\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"r_and_d0\">1. "+back_r_and_d_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"r_and_d1\" name=\"r_and_d\" value=\"1\">\n" +
+					"<label for=\"r_and_d1\">2. "+back_r_and_d_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"r_and_d3\" name=\"r_and_d\" value=\"3\">\n" +
+					"<label for=\"r_and_d3\">3. "+back_r_and_d_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"r_and_d8\" name=\"r_and_d\" value=\"8\">\n" +
+					"<label for=\"r_and_d8\">4. "+back_r_and_d_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"r_and_d13\" name=\"r_and_d\" value=\"13\">\n" +
+					"<label for=\"r_and_d13\">5. "+back_r_and_d_string[13]+" [13 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(15, r_and_d)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 15) {
+			    back_r_and_d = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">16. Выберите вариант уровня покрытия методов unit-тестами: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"unit_test0\" name=\"unit_test\" value=\"0\">\n" +
+					"<label for=\"unit_test0\">1. "+back_unit_test_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"unit_test1\" name=\"unit_test\" value=\"1\">\n" +
+					"<label for=\"unit_test1\">2. "+back_unit_test_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"unit_test2\" name=\"unit_test\" value=\"2\">\n" +
+					"<label for=\"unit_test2\">3. "+back_unit_test_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"unit_test3\" name=\"unit_test\" value=\"3\">\n" +
+					"<label for=\"unit_test3\">4. "+back_unit_test_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"unit_test5\" name=\"unit_test\" value=\"5\" checked=\"checked\">\n" +
+					"<label for=\"unit_test5\">5. "+back_unit_test_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"unit_test8\" name=\"unit_test\" value=\"8\">\n" +
+					"<label for=\"unit_test8\">6. "+back_unit_test_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(16, unit_test)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 16) {
+			    back_unit_test = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">17. Выберите вариант уровня покрытия методов логами: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"log0\" name=\"log\" value=\"0\">\n" +
+					"<label for=\"log0\">1. "+back_log_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"log1\" name=\"log\" value=\"1\">\n" +
+					"<label for=\"log1\">2. "+back_log_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"log2\" name=\"log\" value=\"2\" checked=\"checked\">\n" +
+					"<label for=\"log2\">3. "+back_log_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"log3\" name=\"log\" value=\"3\">\n" +
+					"<label for=\"log3\">4. "+back_log_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"log5\" name=\"log\" value=\"5\">\n" +
+					"<label for=\"log5\">5. "+back_log_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"log8\" name=\"log\" value=\"8\">\n" +
+					"<label for=\"log8\">6. "+back_log_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(17, log)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 17) {
+			    back_log = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">18. Выберите вариант создания скриптов миграции: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"migration0\" name=\"migration\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"migration0\">1. "+back_migration_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"migration1\" name=\"migration\" value=\"1\">\n" +
+					"<label for=\"migration1\">2. "+back_migration_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"migration2\" name=\"migration\" value=\"2\">\n" +
+					"<label for=\"migration2\">3. "+back_migration_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"migration3\" name=\"migration\" value=\"3\">\n" +
+					"<label for=\"migration3\">4. "+back_migration_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"migration5\" name=\"migration\" value=\"5\">\n" +
+					"<label for=\"migration5\">5. "+back_migration_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"migration8\" name=\"migration\" value=\"8\">\n" +
+					"<label for=\"migration8\">6. "+back_migration_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(18, migration)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(back_tag === 18) {
+			    back_migration = Number(v.value)
+					document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+						"<label id=\"lbl\">19. Выберите вариант степени подробности комментирования кода: </label>" +
+						"<p>\n" +
+						"<input type=\"radio\" id=\"comments0\" name=\"comments\" value=\"0\">\n" +
+						"<label for=\"comments0\">1. "+back_comments_string[0]+" [0 storypoints]</label>\n" +
+						"</p>\n" +
+						"<p>\n" +
+						"<input type=\"radio\" id=\"comments1\" name=\"comments\" value=\"1\">\n" +
+						"<label for=\"comments1\">2. "+back_comments_string[1]+" [1 storypoints]</label>\n" +
+						"</p>\n" +
+						"<p>\n" +
+						"<input type=\"radio\" id=\"comments2\" name=\"comments\" value=\"2\" checked=\"checked\">\n" +
+						"<label for=\"comments2\">3. "+back_comments_string[2]+" [2 storypoints]</label>\n" +
+						"</p>\n" +
+						"<p>\n" +
+						"<input type=\"radio\" id=\"comments3\" name=\"comments\" value=\"3\">\n" +
+						"<label for=\"comments3\">4. "+back_comments_string[3]+" [3 storypoints]</label>\n" +
+						"</p>\n" +
+						// "<p>\n" +
+						// "<input type=\"radio\" id=\"comments5\" name=\"comments\" value=\"5\">\n" +
+						// "<label for=\"comments5\">5. "+back_comments_string[5]+" [5 storypoints]</label>\n" +
+						// "</p>\n" +
+						// "<p>\n" +
+						// "<input type=\"radio\" id=\"comments8\" name=\"comments\" value=\"8\">\n" +
+						// "<label for=\"comments8\">6. "+back_comments_string[8]+" [8 storypoints]</label>\n" +
+						// "</p>\n" +
+						// "<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>" +
+						// "<p>!!!!!!!!!!!!! &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp В А Ж  Н А Я  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  И Н Ф О Р М А Ц И Я &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp !!!!!!!!!!!!!</p>" +
+						// "<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>" +
+						"<div id=\"user_estimate\">\n" +
+							"<p><label>Для обучения нейросети мы собираем ваши описания и комментарии в текстовом виде, а также ваши экспертные колличественные оценки. </label></p>" +
+							"<p><label>Нейросетевой модуль построенный в соответствии с архитектурой \"Bag of words\" будет обучаться на внесённых текстах и экспертных оценках и формировать собственное предсказание трудоёмкости. </label></p>" +
+							"<p><label>Вставьте название задачи: </label></p><p><textarea class=\"\" type=\"text\" name=\"nazvanie\"  placeholder=\"название\" value=\"\" onChange=\"backNazvanieInputChange(nazvanie)\"></textarea></p>" +
+							"<p><label>Вставьте текстовое описание задачи: </label></p><p><textarea class=\"\" type=\"text\" name=\"descr\"  placeholder=\"описание\" value=\"\" onChange=\"backDescrInputChange(descr)\"></textarea></p>" +
+							"<p><label>Вставьте комментарии к задаче: </label></p><p><textarea class=\"\" type=\"text\" name=\"user_comments\"  placeholder=\"комментарии\" value=\"\" onChange=\"backCommentsInputChange(user_comments)\"></textarea></p>" +
+							"<p><label id=\"lbl\">Дайте свою оценку трудоёмкости задачи:</label></p>" +
+							"<p><label>В сторипоинтах: </label><input class=\"\" type=\"text\" name=\"storyPoint\"  placeholder=\"стори поинты\" value=\"0\" onChange=\"backStoryPointInputChange(storyPoint)\"/></p>" +
+							"<p><label>Или в человеко-часах: </label><input class=\"\" type=\"text\" name=\"hour\"  placeholder=\"часы\" value=\"0\" onChange=\"backHourInputChange(hour)\"/></p>" +
+						"</div>" +
+						"<p><button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseBackendVariant(19, comments)\">Далее</button></p>\n" +
+						"</div>" +
+				"</form>"
+			}
+			if(back_tag === 19) {
+				back_comments = Number(v.value)
+
+				front_table_string =
+					"<style type=\"text/css\">\n" +
+					"   .row_cell { \n" +
+					"      text-align: left; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"      padding: 5px;" +
+					"   }\n" +
+					"   .right_cell { \n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .summ_cell { \n" +
+					"      text-align: right; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .head_cell { \n" +
+					"      font-weight: bold; /* Жирное начертание текста */\n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .astimation_line { \n" +
+					"      font-weight: bold; /* Жирное начертание текста */\n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      size: 20; /* Размер шрифта */\n" +
+					"   }\n" +
+					"</style>\n" +
+					"<table>\n" +
+					"<tr>\n" +
+					"<th class = \"head_cell\">Фактор</th>\n" +
+					"<th class = \"head_cell\">Вариант</th>\n" +
+					"<th class = \"head_cell\">Сторипоинты</th>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">1. Наличие необходимых лицензий и доступов к ресурсам инфрастуктуры. </td>\n" +
+					"<td class = \"row_cell\">"+back_access_string[back_access]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_access+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">2. Уровень понимания задачи. </td>\n" +
+					"<td class = \"row_cell\">"+back_job_string[back_job]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_job+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">3. Уровень понимания модели данных. </td>\n" +
+					"<td class = \"row_cell\">"+back_model_string[back_model]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_model+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">4. Уровень владения инструментарием. </td>\n" +
+					"<td class = \"row_cell\">"+back_instrument_string[back_instrument]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_instrument+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">5. Состояние инфраструктуры. </td>\n" +
+					"<td class = \"row_cell\">"+back_infra_string[back_infra]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_infra+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">6. Состояние спецификаций. </td>\n" +
+					"<td class = \"row_cell\">"+back_specs_string[back_specs]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_specs+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">7. Степень годовности таблиц в БД. </td>\n" +
+					"<td class = \"row_cell\">"+back_tables_string[back_tables]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_tables+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">8. Уровень заполнения таблиц тестовыми данными. </td>\n" +
+					"<td class = \"row_cell\">"+back_test_data_string[back_test_data]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_test_data+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">9. Количесво сущностей. </td>\n" +
+					"<td class = \"row_cell\">"+back_entity_string[back_entity]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_entity+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">10. Количество реализуемых бизнес-функций. </td>\n" +
+					"<td class = \"row_cell\">"+back_biz_func_string[back_biz_func]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_biz_func+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">11. Количество реализуемых ендпоинтов. </td>\n" +
+					"<td class = \"row_cell\">"+back_end_point_string[back_end_point]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_end_point+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">12. Уровень понимания структуры и содержания наборов входных/выходных данных. </td>\n" +
+					"<td class = \"row_cell\">"+back_IO_data_string[back_IO_data]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_IO_data+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">13. Количество случаев использования брокера сообщений. </td>\n" +
+					"<td class = \"row_cell\">"+back_brocker_string[back_brocker]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_brocker+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">14. Использования REST вызовов смежных сервисов с помощью web-слиентов. </td>\n" +
+					"<td class = \"row_cell\">"+back_web_client_string[back_web_client]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_web_client+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">15. Выберите вариант возможности провести исследование (R&D) работы новых модулей/библиотек/компонентов. </td>\n" +
+					"<td class = \"row_cell\">"+front_r_and_d_string[front_r_and_d]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_r_and_d+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">16. Уровень покрытия методов unit-тестами. </td>\n" +
+					"<td class = \"row_cell\">"+back_unit_test_string[back_unit_test]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_unit_test+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">17. Уровень покрытия методов логами. </td>\n" +
+					"<td class = \"row_cell\">"+back_log_string[back_log]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_log+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">18. Вариант создания скриптов миграции. </td>\n" +
+					"<td class = \"row_cell\">"+back_migration_string[back_migration]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_migration+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">19. Cтепень подробности комментирования кода. </td>\n" +
+					"<td class = \"row_cell\">"+back_comments_string[back_comments]+"</td>\n" +
+					"<td class = \"right_cell\">"+back_comments+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\"></td>\n" +
+					"<td class = \"summ_cell\">Сумма:</td>\n" +
+					"<td class = \"right_cell\">" + accum + "</td>\n" +
+					"</tr>\n" +
+					"</table>\n" +
+					"<p></p>" +
+					"<p></p>"
+
+
+
+				if (accum<=3) {
+					document.querySelector("form").outerHTML =
+						front_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача относится к классу простых, на реализацию потребуется не более 1 рабочего дня.</label>" +
+						"</div>"
+				}
+				if (accum>3 & accum<=5) {
+					document.querySelector("form").outerHTML =
+						front_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача небольшой сложности ~2 рабочих дней  для разработчика уровня мидл.</label>" +
+						"</div>"
+				}
+				if (accum>5 & accum<=10) {
+					document.querySelector("form").outerHTML =
+						front_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача средней сложности ~5 рабочих дней  для разработчика уровня мидл.</label>" +
+						"</div>"
+				}
+				if (accum>10 & accum<=20) {
+					document.querySelector("form").outerHTML =
+						front_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача выше средней сложности ~10 рабочих дней  для разработчика уровня мидл+.</label>" +
+						"</div>"
+				}
+				if (accum>20 & accum<=40) {
+					document.querySelector("form").outerHTML =
+						front_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача высокой сложности ~20 рабочих дней  для разработчика уровня мидл+.</label>" +
+						"</div>"
+				}
+				if (accum>=40) {
+					document.querySelector("form").outerHTML =
+						front_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача сверх высокой сложности/трудоёмкости, как правило нуждается в декомпозиции.</label>" +
+						"</div>"
+				}
+
+				back_user_description = "Нужен WebService на Spring с jetty и netty под капотом для реализации простейших CRUD операций над базой Postgrtes с Spring JDBC Template. Бизнес-логика должна быть оформляема в виде динамически подключаемых модулей"
+
+
+				let xhr_back = new XMLHttpRequest();
+
+				let json_back = JSON.stringify({
+					// "id": 0,
+					"access": back_access,
+					"job": back_job,
+					"model": back_model,
+					"instrument": back_instrument,
+					"infra": back_infra,
+					"specs": back_specs,
+					"tbls": back_tables,
+					"testData": back_test_data,
+					"entity": back_entity,
+					"bizFunc": back_biz_func,
+					"endPoint": back_end_point,
+					"ioData": back_IO_data,
+					"webClient": back_web_client,
+					"brckr": back_brocker,
+					"RAndD": back_r_and_d,
+					"unitTest": back_unit_test,
+					"log": back_log,
+					"migration": back_migration,
+					"comment": back_comments,
+					"autoLabel": accum,
+					"userLabelHr": back_user_label_hr,
+					"userLabelSP": back_user_label_sp,
+					"nazvanie": back_user_nazvanie,//Вэб сервис расчёта трудоёмкости задач разработки
+					// "description": back_user_description,//Нужен WebService на Spring с jetty и netty под капотом для реализации простейших CRUD операций над базой Postgrtes с Spring JDBC Template. Бизнес-логика должна быть оформляема в виде динамически подулючаемых модулей
+					"description": back_user_description,
+					"userComments": back_user_comments,//Использовать Hibernate, Swagger, GSON, REST, Docker
+					// "userId": 0
+				});
+
+				xhr_back.open("POST", 'http://localhost:8081/taskHardnessCalc/v1/taskBack')
+				xhr_back.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+				xhr_back.send(json_back);
+
+			}
+		}
+	}
+}
+
+
+function backStoryPointInputChange(obj){
+	back_user_label_sp = obj.value
+}
+
+function backHourInputChange(obj){
+	back_user_label_hr = obj.value
+}
+
+function backNazvanieInputChange(obj){
+	back_user_nazvanie = obj.value
+}
+
+function backDescrInputChange(obj){
+	back_user_description = obj.value
+}
+function backCommentsInputChange(obj){
+	back_user_comments = obj.value
+}
+
+
+
+
+front_access = 0                //front_tag === 1
+front_job = 0                   //front_tag === 2
+front_instrument = 0            //front_tag === 3
+front_infra = 0                 //front_tag === 4
+front_specs = 0                 //front_tag === 5
+front_pages = 0                 //front_tag === 6
+front_components = 0            //front_tag === 7
+front_test_data = 0             //front_tag === 8
+front_endpoint = 0              //front_tag === 9
+front_func = 0                  //front_tag === 10
+front_authorization = 0         //front_tag === 11
+front_io_data = 0               //front_tag === 12
+front_back_request = 0          //front_tag === 13
+front_r_and_d = 0               //front_tag === 14
+front_auto_label = 0
+front_user_label_sp = 0
+front_user_label_hr = 0
+front_user_nazvanie = ""
+front_user_description = ""
+front_user_comments = ""
+//create_date заполняется на бэке
+front_user_id = 0
+//status заполняется на бэке
+front_status = 0
+
+
+//1.
+var front_access_string = new Array(13);
+front_access_string[0] = "У разработчика есть все необходимые доступы к ресурсам инфрастуктуры и лицензии."
+front_access_string[1] = "У разработчика нет одного из доступов к ресурсам инфрастуктуры и/или лицензий, которые будет легко получить за незначительное время."
+front_access_string[2] = "У разработчика нет доступа к нескольким ресурсам инфрастуктуры и/или лицензий, получить которые можно за 1-2 дня."
+front_access_string[3] = "У разработчика нет доступа к половине ресурсов инфрастуктуры и/или лицензий, получить которые можно за 3-5 дней."
+front_access_string[5] = "У разработчика нет доступа к большей части инфрастуктуры и/или лицензий, на получение этих доступов потребуется значителтное время."
+front_access_string[8] = "У разработчика нет доступа к инфрастуктуре и/или лицензий, на получение этих доступов потребуется неопределённое время."
+front_access_string[13] = ""
+//2.
+var front_job_string = new Array(13);
+front_job_string[0] = "Разработчику понятны формулировка задачи и бизнес логика, которую необходимо реализовать."
+front_job_string[1] = "Разработчику не понятны небольшая часть описания задачи и некоторые функции бизнес логики, которую необходимо реализовать."
+front_job_string[2] = "Разработчику не понятны примерно половина описания задачи и примерно половина функций бизнес логики, которую необходимо реализовать."
+front_job_string[3] = "Разработчику не понятны бОльшая часть описания задачи и и бОльшая часть функции бизнес логики, которую необходимо реализовать."
+front_job_string[5] = "Разработчику не понятны все описания задачи и все функции бизнес логики, которую необходимо реализовать."
+front_job_string[8] = ""
+front_job_string[13] = ""
+//3.
+var front_instrument_string = new Array(13);
+front_instrument_string[0] = "Из необходимых инструментов разработки, все хорошо знакомы разработчику и у него имеется достаточный опыт их использования."
+front_instrument_string[1] = "Из необходимых инструментов разработки, все, кроме одного, хорошо знакомы разработчику, и у него имеется достаточный опыт их использования всех кроме одного."
+front_instrument_string[2] = "Из необходимых инструменты разработки, большая часть знакомы разработчику, и у него имеется достаточный опыт их использования с остальными опыта нет или его недостаточно."
+front_instrument_string[3] = "Из необходимых инструментов разработки, половина, хорошо знакомы разработчику, и у него имеется достаточный опыт их использования с остальными опыта нет или его недостаточно."
+front_instrument_string[5] = "Из необходимых инструменты разработки, большая часть не знакомы и опыта их использования недостаточно."
+front_instrument_string[8] = "Из необходимых инструментов разработки, все не знакомы и опыта их использования нет или недостаточно."
+front_instrument_string[13] = ""
+//4.
+var front_infra_string = new Array(13);
+front_infra_string[0] = "Все элементы инфраструктуры корректно настроены и работают стабильно."
+front_infra_string[1] = "Все элементы инфраструктуры корректно настроены но некоторые работают иногда не стабильно."
+front_infra_string[2] = ""
+front_infra_string[3] = "Некоторые элементы инфраструктуры настроены не вполне корректно и работают не стабильно."
+front_infra_string[5] = ""
+front_infra_string[8] = "Некоторые элементы инфраструктуры не корректно настроены и/или работают нестабильно."
+front_infra_string[13] = ""
+//5.
+var front_specs_string = new Array(13);
+front_specs_string[0] = ""
+front_specs_string[1] = "Все спецификации в наличии, их содержание полно и корректно."
+front_specs_string[2] = "Все спецификации в наличии, но их содержание не полно и/или не корректно."
+front_specs_string[3] = "Часть спецификаций отсутствует."
+front_specs_string[5] = "Спецификаций нет."
+front_specs_string[8] = ""
+front_specs_string[13] = ""
+//6.
+var front_pages_string = new Array(13);
+front_pages_string[0] = "Дизайн страниц полностью готов, понятен и не будет меняться."
+front_pages_string[1] = "Дизайн страниц готов, есть незначительное количество вопросо по его содержанию, но он не будет меняться."
+front_pages_string[2] = "Дизайн всех страниц готов, но есть значительное количество вопросов по его содержанию и он возможно будет меняться."
+front_pages_string[3] = "Дизайн некоторых страниц готов не полностью, есть много вопросов по его содержанию и он возможно будет меняться."
+front_pages_string[5] = "Дизайн готов лишь для части страниц, есть много вопросов по его содержанию и он возможно будет меняться."
+front_pages_string[8] = "Дизайн готов лишь некоторых страниц, есть много вопросов по его содержанию и он будет меняться."
+front_pages_string[13] = "Дизайна страниц нет"
+//7.
+var front_components_string = new Array(13);
+front_components_string[0] = ""
+// front_components_string[0] = "В задаче не требуется разрабатывать новые сложные компоненты/страницы."
+front_components_string[1] = "В задаче требуется разработать от 1 до 5 новых сложных компонентов/страниц."
+front_components_string[2] = "В задаче требуется разработать от 6 до 10 новых сложных компонентов/страниц."
+front_components_string[3] = "В задаче требуется разработать от 11 до 15 новых сложных компонентов/страниц."
+front_components_string[5] = "В задаче требуется разработать от 16 до 20 новых сложных компонентов/страниц."
+front_components_string[8] = "В задаче требуется разработать от 21 до 25 новых сложных компонентов/страниц."
+front_components_string[13] = "В задаче требуется разработать более 25 новых сложных компонентов/страниц."
+//8.
+var front_test_data_string = new Array(13);
+front_test_data_string[0] = "Необходимые тестовые данные в таблицы внесены, они полны и корректны."
+front_test_data_string[1] = ""
+front_test_data_string[2] = "Часть необходимых тестовых данных в таблицы не внесены или они некорректны и/или не определена часть связей."
+front_test_data_string[3] = ""
+front_test_data_string[5] = "Необходимые тестовые данные в таблицах полностью отсутствуют."
+front_test_data_string[8] = ""
+front_test_data_string[13] = ""
+//9.
+var front_endpoint_string = new Array(13);
+front_endpoint_string[0] = "Все эндпоинты на бэке готовы и работают корректно."
+front_endpoint_string[1] = "Все эндпоинты на бэке готовы но некоторые работают не вполне корректно."
+front_endpoint_string[2] = "Некоторые эндпоинты на бэке ещё не готовы и некоторые работают не вполне корректно."
+front_endpoint_string[3] = "Приблизительно половина эндпоинтов на бэке ещё не готовы и некоторые работают не вполне корректно."
+front_endpoint_string[5] = "Большая часть эндпоинтов на бэке ещё не готовы или работают не корректно."
+front_endpoint_string[8] = "Эндпоинты на бэке ещё не разработаны."
+front_endpoint_string[13] = ""
+//10.
+var front_func_string = new Array(13);
+front_func_string[0] = "В задаче не требуется реализовывать новые функций-обработчиков событий / функций логики."
+front_func_string[1] = "В задаче потребуется реализовать от 1 до 5 функций обработчиков событий / функций логики."
+front_func_string[2] = "В задаче потребуется реализовать от 6 до 10 функций обработчиков событий / функций логики."
+front_func_string[3] = "В задаче потребуется реализовать от 11 до 15 функций обработчиков событий / функций логики."
+front_func_string[5] = "В задаче потребуется реализовать от 16 до 20 функций обработчиков событий / функций логики."
+front_func_string[8] = "В задаче потребуется реализовать более 20 функций обработчиков событий / функций логики."
+front_func_string[13] = ""
+//11.
+var front_authorization_string = new Array(13);
+front_authorization_string[0] = "В задаче не требуется реализовать авторизацию пользователя."
+front_authorization_string[1] = "В задаче требуется реализовать простейший вид авторизации пользователя."
+front_authorization_string[2] = "В задаче требуется реализовать авторизации пользователя невысокой степени надёжности."
+front_authorization_string[3] = "В задаче требуется реализовать авторизации пользователя средней степени надёжности."
+front_authorization_string[5] = "В задаче требуется реализовать авторизации пользователя высокой степени надёжности."
+front_authorization_string[8] = "В задаче требуется реализовать авторизации пользователя максимальн овысокой степени надёжности."
+front_authorization_string[13] = ""
+//12.
+var front_io_data_string = new Array(13);
+front_io_data_string[0] = "В задаче не будут использоваться входные/выходные данные."
+front_io_data_string[1] = "Разработчику понятны все форматы входных и выходных данных для ендпоинтов."
+front_io_data_string[2] = "Разработчику понятны только часть форматов входных и выходных данных для ендпоинтов."
+front_io_data_string[3] = "Разработчику НЕ понятны форматы входных и выходных данных для ендпоинтов."
+front_io_data_string[5] = ""
+front_io_data_string[8] = ""
+front_io_data_string[13] = ""
+//13.
+var front_back_request_string = new Array(13);
+front_back_request_string[0] = "В задаче не будут использоваться запросы данных с бекенда."
+front_back_request_string[1] = "В задаче необходимо реализовать от 1 до 10 запросов данных с (отправки данных на) бекенда."
+front_back_request_string[2] = "В задаче необходимо реализовать от 11 до 20 запросов данных с (отправки данных на) бекенда."
+front_back_request_string[3] = "В задаче необходимо реализовать от 21 до 30 запросов данных с (отправки данных на) бекенда."
+front_back_request_string[5] = "В задаче необходимо реализовать от 31 до 40 запросов данных с (отправки данных на) бекенда."
+front_back_request_string[8] = "В задаче необходимо реализовать более 40 запросов данных с (отправки данных на) бекенда."
+front_back_request_string[13] = ""
+//14.
+var front_r_and_d_string = new Array(13);
+front_r_and_d_string[0] = "В задаче не потребуется проводить исследование (R&D) работы новых модулей/библиотек/компонентов."
+front_r_and_d_string[1] = "Потребуется провести исследование (R&D) работы одного-двух модулей/библиотек/компонентов."
+front_r_and_d_string[2] = ""
+front_r_and_d_string[3] = "Потребуется провести исследование (R&D) работы от 3 до 5 модулей/библиотек/компонентов."
+front_r_and_d_string[5] = ""
+front_r_and_d_string[8] = "Потребуется провести исследование (R&D) работы от 6 до 10 модулей/библиотек/компонентовх."
+front_r_and_d_string[13] = "Потребуется провести исследование (R&D) работы более 10 модулей/библиотек/компонентовх."
+
+function chooseFrontendVariant(front_tag, obj) {
+
+	console.log(front_tag, obj)
+	for (const v of obj) {
+		if(v.checked){
+			accum = accum + Number(v.value)
+			// alert(v.value)
+			if(front_tag === 1) {
+			    front_access = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">2. Выберите вариант уровня понимания задачи: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job0\" name=\"job\" value=\"0\">\n" +
+					"<label for=\"job0\">1. "+front_job_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job1\" name=\"job\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"job1\">2. "+front_job_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job2\" name=\"job\" value=\"2\">\n" +
+					"<label for=\"job2\">3. "+front_job_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job3\" name=\"job\" value=\"3\">\n" +
+					"<label for=\"job3\">4. "+front_job_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job5\" name=\"job\" value=\"5\">\n" +
+					"<label for=\"job5\">5. "+front_job_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(2, job)\">Далее</button>\n" +
+					"</div>" +
+					"</form>"
+			}
+			if(front_tag === 2) {
+				front_job = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">3. Выберите вариант уровня владения инструментарием: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument0\" name=\"instrument\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"instrument0\">1. "+front_instrument_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument1\" name=\"instrument\" value=\"1\">\n" +
+					"<label for=\"instrument1\">2. "+front_instrument_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument2\" name=\"instrument\" value=\"2\">\n" +
+					"<label for=\"instrument2\">3. "+front_instrument_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument3\" name=\"instrument\" value=\"3\">\n" +
+					"<label for=\"instrument3\">4. "+front_instrument_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument5\" name=\"instrument\" value=\"5\">\n" +
+					"<label for=\"instrument5\">5. "+front_instrument_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument8\" name=\"instrument\" value=\"8\">\n" +
+					"<label for=\"instrument8\">6. "+front_instrument_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(3, instrument)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(front_tag === 3) {
+			    front_instrument = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">4. Выберите вариант состояния инфраструктуры: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra0\" name=\"infra\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"infra0\">1. "+front_infra_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra1\" name=\"infra\" value=\"1\">\n" +
+					"<label for=\"infra1\">2. "+front_infra_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra3\" name=\"infra\" value=\"3\">\n" +
+					"<label for=\"infra3\">3. "+front_infra_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra8\" name=\"infra\" value=\"8\">\n" +
+					"<label for=\"infra8\">4. "+front_infra_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(4, infra)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(front_tag === 4) {
+			    front_infra = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">5. Выберите вариант состояния спецификаций: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs1\" name=\"specs\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"specs1\">1. "+front_specs_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs2\" name=\"specs\" value=\"2\">\n" +
+					"<label for=\"specs2\">2. "+front_specs_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs3\" name=\"specs\" value=\"3\">\n" +
+					"<label for=\"specs3\">3. "+front_specs_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs5\" name=\"specs\" value=\"5\">\n" +
+					"<label for=\"specs5\">4. "+front_specs_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(5, specs)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(front_tag === 5) {
+			    front_specs = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">6. Выберите вариант готовности дизайна страниц: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"pages0\" name=\"pages\" value=\"0\">\n" +
+					"<label for=\"pages0\">1. "+front_pages_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"pages1\" name=\"pages\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"pages1\">2. "+front_pages_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"pages2\" name=\"pages\" value=\"2\">\n" +
+					"<label for=\"pages2\">3. "+front_pages_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"pages3\" name=\"pages\" value=\"3\">\n" +
+					"<label for=\"pages3\">4. "+front_pages_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"pages5\" name=\"pages\" value=\"5\">\n" +
+					"<label for=\"pages5\">5. "+front_pages_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"pages8\" name=\"pages\" value=\"8\">\n" +
+					"<label for=\"pages8\">5. "+front_pages_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"pages8\" name=\"pages\" value=\"8\">\n" +
+					"<label for=\"pages8\">6. "+front_pages_string[13]+" [13 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(6, pages)\">Далее</button>\n" +
+					"</div>"
+				"</form>"
+			}
+			if(front_tag === 6) {
+			    front_pages = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">7. Выберите вариант количества новых сложных компонентов/страниц, которые нужно разработать: </label>" +
+					// "<p>\n" +
+					// "<input type=\"radio\" id=\"components0\" name=\"components\" value=\"0\">\n" +
+					// "<label for=\"components0\">1. "+front_components_string[0]+" [0 storypoints]</label>\n" +
+					// "</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"components1\" name=\"components\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"components1\">1. "+front_components_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"components2\" name=\"components\" value=\"2\">\n" +
+					"<label for=\"components2\">2. "+front_components_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"components3\" name=\"components\" value=\"3\">\n" +
+					"<label for=\"components3\">3. "+front_components_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"components5\" name=\"components\" value=\"5\">\n" +
+					"<label for=\"components5\">4. "+front_components_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"components8\" name=\"components\" value=\"8\">\n" +
+					"<label for=\"components8\">5. "+front_components_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"components13\" name=\"components\" value=\"13\">\n" +
+					"<label for=\"components13\">6. "+front_components_string[13]+" [13 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(7, components)\">Далее</button>\n" +
+					"</div>"
+				"</form>"
+			}
+			if(front_tag === 7) {
+			    front_components = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">8. Выберите вариант уровня заполнения таблиц тестовыми данными: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_data0\" name=\"test_data\" value=\"0\">\n" +
+					"<label for=\"test_data0\">1. "+front_test_data_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_data2\" name=\"test_data\" value=\"2\" checked=\"checked\">\n" +
+					"<label for=\"test_data2\">2. "+front_test_data_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_data5\" name=\"test_data\" value=\"5\">\n" +
+					"<label for=\"test_data5\">3. "+front_test_data_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(8, test_data)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(front_tag === 8) {
+			    front_test_data = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">9. Выберите вариант готовности эндпоинтов на бэкенде: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"endpoint0\" name=\"endpoint\" value=\"0\">\n" +
+					"<label for=\"endpoint0\">1. "+front_endpoint_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"endpoint1\" name=\"endpoint\" value=\"1\">\n" +
+					"<label for=\"endpoint1\">2. "+front_endpoint_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"endpoint2\" name=\"endpoint\" value=\"2\" checked=\"checked\">\n" +
+					"<label for=\"endpoint2\">3. "+front_endpoint_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"endpoint3\" name=\"endpoint\" value=\"3\">\n" +
+					"<label for=\"endpoint3\">4. "+front_endpoint_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"endpoint5\" name=\"endpoint\" value=\"5\">\n" +
+					"<label for=\"endpoint5\">5. "+front_endpoint_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"endpoint8\" name=\"endpoint\" value=\"8\">\n" +
+					"<label for=\"endpoint8\">6. "+front_endpoint_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(9, endpoint)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(front_tag === 9) {
+			    front_endpoint = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">10. Выберите вариант количества реализуемых функций-обработчиков событий / функций логики: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"func0\" name=\"func\" value=\"0\">\n" +
+					"<label for=\"func0\">1. "+front_func_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"func1\" name=\"func\" value=\"1\">\n" +
+					"<label for=\"func2\">2. "+front_func_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"func2\" name=\"func\" value=\"2\" checked=\"checked\">\n" +
+					"<label for=\"func2\">3. "+front_func_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"func3\" name=\"func\" value=\"3\">\n" +
+					"<label for=\"func3\">4. "+front_func_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"func5\" name=\"func\" value=\"5\">\n" +
+					"<label for=\"func5\">5. "+front_func_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"func8\" name=\"func\" value=\"8\">\n" +
+					"<label for=\"func8\">6. "+front_func_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(10, func)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(front_tag === 10) {
+			    front_func = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">11. Выберите вариант реализации авторизации пользователя: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"authorization0\" name=\"authorization\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"authorization0\">1. "+front_authorization_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"authorization1\" name=\"authorization\" value=\"1\">\n" +
+					"<label for=\"authorization1\">2. "+front_authorization_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"authorization2\" name=\"authorization\" value=\"2\">\n" +
+					"<label for=\"authorization2\">3. "+front_authorization_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"authorization3\" name=\"authorization\" value=\"3\">\n" +
+					"<label for=\"authorization3\">4. "+front_authorization_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"authorization5\" name=\"authorization\" value=\"5\">\n" +
+					"<label for=\"authorization5\">5. "+front_authorization_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"authorization8\" name=\"authorization\" value=\"8\">\n" +
+					"<label for=\"authorization8\">6. "+front_authorization_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(11, authorization)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(front_tag === 11) {
+			    front_authorization = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">12. Выберите вариант уровня понимания структуры и содержания наборов входных/выходных данных: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"io_data0\" name=\"io_data\" value=\"0\">\n" +
+					"<label for=\"io_data0\">1. "+front_io_data_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"io_data1\" name=\"io_data\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"io_data1\">2. "+front_io_data_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"io_data2\" name=\"io_data\" value=\"2\">\n" +
+					"<label for=\"io_data2\">3. "+front_io_data_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"io_data3\" name=\"io_data\" value=\"3\">\n" +
+					"<label for=\"io_data3\">4. "+front_io_data_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(12, io_data)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(front_tag === 12) {
+			    front_io_data = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">13. Выберите вариант количества запросов данных с бекенда: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"back_request0\" name=\"back_request\" value=\"0\">\n" +
+					"<label for=\"back_request0\">1. "+front_back_request_string[0]+" [0 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"back_request1\" name=\"back_request\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"back_request1\">2. "+front_back_request_string[1]+" [1 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"back_request2\" name=\"back_request\" value=\"2\">\n" +
+					"<label for=\"back_request2\">3. "+front_back_request_string[2]+" [2 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"back_request3\" name=\"back_request\" value=\"3\">\n" +
+					"<label for=\"back_request3\">4. "+front_back_request_string[3]+" [3 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"back_request5\" name=\"back_request\" value=\"5\">\n" +
+					"<label for=\"back_request5\">5. "+front_back_request_string[5]+" [5 storypoints]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"back_request8\" name=\"back_request\" value=\"8\">\n" +
+					"<label for=\"back_request8\">6. "+front_back_request_string[8]+" [8 storypoints]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(13, back_request)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(front_tag === 13) {
+			    front_back_request = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+						"<div id=\"variant\">\n" +
+							"<label id=\"lbl\">14. Выберите вариант возможности провести исследование (R&D) работы новых модулей/библиотек/компонентов: </label>" +
+							"<p>\n" +
+							"<input type=\"radio\" id=\"r_and_d0\" name=\"r_and_d\" value=\"0\" checked=\"checked\">\n" +
+							"<label for=\"r_and_d0\">1. "+front_r_and_d_string[0]+" [0 storypoints]</label>\n" +
+							"</p>\n" +
+							"<p>\n" +
+							"<input type=\"radio\" id=\"r_and_d1\" name=\"r_and_d\" value=\"1\">\n" +
+							"<label for=\"r_and_d1\">2. "+front_r_and_d_string[1]+" [1 storypoints]</label>\n" +
+							"</p>\n" +
+							"<p>\n" +
+							"<input type=\"radio\" id=\"r_and_d3\" name=\"r_and_d\" value=\"3\">\n" +
+							"<label for=\"r_and_d3\">3. "+front_r_and_d_string[3]+" [3 storypoints]</label>\n" +
+							"</p>\n" +
+							"<p>\n" +
+							"<input type=\"radio\" id=\"r_and_d8\" name=\"r_and_d\" value=\"8\">\n" +
+							"<label for=\"r_and_d8\">4. "+front_r_and_d_string[8]+" [8 storypoints]</label>\n" +
+							"</p>\n" +
+							"<p>\n" +
+							"<input type=\"radio\" id=\"r_and_d13\" name=\"r_and_d\" value=\"13\">\n" +
+							"<label for=\"r_and_d13\">5. "+front_r_and_d_string[13]+" [13 storypoints]</label>\n" +
+							"</p>\n" +
+							// "<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>" +
+							// "<p>!!!!!!!!!!!!! &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp В А Ж  Н А Я  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  И Н Ф О Р М А Ц И Я &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp !!!!!!!!!!!!!</p>" +
+							// "<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>" +
+							"<div id=\"user_estimate\">\n" +
+								"<p><label>Для обучения нейросети мы собираем ваши описания и комментарии в текстовом виде, а также ваши экспертные колличественные оценки. </label></p>" +
+								"<p><label>Нейросетевой модуль построенный в соответствии с архитектурой \"Bag of words\" будет обучаться на внесённых текстах и экспертных оценках и формировать собственное предсказание трудоёмкости. </label></p>" +
+								"<p><label>Вставьте название задачи: </label></p><p><textarea class=\"\" type=\"text\" name=\"nazvanie\"  placeholder=\"название\" value=\"\" onChange=\"frontNazvanieInputChange(nazvanie)\"></textarea></p>" +
+								"<p><label>Вставьте текстовое описание задачи: </label></p><p><textarea class=\"\" type=\"text\" name=\"descr\"  placeholder=\"описание\" value=\"\" onChange=\"frontDescrInputChange(descr)\"></textarea></p>" +
+								"<p><label>Вставьте комментарии к задаче: </label></p><p><textarea class=\"\" type=\"text\" name=\"user_comments\"  placeholder=\"комментарии\" value=\"\" onChange=\"frontCommentsInputChange(user_comments)\"></textarea></p>" +
+								"<p><label id=\"lbl\">Дайте свою оценку трудоёмкости задачи:</label></p>" +
+								"<p><label>В сторипоинтах: </label><input class=\"\" type=\"text\" name=\"storyPoint\"  placeholder=\"стори поинты\" value=\"0\" onChange=\"frontStoryPointInputChange(storyPoint)\"/></p>" +
+								"<p><label>Или в человеко-часах: </label><input class=\"\" type=\"text\" name=\"hour\"  placeholder=\"часы\" value=\"0\" onChange=\"frontHourInputChange(hour)\"/></p>" +
+							"</div>" +
+							"<p><button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseFrontendVariant(14, r_and_d)\">Далее</button></p>\n" +
+						"</div>" +
+					"</form>"
+			}
+			if(front_tag === 14) {
+				front_r_and_d = Number(v.value)
+
+				front_table_string =
+					"<style type=\"text/css\">\n" +
+					"   .row_cell { \n" +
+					"      text-align: left; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"      padding: 5px;" +
+					"   }\n" +
+					"   .right_cell { \n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .summ_cell { \n" +
+					"      text-align: right; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .head_cell { \n" +
+					"      font-weight: bold; /* Жирное начертание текста */\n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .astimation_line { \n" +
+					"      font-weight: bold; /* Жирное начертание текста */\n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      size: 20; /* Размер шрифта */\n" +
+					"   }\n" +
+					"</style>\n" +
+					"<table>\n" +
+					"<tr>\n" +
+					"<th class = \"head_cell\">Фактор</th>\n" +
+					"<th class = \"head_cell\">Вариант</th>\n" +
+					"<th class = \"head_cell\">Сторипоинты</th>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">1. Наличие необходимых лицензий и доступов к ресурсам инфрастуктуры. </td>\n" +
+					"<td class = \"row_cell\">"+front_access_string[front_access]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_access+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">2. Уровень понимания задачи. </td>\n" +
+					"<td class = \"row_cell\">"+front_job_string[front_job]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_job+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">3. Уровень владения инструментарием. </td>\n" +
+					"<td class = \"row_cell\">"+front_instrument_string[front_instrument]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_instrument+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">4. Состояние инфраструктуры. </td>\n" +
+					"<td class = \"row_cell\">"+front_infra_string[front_infra]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_infra+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">5. Состояние спецификаций. </td>\n" +
+					"<td class = \"row_cell\">"+front_specs_string[front_specs]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_specs+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">6. Степень годовности дизайна страниц. </td>\n" +
+					"<td class = \"row_cell\">"+front_pages_string[front_pages]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_pages+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">7. Количество новых сложных компонентов, которые нужно разработать. </td>\n" +
+					"<td class = \"row_cell\">"+front_components_string[front_components]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_components+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">8. Уровень заполнения таблиц тестовыми данными. </td>\n" +
+					"<td class = \"row_cell\">"+front_test_data_string[front_test_data]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_test_data+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">9. Уровень готовности эндпоинтов на бэкенде. </td>\n" +
+					"<td class = \"row_cell\">"+front_endpoint_string[front_endpoint]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_endpoint+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">10. Количество реализуемых функций-обработчиков событий / функций логики. </td>\n" +
+					"<td class = \"row_cell\">"+front_func_string[front_func]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_func+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">11. Вариант реализации авторизации пользователя. </td>\n" +
+					"<td class = \"row_cell\">"+front_authorization_string[front_authorization]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_authorization+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">12. Уровень понимания структуры и содержания наборов входных/выходных данных. </td>\n" +
+					"<td class = \"row_cell\">"+front_io_data_string[front_io_data]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_io_data+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">13. Количество запросов данных с бекенда. </td>\n" +
+					"<td class = \"row_cell\">"+front_back_request_string[front_back_request]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_back_request+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">14. Выберите вариант возможности провести исследование (R&D) работы новых модулей/библиотек/компонентов. </td>\n" +
+					"<td class = \"row_cell\">"+front_r_and_d_string[front_r_and_d]+"</td>\n" +
+					"<td class = \"right_cell\">"+front_r_and_d+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\"></td>\n" +
+					"<td class = \"summ_cell\">Сумма:</td>\n" +
+					"<td class = \"right_cell\">" + accum + "</td>\n" +
+					"</tr>\n" +
+					"</table>\n" +
+					"<p></p>" +
+					"<p></p>"
+
+				if (accum<4) {
+					document.querySelector("form").outerHTML =
+						front_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача относится к классу простых, на реализацию потребуется не более 2 рабочих дней.</label>" +
+						"</div>"
+				}
+				if (accum>=4 & accum<8) {
+					document.querySelector("form").outerHTML =
+						front_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача небольшой сложности ~5 рабочих дней  для разработчика уровня мидл.</label>" +
+						"</div>"
+				}
+				if (accum>=8 & accum<15) {
+					document.querySelector("form").outerHTML =
+						front_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача средней сложности ~10 рабочих дней  для разработчика уровня мидл.</label>" +
+						"</div>"
+				}
+				if (accum>=15 & accum<25) {
+					document.querySelector("form").outerHTML =
+						front_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача высокой сложности ~20 рабочих дней  для разработчика уровня мидл+.</label>" +
+						"</div>"
+				}
+				if (accum>=25) {
+					document.querySelector("form").outerHTML =
+						front_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача сверх высокой сложности/трудоёмкости, как правило нуждается в декомпозиции.</label>" +
+						"</div>"
+				}
+
+
+				let xhr_front = new XMLHttpRequest();
+
+				let json_front = JSON.stringify({
+					// "id": 0,
+					"access": front_access,
+					"job": front_job,
+					"instrument": front_instrument,
+					"infra": front_infra,
+					"specs": front_specs,
+					"pages": front_pages,
+					"components": front_components,
+					"testData": front_test_data,
+					"endPoint": front_endpoint,
+					"func": front_func,
+					"autorization": front_authorization,
+					"ioData": front_io_data,
+					"backRequest": front_back_request,
+					"R_And_D": front_r_and_d,
+					"description": front_user_description,
+					"autoLabel": accum,
+					"userLabelHr": front_user_label_hr,
+					"userLabelSP": front_user_label_sp,
+					"nazvanie": front_user_nazvanie,//Вэб сервис расчёта трудоёмкости задач разработки
+					"description": front_user_description,//Нужен WebService на Spring с jetty и netty под капотом для реализации простейших CRUD операций над базой Postgrtes с Spring JDBC Template. Бизнес-логика должна быть оформляема в виде динамически подулючаемых модулей
+					"userComments": front_user_comments,//Использовать Hibernate, Swagger, GSON, REST, Docker
+					// "userId": 0
+				});
+
+				xhr_front.open("POST", 'http://localhost:8081/taskHardnessCalc/v1/taskFront')
+				xhr_front.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+				xhr_front.send(json_front);
+
+
+			}
+		}
+	}
+}
+
+function frontStoryPointInputChange(obj){
+	front_user_label_sp = obj.value
+}
+
+function frontHourInputChange(obj){
+	front_user_label_hr = obj.value
+}
+
+function frontNazvanieInputChange(obj){
+	front_user_nazvanie = obj.value
+}
+
+function frontDescrInputChange(obj){
+	front_user_description = obj.value
+}
+function frontCommentsInputChange(obj){
+	front_user_comments = obj.value
+}
+
+
+
+tester_access = 0               //tester_tag === 1
+tester_job = 0                  //tester_tag === 2
+tester_instrument = 0           //tester_tag === 3
+tester_infra = 0                //tester_tag === 4
+tester_specs = 0                //tester_tag === 5
+tester_model = 0                //tester_tag === 6
+tester_test_data = 0            //tester_tag === 7
+tester_test_case = 0            //tester_tag === 8
+tester_method_test = 0          //tester_tag === 9
+tester_bug_report = 0           //tester_tag === 10
+tester_io_data = 0              //tester_tag === 11
+tester_auto_label = 0
+tester_user_label_sp = 0
+tester_user_label_hr = 0
+tester_user_nazvanie = ""
+tester_user_description = ""
+tester_user_comments = ""
+//create_date заполняется на бэке
+tester_user_id = 0
+//status заполняется на бэке
+tester_status = 0
+
+var tester_access_string = new Array(13);
+tester_access_string[0] = "У тестировщика есть все необходимые доступы к ресурсам инфрастуктуры и лицензии."
+tester_access_string[1] = "У тестировщика нет одного из доступов к ресурсам инфрастуктуры и/или лицензий, которые будет легко получить за незначительное время."
+tester_access_string[2] = "У тестировщика нет доступа к нескольким ресурсам инфрастуктуры и/или лицензий, получить которые можно за 1-2 дня."
+tester_access_string[3] = "У тестировщика нет доступа к половине ресурсов инфрастуктуры и/или лицензий, получить которые можно за 3-5 дней."
+tester_access_string[5] = "У тестировщика нет доступа к большей части инфрастуктуры и/или лицензий, на получение этих доступов потребуется значителтное время."
+tester_access_string[8] = "У тестировщика нет доступа к инфрастуктуре и/или лицензий, на получение этих доступов потребуется неопределённое время."
+tester_access_string[13] = ""
+
+var tester_job_string = new Array(13);
+tester_job_string[0] = "Тестировщику понятны формулировка задачи и бизнес логика, которую необходимо реализовать."
+tester_job_string[1] = "Тестировщику не понятны небольшая часть описания задачи и некоторые функции бизнес логики, которую необходимо реализовать."
+tester_job_string[2] = "Тестировщику не понятны примерно половина описания задачи и примерно половина функций бизнес логики, которую необходимо реализовать."
+tester_job_string[3] = "Тестировщику не понятны бОльшая часть описания задачи и и бОльшая часть функции бизнес логики, которую необходимо реализовать."
+tester_job_string[5] = "Тестировщику не понятны все описания задачи и все функции бизнес логики, которую необходимо реализовать."
+tester_job_string[8] = ""
+tester_job_string[13] = ""
+
+var tester_model_string = new Array(13);
+tester_model_string[0] = "Тестировщику понятна структура модели данных и атрибутивный состав таблиц."
+tester_model_string[1] = "Тестировщику не понятна небольшая часть структуры модели данных и/или назначение некоторых атрибутов."
+tester_model_string[2] = "Тестировщику не понятна примерно половина структуры модели данных и/или назначение половины атрибутов."
+tester_model_string[3] = "Тестировщику не понятна бОльшая часть структуры модели данных и/или назначение бОльшей части атрибутов."
+tester_model_string[5] = "Тестировщику не понятна вся структура модели данных и атрибутивный состав таблиц."
+tester_model_string[8] = ""
+tester_model_string[13] = ""
+
+var tester_instrument_string = new Array(13);
+tester_instrument_string[0] = "Из необходимых инструментов тестирования, все хорошо знакомы тестировщику и у него имеется достаточный опыт их использования."
+tester_instrument_string[1] = "Из необходимых инструментов тестирования, все, кроме одного, хорошо знакомы тестировщику, и у него имеется достаточный опыт их использования всех кроме одного."
+tester_instrument_string[2] = "Из необходимых инструментов тестирования, половина, хорошо знакомы тестировщику, и у него имеется достаточный опыт их использования с остальными опыта нет или его недостаточно."
+tester_instrument_string[3] = "Из необходимых инструментов тестирования, все не знакомы и опыта их использования нет или недостаточно."
+tester_instrument_string[5] = ""
+tester_instrument_string[8] = ""
+tester_instrument_string[13] = ""
+
+var tester_infra_string = new Array(13);
+tester_infra_string[0] = "Все элементы инфраструктуры корректно настроены и работают стабильно."
+tester_infra_string[1] = "Все элементы инфраструктуры корректно настроены но некоторые работают иногда не стабильно."
+tester_infra_string[2] = ""
+tester_infra_string[3] = "Некоторые элементы инфраструктуры настроены не вполне корректно и работают не стабильно."
+tester_infra_string[5] = ""
+tester_infra_string[8] = "Некоторые элементы инфраструктуры не корректно настроены и/или работают нестабильно."
+tester_infra_string[13] = ""
+
+var tester_specs_string = new Array(13);
+tester_specs_string[0] = ""
+tester_specs_string[1] = "Все спецификации в наличии, их содержание полно и корректно."
+tester_specs_string[2] = "Все спецификации в наличии, но их содержание не полно и/или не корректно."
+tester_specs_string[3] = "Часть спецификаций отсутствует."
+tester_specs_string[5] = "Спецификаций нет."
+tester_specs_string[8] = ""
+tester_specs_string[13] = ""
+
+
+var tester_test_data_string = new Array(13);
+tester_test_data_string[0] = "Необходимые тестовые данные в таблицы внесены и они полны и корректны."
+tester_test_data_string[1] = ""
+tester_test_data_string[2] = "Часть необходимых тестовых данных в таблицы не внесены или они некорректны и/или не определена часть связей."
+tester_test_data_string[3] = ""
+tester_test_data_string[5] = "Необходимые тестовые данные в таблицах полностью отсутствуют."
+tester_test_data_string[8] = ""
+tester_test_data_string[13] = ""
+
+var tester_test_case_string = new Array(13);
+tester_test_case_string[0] = ""
+tester_test_case_string[1] = "Сформулировать от 1 до 10 тест-кейсов."
+tester_test_case_string[2] = "Сформулировать от 11 до 20 тест-кейсов."
+tester_test_case_string[3] = "Сформулировать от 21 до 30 тест-кейсов."
+tester_test_case_string[5] = "Сформулировать от 31 до 40 тест-кейсов."
+tester_test_case_string[8] = "Сформулировать от 41 до 50 тест-кейсов."
+tester_test_case_string[13] = ""
+
+var tester_method_test_string = new Array(13);
+tester_method_test_string[0] = ""
+tester_method_test_string[1] = "Протестировать от 1 до 10 методов/тестов."
+tester_method_test_string[2] = "Протестировать от 11 до 20 методов/тестов."
+tester_method_test_string[3] = "Протестировать от 21 до 30 методов/тестов."
+tester_method_test_string[5] = "Протестировать от 31 до 40 методов/тестов."
+tester_method_test_string[8] = "Протестировать от 41 до 50 методов/тестов."
+tester_method_test_string[13] = ""
+
+var tester_bug_report_string = new Array(13);
+tester_bug_report_string[0] = ""
+tester_bug_report_string[1] = "Составить от 1 до 10 баг-репортов."
+tester_bug_report_string[2] = "Составить от 11 до 20 баг-репортов."
+tester_bug_report_string[3] = "Составить от 21 до 30 баг-репортов."
+tester_bug_report_string[5] = "Составить от 31 до 40 баг-репортов."
+tester_bug_report_string[8] = "Составить от 41 до 50 баг-репортов."
+tester_bug_report_string[13] = ""
+
+var tester_io_data_string = new Array(13);
+tester_io_data_string[0] = "В задаче не будут использоваться входные/выходные данные"
+tester_io_data_string[1] = "Тестировщику понятны все форматы входных и выходных данных для ендпоинтов."
+tester_io_data_string[2] = "Тестировщику понятны только часть форматов входных и выходных данных для ендпоинтов."
+tester_io_data_string[3] = "Тестировщику НЕ понятны форматы входных и выходных данных для ендпоинтов."
+tester_io_data_string[5] = ""
+tester_io_data_string[8] = ""
+tester_io_data_string[13] = ""
+
+function chooseTesterVariant(tester_tag, obj) {
+
+	console.log(tester_tag, obj)
+	for (const v of obj) {
+		if(v.checked){
+			accum = accum + Number(v.value)
+			// alert(v.value)
+			if(tester_tag === 1) {
+			    tester_access = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">2. Выберите вариант уровня понимания задачи: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job0\" name=\"job\" value=\"0\">\n" +
+					"<label for=\"job0\">1. "+tester_job_string[0]+" [0 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job1\" name=\"job\" value=\"1\">\n" +
+					"<label for=\"job1\">2. "+tester_job_string[1]+" [1 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job2\" name=\"job\" value=\"2\" checked=\"checked\">\n" +
+					"<label for=\"job2\">3. "+tester_job_string[2]+" [2 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job3\" name=\"job\" value=\"3\">\n" +
+					"<label for=\"job3\">4. "+tester_job_string[3]+" [3 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job5\" name=\"job\" value=\"5\">\n" +
+					"<label for=\"job5\">5. "+tester_job_string[5]+" [5 storypionts]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseTesterVariant(2, job)\">Далее</button>\n" +
+					"</div>" +
+					"</form>"
+			}
+			if(tester_tag === 2) {
+				tester_job = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">3. Выберите вариант уровня владения инструментарием: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument0\" name=\"instrument\" value=\"0\">\n" +
+					"<label for=\"instrument0\">1. "+tester_instrument_string[0]+" [0 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument1\" name=\"instrument\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"instrument1\">2. "+tester_instrument_string[1]+" [1 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument3\" name=\"instrument\" value=\"3\">\n" +
+					"<label for=\"instrument3\">3. "+tester_instrument_string[3]+" [3 storypionts]\n" +
+					"<p>\n" +
+					"</p>\n" +
+					"<input type=\"radio\" id=\"instrument8\" name=\"instrument\" value=\"8\">\n" +
+					"<label for=\"instrument8\">4. "+tester_instrument_string[8]+" [8 storypionts]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseTesterVariant(3, instrument)\">Далее</button>\n" +
+					"</div>"
+				"</form>"
+				"</form>"
+			}
+			if(tester_tag === 3) {
+				tester_instrument = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">4. Выберите вариант состояния инфраструктуры: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra0\" name=\"infra\" value=\"0\">\n" +
+					"<label for=\"infra0\">1. "+tester_infra_string[0]+" [0 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra1\" name=\"infra\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"infra1\">2. "+tester_infra_string[1]+" [1 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra3\" name=\"infra\" value=\"3\">\n" +
+					"<label for=\"infra3\">3. "+tester_infra_string[3]+" [3 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"infra8\" name=\"infra\" value=\"8\">\n" +
+					"<label for=\"infra8\">4. "+tester_infra_string[8]+" [8 storypionts]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseTesterVariant(4, infra)\">Далее</button>\n" +
+					"</div>"
+				"</form>"
+			}
+			if(tester_tag === 4) {
+				tester_infra = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">5. Выберите вариант состояния спецификаций: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs0\" name=\"specs\" value=\"1\">\n" +
+					"<label for=\"specs0\">1. "+tester_specs_string[1]+" [1 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs1\" name=\"specs\" value=\"2\" checked=\"checked\">\n" +
+					"<label for=\"specs1\">2. "+tester_specs_string[2]+" [2 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs2\" name=\"specs\" value=\"3\">\n" +
+					"<label for=\"specs2\">3. "+tester_specs_string[3]+" [3 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"specs3\" name=\"specs\" value=\"5\">\n" +
+					"<label for=\"specs3\">4. "+tester_specs_string[5]+" [5 storypionts]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseTesterVariant(5, specs)\">Далее</button>\n" +
+					"</div>"
+				"</form>"
+			}
+			if(tester_tag === 5) {
+				tester_specs = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">6. Выберите вариант уровня понимания модели данных: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model0\" name=\"model\" value=\"0\">\n" +
+					"<label for=\"model0\">1. "+tester_model_string[0]+" [0 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model1\" name=\"model\" value=\"1\">\n" +
+					"<label for=\"model1\">2. "+tester_model_string[1]+" [1 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model2\" name=\"model\" value=\"2\" checked=\"checked\">\n" +
+					"<label for=\"model2\">3. "+tester_model_string[2]+" [2 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model3\" name=\"model\" value=\"3\">\n" +
+					"<label for=\"model3\">4. "+tester_model_string[3]+" [3 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model5\" name=\"model\" value=\"5\">\n" +
+					"<label for=\"model5\">5. "+tester_model_string[5]+" [5 storypionts]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseTesterVariant(6, model)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(tester_tag === 6) {
+				tester_model = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">7. Выберите вариант уровня заполнения таблиц тестовыми данными: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_data0\" name=\"test_data\" value=\"0\">\n" +
+					"<label for=\"test_data0\">1. "+tester_test_data_string[0]+" [0 storypionts] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_data2\" name=\"test_data\" value=\"2\" checked=\"checked\">\n" +
+					"<label for=\"test_data2\">2. "+tester_test_data_string[2]+" [2 storypionts] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_data5\" name=\"test_data\" value=\"5\">\n" +
+					"<label for=\"test_data5\">3. "+tester_test_data_string[5]+" [5 storypionts] </label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseTesterVariant(7, test_data)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(tester_tag === 7) {
+				tester_test_data = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">8. Выберите вариант количества тест-кейсов: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_case1\" name=\"test_case\" value=\"1\">\n" +
+					"<label for=\"test_case1\">1. "+tester_test_case_string[1]+" [1 storypionts] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_case2\" name=\"test_case\" value=\"2\">\n" +
+					"<label for=\"test_case2\">2. "+tester_test_case_string[2]+" [2 storypionts] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_case3\" name=\"test_case\" value=\"3\" checked=\"checked\">\n" +
+					"<label for=\"test_case3\">3. "+tester_test_case_string[3]+" [3 storypionts] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_case5\" name=\"test_case\" value=\"5\">\n" +
+					"<label for=\"test_case5\">4. "+tester_test_case_string[5]+" [5 storypionts] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"test_case8\" name=\"test_case\" value=\"8\">\n" +
+					"<label for=\"test_case8\">5. "+tester_test_case_string[8]+" [8 storypionts] </label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseTesterVariant(8, test_case)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(tester_tag === 8) {
+				tester_test_case = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">9. Выберите количество методов/тестов: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"method_test1\" name=\"method_test\" value=\"1\">\n" +
+					"<label for=\"method_test1\">1. "+tester_method_test_string[1]+" [1 storypionts] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"method_test2\" name=\"method_test\" value=\"2\">\n" +
+					"<label for=\"method_test2\">2. "+tester_method_test_string[2]+" [2 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"method_test3\" name=\"method_test\" value=\"3\" checked=\"checked\">\n" +
+					"<label for=\"method_test3\">3. "+tester_method_test_string[3]+" [3 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"method_test5\" name=\"method_test\" value=\"5\">\n" +
+					"<label for=\"method_test5\">4. "+tester_method_test_string[5]+" [5 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"method_test8\" name=\"method_test\" value=\"8\">\n" +
+					"<label for=\"method_test8\">5. "+tester_method_test_string[8]+" [8 storypionts]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseTesterVariant(9, method_test)\">Далее</button>\n" +
+					"</div>"
+					"</form>"
+			}
+			if(tester_tag === 9) {
+				tester_method_test = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">10. Выберите предполагаемое количество баг-репортов : </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"bug_report1\" name=\"bug_report\" value=\"1\">\n" +
+					"<label for=\"bug_report1\">1. "+tester_bug_report_string[1]+" [1 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"bug_report2\" name=\"bug_report\" value=\"2\">\n" +
+					"<label for=\"bug_report2\">2. "+tester_bug_report_string[2]+" [2 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"bug_report3\" name=\"bug_report\" value=\"3\" checked=\"checked\">\n" +
+					"<label for=\"bug_report3\">3. "+tester_bug_report_string[3]+" [3 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"bug_report5\" name=\"bug_report\" value=\"5\">\n" +
+					"<label for=\"bug_report5\">4. "+tester_bug_report_string[5]+" [5 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"bug_report8\" name=\"bug_report\" value=\"8\">\n" +
+					"<label for=\"bug_report8\">5. "+tester_bug_report_string[8]+" [8 storypionts]</label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseTesterVariant(10, bug_report)\">Далее</button>\n" +
+					"</div>"
+				"</form>"
+			}
+			if(tester_tag === 10) {
+				tester_bug_report = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">11. Выберите вариант уровня понимания структуры и содержания наборов входных/выходных данных: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"io_data0\" name=\"io_data\" value=\"0\">\n" +
+					"<label for=\"io_data0\">1. "+tester_io_data_string[0]+" [0 storypionts]</label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"io_data1\" name=\"io_data\" value=\"1\" checked=\"checked\">\n" +
+					"<label for=\"io_data1\">2. "+tester_io_data_string[1]+" [1 storypionts] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"io_data2\" name=\"io_data\" value=\"2\" >\n" +
+					"<label for=\"io_data2\">3. "+tester_io_data_string[2]+" [2 storypionts] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"io_data3\" name=\"io_data\" value=\"3\">\n" +
+					"<label for=\"io_data3\">4. "+tester_io_data_string[3]+" [3 storypionts] </label>\n" +
+					"</p>\n" +
+					"<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>" +
+					"<p>!!!!!!!!!!!!! &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp В А Ж  Н А Я  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  И Н Ф О Р М А Ц И Я &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp !!!!!!!!!!!!!</p>" +
+					"<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>" +
+					"<div id=\"user_estimate\">\n" +
+					"<p><label>Для обучения нейросети мы собираем ваши описания и комментарии в текстовом виде, а также ваши экспертные колличественные оценки. </label></p>" +
+					"<p><label>Нейросетевой модуль построенный в соответствии с архитектурой \"Bag of words\" будет обучаться на внесённых текстах и экспертных оценках и формировать собственное предсказание трудоёмкости. </label></p>" +
+					"<p><label>Вставьте название задачи: </label></p><p><textarea class=\"\" type=\"text\" name=\"nazvanie\"  placeholder=\"название\" value=\"\" onChange=\"testerNazvanieInputChange(nazvanie)\"></textarea></p>" +
+					"<p><label>Вставьте текстовое описание задачи: </label></p><p><textarea class=\"\" type=\"text\" name=\"descr\"  placeholder=\"описание\" value=\"\" onChange=\"testerDescrInputChange(descr)\"></textarea></p>" +
+					"<p><label>Вставьте комментарии к задаче: </label></p><p><textarea class=\"\" type=\"text\" name=\"user_comments\"  placeholder=\"комментарии\" value=\"\" onChange=\"testerCommentsInputChange(user_comments)\"></textarea></p>" +
+					"<p><label id=\"lbl\">Дайте свою оценку трудоёмкости задачи:</label></p>" +
+					"<p><label>В сторипоинтах: </label><input class=\"\" type=\"text\" name=\"storyPoint\"  placeholder=\"стори поинты\" value=\"0\" onChange=\"testerStoryPointInputChange(storyPoint)\"/></p>" +
+					"<p><label>Или в человеко-часах: </label><input class=\"\" type=\"text\" name=\"hour\"  placeholder=\"часы\" value=\"0\" onChange=\"testerHourInputChange(hour)\"/></p>" +
+					"</div>" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseTesterVariant(11, io_data)\">Далее</button>\n" +
+					"</div>" +
+					"<form/>"
+			}
+			if(tester_tag === 11) {
+				tester_io_data = Number(v.value)
+
+				tester_table_string =
+					"<style type=\"text/css\">\n" +
+					"   .row_cell { \n" +
+					"      text-align: left; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"      padding: 5px;" +
+					"   }\n" +
+					"   .right_cell { \n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .summ_cell { \n" +
+					"      text-align: right; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .head_cell { \n" +
+					"      font-weight: bold; /* Жирное начертание текста */\n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .astimation_line { \n" +
+					"      font-weight: bold; /* Жирное начертание текста */\n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      size: 20; /* Размер шрифта */\n" +
+					"   }\n" +
+					"</style>\n" +
+					"<table>\n" +
+					"<tr>\n" +
+					"<th class = \"head_cell\">Фактор</th>\n" +
+					"<th class = \"head_cell\">Вариант</th>\n" +
+					"<th class = \"head_cell\">Сторипоинты</th>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">1. Наличие необходимых лицензий и доступов к ресурсам инфрастуктуры.</td>\n" +
+					"<td class = \"row_cell\">"+tester_access_string[tester_access]+"</td>\n" +
+					"<td class = \"right_cell\">"+tester_access+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">2. Уровень понимания задачи</td>\n" +
+					"<td class = \"row_cell\">"+tester_job_string[tester_job]+"</td>\n" +
+					"<td class = \"right_cell\">"+tester_job+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">3. Уровень владения инструментарием</td>\n" +
+					"<td class = \"row_cell\">"+tester_instrument_string[tester_instrument]+"</td>\n" +
+					"<td class = \"right_cell\">"+tester_instrument+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">4. Состояние инфраструктуры</td>\n" +
+					"<td class = \"row_cell\">"+tester_infra_string[tester_infra]+"</td>\n" +
+					"<td class = \"right_cell\">"+tester_infra+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">5. Состояние спецификаций</td>\n" +
+					"<td class = \"row_cell\">"+tester_specs_string[tester_specs]+"</td>\n" +
+					"<td class = \"right_cell\">"+tester_specs+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">6. Уровень понимания модели данных</td>\n" +
+					"<td class = \"row_cell\">"+tester_model_string[tester_model]+"</td>\n" +
+					"<td class = \"right_cell\">"+tester_model+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">7. Уровень заполнения таблиц тестовыми данными</td>\n" +
+					"<td class = \"row_cell\">"+tester_test_data_string[tester_test_data]+"</td>\n" +
+					"<td class = \"right_cell\">"+tester_test_data+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">8. Количество тест-кейсов</td>\n" +
+					"<td class = \"row_cell\">"+tester_test_case_string[tester_test_case]+"</td>\n" +
+					"<td class = \"right_cell\">"+tester_test_case+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">9. Количество методов/тестов</td>\n" +
+					"<td class = \"row_cell\">"+tester_method_test_string[tester_method_test]+"</td>\n" +
+					"<td class = \"right_cell\">"+tester_method_test+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">10. Предполагаемое количество баг-репортов</td>\n" +
+					"<td class = \"row_cell\">"+tester_bug_report_string[tester_bug_report]+"</td>\n" +
+					"<td class = \"right_cell\">"+tester_bug_report+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">11. Понимание структуры и содержания наборов входных/выходных данных</td>\n" +
+					"<td class = \"row_cell\">"+tester_io_data_string[tester_io_data]+"</td>\n" +
+					"<td class = \"right_cell\">"+tester_io_data+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\"></td>\n" +
+					"<td class = \"summ_cell\">Сумма:</td>\n" +
+					"<td class = \"right_cell\">" + accum + "</td>\n" +
+					"</tr>\n" +
+					"</table>\n" +
+					"<p></p>" +
+					"<p></p>"
+				if (accum<4) {
+					document.querySelector("form").outerHTML =
+						tester_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача относится к классу простых, на реализацию потребуется не более 2 рабочих дней.</label>" +
+						"</div>"
+				}
+				if (accum>=4 & accum<8) {
+					document.querySelector("form").outerHTML =
+						tester_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача небольшой сложности ~5 рабочих дней  для тестировщика уровня мидл.</label>" +
+						"</div>"
+				}
+				if (accum>=8 & accum<15) {
+					document.querySelector("form").outerHTML =
+						tester_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача средней сложности ~10 рабочих дней  для тестировщика уровня мидл.</label>" +
+						"</div>"
+				}
+				if (accum>=15 & accum<25) {
+					document.querySelector("form").outerHTML =
+						tester_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача высокой сложности ~20 рабочих дней  для тестировщика уровня мидл+.</label>" +
+						"</div>"
+				}
+				if (accum>=25) {
+					document.querySelector("form").outerHTML =
+						tester_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача сверх высокой сложности/трудоёмкости, как правило нуждается в декомпозиции.</label>" +
+						"</div>"
+				}
+
+				let xhr_tester = new XMLHttpRequest();
+
+				let json_tester = JSON.stringify({
+					// "id": 0,
+					"access": tester_access,
+					"job": tester_job,
+					"instrument": tester_instrument,
+					"infra": tester_infra,
+					"specs": tester_specs,
+					"model": tester_model,
+					"testData": tester_test_data,
+					"ioData": tester_io_data,
+					"methodTest": tester_method_test,
+					"testCase": tester_test_case,
+					"bugReport": tester_bug_report,
+					"autoLabel": accum,
+					"nazvanie": tester_user_nazvanie,
+					"description": tester_user_description,
+					"testerUserComments": tester_user_comments,
+					"userLabelSp": tester_user_label_sp,
+					"userLabelHr": tester_user_label_hr
+					// "nazvanie": front_user_nazvanie,//Вэб сервис расчёта трудоёмкости задач разработки
+					// "description": front_user_description,//Нужен WebService на Spring с jetty и netty под капотом для реализации простейших CRUD операций над базой Postgrtes с Spring JDBC Template. Бизнес-логика должна быть оформляема в виде динамически подулючаемых модулей
+					// "userComments": front_user_comments,//Использовать React, SpringBoot, Hibernate, Swagger, REST, Docker
+					// "userId": 0
+				});
+
+				xhr_tester.open("POST", 'http://localhost:8081/taskHardnessCalc/v1/taskTest')
+				xhr_tester.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+				xhr_tester.send(json_tester);
+
+			}
+		}
+	}
+}
+
+function testerStoryPointInputChange(obj){
+	tester_user_label_sp = obj.value
+}
+function testerHourInputChange(obj){
+	tester_user_label_hr = obj.value
+}
+function testerNazvanieInputChange(obj){
+	tester_user_nazvanie = obj.value
+}
+function testerDescrInputChange(obj){
+	tester_user_description = obj.value
+}
+function testerCommentsInputChange(obj){
+	tester_user_comments = obj.value
+}
+
+
+analist_access = 0              //analist_tag === 1
+analist_job = 0                 //analist_tag === 2
+analist_model = 0               //analist_tag === 3
+analist_instrument = 0          //analist_tag === 4
+analist_information = 0         //analist_tag === 5
+analist_business = 0            //analist_tag === 6
+analist_colleagues = 0          //analist_tag === 7
+analist_ui_back = 0             //analist_tag === 8
+analist_auto_label = 0
+analist_user_label = 0
+analist_user_description = ""
+analist_user_nazvanie = ""
+analist_user_comments = ""
+analist_user_label_sp = ""
+analist_user_label_hr = ""
+
+//create_date заполняется на бэке
+analist_user_id = 0
+//status заполняется на бэке
+analist_status = 0
+
+var analist_access_string = new Array(13);
+analist_access_string[0] = "У аналитика есть все необходимые доступы к ресурсам инфрастуктуры и лицензии."
+analist_access_string[1] = "У аналитика нет одного из доступов к ресурсам инфрастуктуры и/или лицензий, которые будет легко получить за незначительное время."
+analist_access_string[2] = "У аналитика нет доступа к нескольким ресурсам инфрастуктуры и/или лицензий, получить которые можно за 1-2 дня."
+analist_access_string[3] = "У аналитика нет доступа к половине ресурсов инфрастуктуры и/или лицензий, получить которые можно за 3-5 дней."
+analist_access_string[5] = "У аналитика нет доступа к большей части инфрастуктуры и/или лицензий, на получение этих доступов потребуется значительное время."
+analist_access_string[8] = "У аналитика нет доступа к большей части инфрастуктуры и/или лицензий, на получение этих доступов потребуется значительное время."
+
+var analist_job_string = new Array(13);
+analist_job_string[0] = "Аналитику понятно описание задачи и все функции бизнес логики, которые необходимо описать."
+analist_job_string[1] = "Аналитику не понятны небольшая часть описания задачи и некоторые функции бизнес логики, которую необходимо описать."
+analist_job_string[2] = "Аналитику не понятны примерно половина описания задачи и примерно половина функций бизнес логики, которую необходимо описать."
+analist_job_string[3] = "Аналитику не понятны бОльшая часть описания задачи и и бОльшая часть функции бизнес логики, которую необходимо описать."
+analist_job_string[5] = "Аналитику не понятны бОльшая часть описания задачи и и бОльшая часть функции бизнес логики, которую необходимо описать."
+analist_job_string[8] = "Аналитику не понятны все описания задачи и все функции бизнес логики, которую необходимо описать."
+analist_job_string[13] = ""
+
+var analist_model_string = new Array(13);
+analist_model_string[0] = "Аналитику понятна структура модели данных и атрибутивный состав таблиц."
+analist_model_string[1] = "Аналитику не понятна небольшая часть структуры модели данных и/или назначение некоторых атрибутов."
+analist_model_string[2] = "Аналитику не понятна примерно половина структуры модели данных и/или назначение половины атрибутов."
+analist_model_string[3] = "Аналитику не понятна бОльшая часть структуры модели данных и/или назначение бОльшей части атрибутов."
+analist_model_string[5] = "Аналитику не понятна вся структура модели данных и атрибутивный состав таблиц."
+analist_model_string[8] = ""
+analist_model_string[13] = ""
+
+var analist_instrument_string = new Array(13);
+analist_instrument_string[0] = "Из необходимых инструментов анализа, все хорошо знакомы аналитику и у него имеется достаточный опыт их использования."
+analist_instrument_string[1] = "Из необходимых инструментов анализа, все, кроме одного, хорошо знакомы аналитику, и у него имеется достаточный опыт их использования всех кроме одного."
+analist_instrument_string[2] = ""
+analist_instrument_string[3] = "Из необходимых инструменты анализа, половина, хорошо знакомы аналитику, и у него имеется достаточный опыт их использования с остальными опыта нет или его недостаточно."
+analist_instrument_string[5] = ""
+analist_instrument_string[8] = "Из необходимых инструменты анализа, все не знакомы и опыта их использования нет или недостаточно."
+analist_instrument_string[13] = ""
+
+var analist_information_string = new Array(13);
+analist_information_string[0] = "В задаче не потребуются исходные данные/информация."
+analist_information_string[1] = "Из необходимых исходных данных/информации аналитику доступны все необходимые исходные данные."
+analist_information_string[2] = "Из необходимых исходных данных/информации аналитику доступны все кроме малого числа незначительных сведений."
+analist_information_string[3] = "Из необходимых исходных данных аналитику доступны примерно половина, а на получение пока недоступных потребуется много времени."
+analist_information_string[5] = "Из необходимых исходных данных аналитику доступны меньшая часть, а на получение пока недоступных потребуется очень много времени."
+analist_information_string[8] = "Необходимые исходные данные аналитику не доступны, а на их получение потребуется неопределённо много времени."
+analist_information_string[13] = ""
+
+var analist_business_string = new Array(13);
+analist_business_string[0] = "Взаимодействие с бизнес-заказчиком максимально эффективное – быстрый отклик, функциональные требования всегда корректны и полны, ответы на вопросы содержательны и полезны."
+analist_business_string[1] = "Взаимодействие с бизнес-заказчиком по большей части эффективное –  отклик достаточно быстрый, функциональные требования всегда корректны и полны, ответы на вопросы иногда недостаточно содержательны или полезны."
+analist_business_string[2] = "Взаимодействие с бизнес-заказчиком не всегда эффективное –  отклик не редко с задержкой, функциональные требования иногда не корректны и/или не полны, ответы на вопросы не редко недостаточно  содержательны или полезны."
+analist_business_string[3] = "Взаимодействие с бизнес-заказчиком часто не эффективное –  отклик часто с задержкой, функциональные требования часто не корректны и/или не полны, ответы на вопросы часто недостаточно содержательны или полезны."
+analist_business_string[5] = "Взаимодействие с бизнес-заказчиком не эффективное –  отклик с большой задержкой, функциональные требования не корректны и/или не полны, ответы на вопросы безсодержательны и безполезны."
+analist_business_string[8] = ""
+analist_business_string[13] = ""
+
+var analist_colleagues_string = new Array(13);
+analist_colleagues_string[0] = "Взаимодействие с коллегами из других команд не потребуется."
+analist_colleagues_string[1] = "Взаимодействие с коллегами из других команд, максимально эффективное – быстрый отклик на запросы, ответы на вопросы содержательны и полезны согласование позиций ничем не затруднено."
+analist_colleagues_string[2] = "Взаимодействие с коллегами из других команд по большей части эффективное –  задержка отклика  отклика на запрос небольшая, ответы на вопросы по большей части содержательны и полезны, согласование позиций не затруднено в большинстве случаев."
+analist_colleagues_string[3] = "Взаимодействие с коллегами из других команд в половине случаев эффективное –  задержка отклика отклика на запрос может быть значительной, ответы на вопросы в половине случаев содержательны и полезны, согласование позиций часто затруднено."
+analist_colleagues_string[5] = "Взаимодействие с коллегами из других команд мало эффективное –  задержка отклика на запрос  может быть значительной, ответы на вопросы в половине случаев содержательны и полезны, согласование позиций часто затруднено."
+analist_colleagues_string[8] = "Взаимодействие с коллегами из других команд не эффективное –  задержка отклика на запрос  слишком большая, ответы на вопросы безсодержательны и безполезны, согласование позиций почти невозможно."
+analist_colleagues_string[13] = ""
+
+var analist_ui_back_string = new Array(13);
+analist_ui_back_string[0] = "В задаче не требуется описать ни UI ни бэкенд."
+analist_ui_back_string[1] = "В задаче требуется описать только UI и не требуется описывать бэкенд."
+analist_ui_back_string[2] = "В задаче требуется описать только бэкенд и не требуется описывать UI."
+analist_ui_back_string[3] = "В задаче требуется описать не только бэкенд но и UI."
+analist_ui_back_string[5] = ""
+analist_ui_back_string[8] = ""
+analist_ui_back_string[13] = ""
+
+function chooseAnalistVariant(analist_tag, obj) {
+
+	console.log(analist_tag, obj)
+	for (const v of obj) {
+		if(v.checked){
+			accum_add_value = Number(v.value)
+			accum = accum + Number(v.value)
+			if(analist_tag === 1) {
+				analist_access = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">2. Выберите вариант уровня понимания задачи: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job0\" name=\"job\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"job0\">1. "+analist_job_string[0]+" [0 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job1\" name=\"job\" value=\"1\">\n" +
+					"<label for=\"job1\">2. "+analist_job_string[1]+" [1 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job2\" name=\"job\" value=\"2\">\n" +
+					"<label for=\"job2\">3. "+analist_job_string[2]+" [2 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job3\" name=\"job\" value=\"3\">\n" +
+					"<label for=\"job3\">4. "+analist_job_string[3]+" [3 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"job5\" name=\"job\" value=\"5\">\n" +
+					"<label for=\"job5\">5. "+analist_job_string[5]+" [5 storypoints] </label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseAnalistVariant(2, job)\">Далее</button>\n" +
+					"</div>" +
+					"</form>"
+			}
+			if(analist_tag === 2) {
+				analist_job = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">3. Выберите вариант уровня понимания модели данных: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model0\" name=\"model\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"model0\">1. "+analist_model_string[0]+" [0 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model1\" name=\"model\" value=\"1\">\n" +
+					"<label for=\"model1\">2. "+analist_model_string[1]+" [1 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model2\" name=\"model\" value=\"2\">\n" +
+					"<label for=\"model2\">3. "+analist_model_string[2]+" [2 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model3\" name=\"model\" value=\"3\">\n" +
+					"<label for=\"model3\">4. "+analist_model_string[3]+" [3 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"model5\" name=\"model\" value=\"5\">\n" +
+					"<label for=\"model5\">5. "+analist_model_string[5]+" [5 storypoints] </label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseAnalistVariant(3, model)\">Далее</button>\n" +
+					"</div>"
+				"</form>"
+			}
+			if(analist_tag === 3) {
+				analist_model = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">4.Выберите вариант уровня владения инструментарием: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument0\" name=\"instrument\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"instrument0\">1. "+analist_instrument_string[0]+" [0 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument1\" name=\"instrument\" value=\"1\">\n" +
+					"<label for=\"instrument1\">2. "+analist_instrument_string[1]+" [1 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument3\" name=\"instrument\" value=\"3\">\n" +
+					"<label for=\"instrument3\">3. "+analist_instrument_string[3]+" [3 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"instrument8\" name=\"instrument\" value=\"8\">\n" +
+					"<label for=\"instrument8\">4. "+analist_instrument_string[8]+" [8 storypoints] </label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseAnalistVariant(4, instrument)\">Далее</button>\n" +
+					"</div>"
+				"</form>"
+			}
+			if(analist_tag === 4) {
+				analist_instrument = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">5. Выберите вариант достаточности исходных данных: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"information0\" name=\"information\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"information0\">1. "+analist_information_string[0]+" [0 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"information1\" name=\"information\" value=\"1\">\n" +
+					"<label for=\"information1\">2. "+analist_information_string[1]+" [1 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"information2\" name=\"information\" value=\"2\">\n" +
+					"<label for=\"information2\">3. "+analist_information_string[2]+" [2 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"information3\" name=\"information\" value=\"3\">\n" +
+					"<label for=\"information3\">4. "+analist_information_string[3]+" [3 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"information5\" name=\"information\" value=\"5\">\n" +
+					"<label for=\"information5\">5. "+analist_information_string[5]+" [5 storypoints] </label>\n" +
+					"</p>\n" +
+					"</p>\n" +
+					"<input type=\"radio\" id=\"information8\" name=\"information\" value=\"8\">\n" +
+					"<label for=\"information8\">6. "+analist_information_string[8]+" [8 storypoints] </label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseAnalistVariant(5, information)\">Далее</button>\n" +
+					"</div>"
+				"</form>"
+			}
+			if(analist_tag === 5) {
+				analist_information = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">6. Выберите вариант уровня взаимодействия с бизнес заказчиком: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"business0\" name=\"business\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"business0\">1. "+analist_business_string[0]+" [1 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"business1\" name=\"business\" value=\"1\">\n" +
+					"<label for=\"business1\">2. "+analist_business_string[1]+" [2 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"business2\" name=\"business\" value=\"2\">\n" +
+					"<label for=\"business2\">3. "+analist_business_string[2]+" [3 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"business3\" name=\"business\" value=\"3\">\n" +
+					"<label for=\"business3\">4. "+analist_business_string[3]+" [5 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"business5\" name=\"business\" value=\"5\">\n" +
+					"<label for=\"business5\">5. "+analist_business_string[5]+" [8 storypoints] </label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseAnalistVariant(6, business)\">Далее</button>\n" +
+					"</div>"
+				"</form>"
+			}
+			if(analist_tag === 6) {
+				analist_business = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+					"<div id=\"variant\">\n" +
+					"<label id=\"lbl\">7. Выберите вариант уровня взаимодействия с коллегами из команд, с продуктами которых необходимо интегрировать разработку: </label>" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"colleagues1\" name=\"colleagues\" value=\"0\" checked=\"checked\">\n" +
+					"<label for=\"colleagues1\">1. "+analist_colleagues_string[0]+" [0 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"colleagues1\" name=\"colleagues\" value=\"1\">\n" +
+					"<label for=\"colleagues1\">2. "+analist_colleagues_string[1]+" [1 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"colleagues2\" name=\"colleagues\" value=\"2\">\n" +
+					"<label for=\"colleagues2\">3. "+analist_colleagues_string[2]+" [2 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"colleagues3\" name=\"colleagues\" value=\"3\">\n" +
+					"<label for=\"colleagues3\">4. "+analist_colleagues_string[3]+" [3 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"colleagues5\" name=\"colleagues\" value=\"5\">\n" +
+					"<label for=\"colleagues5\">5. "+analist_colleagues_string[5]+" [5 storypoints] </label>\n" +
+					"</p>\n" +
+					"<p>\n" +
+					"<input type=\"radio\" id=\"colleagues8\" name=\"colleagues\" value=\"8\">\n" +
+					"<label for=\"colleagues8\">6. "+analist_colleagues_string[8]+" [8 storypoints] </label>\n" +
+					"</p>\n" +
+					"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseAnalistVariant(7, colleagues)\">Далее</button>\n" +
+					"</div>"
+				"</form>"
+			}
+			if(analist_tag === 7) {
+				analist_colleagues = Number(v.value)
+				document.querySelector("form").outerHTML =
+					"<form name = frm>" +
+						"<div id=\"variant\">\n" +
+							"<label id=\"lbl\">8. Выберите вариант комплексности описания задачи в спецификации: </label>" +
+							"<p>\n" +
+							"<input type=\"radio\" id=\"ui_back1\" name=\"ui_back\" value=\"0\" checked=\"checked\">\n" +
+							"<label for=\"ui_back1\">1. "+analist_ui_back_string[0]+" [0 storypoints] </label>\n" +
+							"</p>\n" +
+							"<p>\n" +
+							"<input type=\"radio\" id=\"ui_back1\" name=\"ui_back\" value=\"1\">\n" +
+							"<label for=\"ui_back1\">2. "+analist_ui_back_string[1]+" [1 storypoints] </label>\n" +
+							"</p>\n" +
+							"<p>\n" +
+							"<input type=\"radio\" id=\"ui_back3\" name=\"ui_back\" value=\"3\">\n" +
+							"<label for=\"ui_back3\">3. "+analist_ui_back_string[2]+" [2 storypoints] </label>\n" +
+							"</p>\n" +
+							"<p>\n" +
+							"<input type=\"radio\" id=\"ui_back8\" name=\"ui_back\" value=\"8\">\n" +
+							"<label for=\"ui_back8\">4. "+analist_ui_back_string[3]+" [3 storypoints] </label>\n" +
+							"</p>\n" +
+							// "<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>" +
+							// "<p>!!!!!!!!!!!!! &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp В А Ж  Н А Я  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  И Н Ф О Р М А Ц И Я &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp !!!!!!!!!!!!!</p>" +
+							// "<p>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>" +
+							"<div id=\"user_estimate\">\n" +
+								"<p><label>Для обучения нейросети мы собираем ваши описания и комментарии в текстовом виде, а также ваши экспертные колличественные оценки. </label></p>" +
+								"<p><label>Нейросетевой модуль построенный в соответствии с архитектурой \"Bag of words\" будет обучаться на внесённых текстах и экспертных оценках и формировать собственное предсказание трудоёмкости. </label></p>" +
+								"<p><label>Вставьте название задачи: </label></p><p><textarea class=\"\" type=\"text\" name=\"nazvanie\"  placeholder=\"название\" value=\"\" onChange=\"analistNazvanieInputChange(nazvanie)\"></textarea></p>" +
+								"<p><label>Вставьте текстовое описание задачи: </label></p><p><textarea class=\"\" type=\"text\" name=\"descr\"  placeholder=\"описание\" value=\"\" onChange=\"analistDescrInputChange(descr)\"></textarea></p>" +
+								"<p><label>Вставьте комментарии к задаче: </label></p><p><textarea class=\"\" type=\"text\" name=\"user_comments\"  placeholder=\"комментарии\" value=\"\" onChange=\"analistCommentsInputChange(user_comments)\"></textarea></p>" +
+								"<p><label id=\"lbl\">Дайте свою оценку трудоёмкости задачи:</label></p>" +
+								"<p><label>В сторипоинтах: </label><input class=\"\" type=\"text\" name=\"storyPoint\"  placeholder=\"стори поинты\" value=\"0\" onChange=\"analistStoryPointInputChange(storyPoint)\"/></p>" +
+								"<p><label>Или в человеко-часах: </label><input class=\"\" type=\"text\" name=\"hour\"  placeholder=\"часы\" value=\"0\" onChange=\"analistHourInputChange(hour)\"/></p>" +
+							"</div>" +
+							"<button id=\"sbmt\" name=\"button\" value=\"Вычислить\" onclick=\"chooseAnalistVariant(8, ui_back)\">Далее</button>\n" +
+						"</div>"
+					"</form>"
+			}
+			if(analist_tag === 8) {
+			    analist_ui_back = Number(v.value)
+
+				analitic_table_string =
+					"<style type=\"text/css\">\n" +
+					"   .row_cell { \n" +
+					"      text-align: left; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"      padding: 5px;" +
+					"   }\n" +
+					"   .right_cell { \n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .summ_cell { \n" +
+					"      text-align: right; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .head_cell { \n" +
+					"      font-weight: bold; /* Жирное начертание текста */\n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      border: 1px solid black; /* Рамка вокруг таблицы */\n" +
+					"   }\n" +
+					"   .astimation_line { \n" +
+					"      font-weight: bold; /* Жирное начертание текста */\n" +
+					"      text-align: center; /* Выравнивание по левому краю */\n" +
+					"      size: 20; /* Размер шрифта */\n" +
+					"   }\n" +
+					"</style>\n" +
+					"<table>\n" +
+					"<tr>\n" +
+					"<th class = \"head_cell\">Фактор</th>\n" +
+					"<th class = \"head_cell\">Вариант</th>\n" +
+					"<th class = \"head_cell\">Сторипоинты</th>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">1. Наличие необходимых лицензий и доступов к ресурсам инфрастуктуры.</td>\n" +
+					"<td class = \"row_cell\">"+analist_access_string[analist_access]+"</td>\n" +
+					"<td class = \"right_cell\">"+analist_access+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">2. Уровень понимания задачи</td>\n" +
+					"<td class = \"row_cell\">"+analist_job_string[analist_job]+"</td>\n" +
+					"<td class = \"right_cell\">"+analist_job+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">3. Уровень понимания модели данных</td>\n" +
+					"<td class = \"row_cell\">"+analist_model_string[analist_model]+"</td>\n" +
+					"<td class = \"right_cell\">"+analist_model+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">4. Уровень владения инструментарием</td>\n" +
+					"<td class = \"row_cell\">"+analist_instrument_string[analist_instrument]+"</td>\n" +
+					"<td class = \"right_cell\">"+analist_instrument+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">5. Уровень достаточности исходных данных</td>\n" +
+					"<td class = \"row_cell\">"+analist_information_string[analist_information]+"</td>\n" +
+					"<td class = \"right_cell\">"+analist_information+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">6. Уровень взаимодействия с бизнес заказчиком</td>\n" +
+					"<td class = \"row_cell\">"+analist_business_string[analist_business]+"</td>\n" +
+					"<td class = \"right_cell\">"+analist_business+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">7. Уровень взаимодействия с коллегами из других команд</td>\n" +
+					"<td class = \"row_cell\">"+analist_colleagues_string[analist_colleagues]+"</td>\n" +
+					"<td class = \"right_cell\">"+analist_colleagues+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\">8. Комплексность описания задачи в спецификации</td>\n" +
+					"<td class = \"row_cell\">"+analist_ui_back_string[analist_ui_back]+"</td>\n" +
+					"<td class = \"right_cell\">"+analist_ui_back+"</td>\n" +
+					"</tr>\n" +
+					"<tr>\n" +
+					"<td class = \"row_cell\"></td>\n" +
+					"<td class = \"summ_cell\">Сумма:</td>\n" +
+					"<td class = \"right_cell\">" + accum + "</td>\n" +
+					"</tr>\n" +
+					"</table>\n" +
+					"<p></p>" +
+					"<p></p>"
+
+
+				if (accum<4) {
+					document.querySelector("form").outerHTML =
+						analitic_table_string +
+						"<div id=\"result\" class='astimation_line' >\n" +
+						"<label id=\"lbl\">Задача небольшой сложности ~5 рабочих дней для аналитика уровня мидл.</label>" +
+						"</div>\n"
+
+				}
+				if (accum>=4 & accum<8) {
+					document.querySelector("form").outerHTML =
+						analitic_table_string +
+						"<div id=\"result\" class='astimation_line' >\n" +
+						"<label id=\"lbl\">Задача небольшой сложности ~5 рабочих дней для аналитика уровня мидл.</label>" +
+						"</div>\n"
+				}
+				if (accum>=8 & accum<15) {
+					document.querySelector("form").outerHTML =
+						analitic_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача средней сложности ~10 рабочих дней для аналитика уровня мидл.</label>" +
+						"</div>"
+				}
+				if (accum>=15 & accum<25) {
+					document.querySelector("form").outerHTML =
+						analitic_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача высокой сложности ~20 рабочих дней для аналитика уровня мидл+.</label>" +
+						"</div>"
+				}
+				if (accum>=25) {
+					document.querySelector("form").outerHTML =
+						analitic_table_string +
+						"<div id=\"result\">\n" +
+						"<label id=\"lbl\">Задача сверх высокой сложности/трудоёмкости, как правило нуждается в декомпозиции.</label>" +
+						"</div>"
+				}
+
+				let xhr_analist = new XMLHttpRequest();
+
+				let json_analist = JSON.stringify({
+					// "id": 0,
+					"access": analist_access,
+					"job": analist_job,
+					"model": analist_model,
+					"instrument": analist_instrument,
+					"information": analist_information,
+					"business": analist_business,
+					"colleagues": analist_colleagues,
+					"ui_back": analist_ui_back,
+					"description": analist_user_description,//Нужен WebService на Spring с jetty и netty под капотом для реализации простейших CRUD операций над базой Postgrtes с Spring JDBC Template. Бизнес-логика должна быть оформляема в виде динамически подулючаемых модулей
+					"nazvanie": analist_user_nazvanie,//Вэб сервис расчёта трудоёмкости задач разработки
+					"userComments": analist_user_comments,//Использовать React, SpringBoot, Hibernate, Swagger, REST, Docker
+					"autoLabel": accum,
+					"userLabelSp": analist_user_label_sp,
+					"userLabelHr": analist_user_label_hr,
+					"userLabel": 0,
+					// "userId": 0
+				});
+
+				xhr_analist.open("POST", 'http://localhost:8081/taskHardnessCalc/v1/taskAnalist')
+				xhr_analist.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+
+				xhr_analist.send(json_analist);
+
+			}
+		}
+	}
+}
+
+function analistStoryPointInputChange(obj){
+	analist_user_label_sp = obj.value
+}
+
+function analistHourInputChange(obj){
+	analist_user_label_hr = obj.value
+}
+
+function analistNazvanieInputChange(obj){
+	analist_user_nazvanie = obj.value
+}
+
+function analistDescrInputChange(obj){
+	analist_user_description = obj.value
+}
+function analistCommentsInputChange(obj){
+	analist_user_comments = obj.value
+}
+
+
+
+
