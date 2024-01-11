@@ -1,6 +1,24 @@
 export type TGetBackTaskFactors = {
-    login: string;
-    password: string;
+    access: number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
+    // : number;
 };
 
 export type TGetBackTaskFactorsResponce = string;

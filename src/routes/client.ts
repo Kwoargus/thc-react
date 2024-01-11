@@ -14,6 +14,8 @@ export const clientRoutes = {
   analistForm6: "/analistForm6",
   analistForm7: "/analistForm7",
   analistForm8: "/analistForm8",
-  analistForm9: "/analistForm8"
+  analistForm9: "/analistForm9",
+  analistForm10: "/analistForm10",
+  backForm1: "/backForm1"
 
 };

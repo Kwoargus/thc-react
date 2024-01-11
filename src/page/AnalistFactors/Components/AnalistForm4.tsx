@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
 import { CenterDivWrapper } from "../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
+import {useStores} from "../../../stores";
+import {observer} from "mobx-react-lite";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
-export const AnalistForm4 = (): JSX.Element => {
+export const AnalistForm4 = observer((): JSX.Element => {
+
+    const {AnalistStore} = useStores();
+
     const { Title, Paragraph, Text, Link } = Typography;
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState<LayoutType>("vertical");
@@ -25,20 +30,16 @@ export const AnalistForm4 = (): JSX.Element => {
             ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } }
             : null;
     const onChange = (e: RadioChangeEvent) => {
-        console.log("radio checked", e.target.value);
         setValue(e.target.value);
+        AnalistStore.setAccum(Number(e.target.value));
+        AnalistStore.setInstrumentFactor(Number(e.target.value));
     };
 
     const navigate = useNavigate();
     const handleClick = () : void => {
-        console.log("button clicked");
-        navigate(clientRoutes.analistForm5)
-
+        AnalistStore.setFactor(5);
+        //navigate(clientRoutes.analistForm5)
     };
-
-    interface IProps {
-        obj: string;
-    }
 
     return (
         <CenterDivWrapper>
@@ -55,21 +56,21 @@ export const AnalistForm4 = (): JSX.Element => {
                 <Form.Item label="4. Выберите вариант уровня владения инструментарием: ">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={1}>
+                            <Radio value={0}>
                                 {" "}
                                 1. Из необходимых инструментов анализа, все хорошо знакомы аналитику и у него имеется достаточный опыт их использования. [0 storypoints]
                             </Radio>
-                            <Radio value={2}>
+                            <Radio value={1}>
                                 {" "}
                                 2. Из необходимых инструментов анализа, все, кроме одного, хорошо знакомы аналитику, и у него имеется достаточный опыт их использования всех кроме одного. [1 storypoints]
                             </Radio>
-                            <Radio value={4}>
+                            <Radio value={3}>
                                 {" "}
-                                4. Из необходимых инструменты анализа, половина, хорошо знакомы аналитику, и у него имеется достаточный опыт их использования с остальными опыта нет или его недостаточно. [3 storypoints]
+                                3. Из необходимых инструменты анализа, половина, хорошо знакомы аналитику, и у него имеется достаточный опыт их использования с остальными опыта нет или его недостаточно. [3 storypoints]
                             </Radio>
-                            <Radio value={6}>
+                            <Radio value={8}>
                                 {" "}
-                                6. Из необходимых инструменты анализа, все не знакомы и опыта их использования нет или недостаточно. [8 storypoints]
+                                4. Из необходимых инструменты анализа, все не знакомы и опыта их использования нет или недостаточно. [8 storypoints]
                             </Radio>
                         </Space>
                     </Radio.Group>
@@ -83,4 +84,4 @@ export const AnalistForm4 = (): JSX.Element => {
             </Form>
         </CenterDivWrapper>
     );
-};
+});

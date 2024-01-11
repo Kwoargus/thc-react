@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
 import { CenterDivWrapper } from "../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
+import {useStores} from "../../../stores";
+import {AnalistStore} from "../../../stores/analist";
+import {observer} from "mobx-react-lite";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
-export const AnalistForm8 = (): JSX.Element => {
+export const AnalistForm8 = observer((): JSX.Element => {
+
+    const {AnalistStore} = useStores();
+
     const { Title, Paragraph, Text, Link } = Typography;
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState<LayoutType>("vertical");
@@ -25,20 +31,16 @@ export const AnalistForm8 = (): JSX.Element => {
             ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } }
             : null;
     const onChange = (e: RadioChangeEvent) => {
-        console.log("radio checked", e.target.value);
         setValue(e.target.value);
+        AnalistStore.setAccum(Number(e.target.value));
+        AnalistStore.setColleguesFactor(Number(e.target.value));
     };
 
     const navigate = useNavigate();
     const handleClick = () : void => {
-        console.log("button clicked");
-        navigate(clientRoutes.analistForm9)
-
+        AnalistStore.setFactor(9);
+        //navigate(clientRoutes.analistForm9)
     };
-
-    interface IProps {
-        obj: string;
-    }
 
     return (
         <CenterDivWrapper>
@@ -83,4 +85,4 @@ export const AnalistForm8 = (): JSX.Element => {
             </Form>
         </CenterDivWrapper>
     );
-};
+});

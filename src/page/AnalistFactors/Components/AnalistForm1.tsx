@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
 import { CenterDivWrapper } from "../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
+import {useStores} from "../../../stores";
+import {AnalistStore} from "../../../stores/analist";
+import {observer} from "mobx-react-lite";
+import {AuthStore} from "../../../stores/auth";
+import {TGetAnalistTaskFactors, TGetAnalistTaskFactorsResponce} from "src/api/analist/types";
+// import {uuidv4} from "uuid";//чота не находит uuid надо сделать на бэкенде
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
-interface IProps {
-  obj: string;
-}
-export const AnalistForm1 = ({ obj }: IProps): JSX.Element => {
-  console.log("AnalistForm1 get obj = ", obj)
-  const objComponents = obj.split(",", 3);
+export const AnalistForm1 = observer((): JSX.Element => {
+
+  const {AnalistStore} = useStores();
+
   const { Title, Paragraph, Text, Link } = Typography;
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState<LayoutType>("vertical");
@@ -22,22 +26,18 @@ export const AnalistForm1 = ({ obj }: IProps): JSX.Element => {
 
   const buttonItemLayout = formLayout === "horizontal" ? { wrapperCol: { span: 14, offset: 4 } } : null;
   const [value, setValue] = useState(1);
-  let accum = Number(objComponents[2]);
   const formItemLayout =  formLayout === "horizontal" ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } } : null;
   const onChange = (e: RadioChangeEvent) => {
-    console.log("radio checked", e.target.value);
     setValue(e.target.value);
-    accum = accum  + e.target.value;
-    console.log("e.target.value = ", e.target.value);
-    console.log("accum = ", accum);
-    const objStr=objComponents[0] + "," + objComponents[1] + ","+value;
-    console.log("AnalistForm1 made new objStr = : " + objStr);
+    AnalistStore.setAccum(Number(e.target.value));
+    AnalistStore.setAccessFactor(Number(e.target.value));
   };
 
   const navigate = useNavigate();
+
   const handleClick = () : void => {
-    console.log("button clicked");
-    navigate(clientRoutes.analistForm2)
+    AnalistStore.setFactor(2);
+    //navigate(clientRoutes.analistForm2)//лучше использовать renderContent чтобы предотвратить несанкционирован переход через строку адреса
   };
 
   return (
@@ -91,4 +91,4 @@ export const AnalistForm1 = ({ obj }: IProps): JSX.Element => {
       </Form>
     </CenterDivWrapper>
   );
-};
+});

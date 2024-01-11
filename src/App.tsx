@@ -11,7 +11,7 @@ export const App = (): JSX.Element => {
     <BrowserRouter>
       <StoresContext.Provider value={stores}>
         <DevTools />
-        <Page obj={"0,access,1"}/>
+        <Page />
         <ResetCSSGlobalStyle />
       </StoresContext.Provider>
     </BrowserRouter>

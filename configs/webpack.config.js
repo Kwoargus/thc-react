@@ -73,7 +73,8 @@ module.exports = (env) => {
       hot: false,
       liveReload: true,
       static: path.join(rootDir, "build"),
-      proxy: {}
+      //proxy: {}
+      proxy: { "/taskHardnessCalc/v1": "http://localhost:8081" }
     }
   };
 
