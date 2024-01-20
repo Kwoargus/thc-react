@@ -7,6 +7,7 @@ import { BackendFactors } from "./BackendFactors";
 import { FrontendFactors } from "./FrontendFactors";
 import { TesterFactors } from "./TesterFactors";
 import { AnalistFactors } from "./AnalistFactors";
+import { SqlFactors } from "./SqlFactors";
 import { AnalistForm1 } from "./AnalistFactors/Components/AnalistForm1";
 import { AnalistForm2 } from "./AnalistFactors/Components/AnalistForm2";
 import { AnalistForm3 } from "./AnalistFactors/Components/AnalistForm3";
@@ -52,6 +53,7 @@ export const Page = observer((): JSX.Element => {
         <Route path={clientRoutes.frontendFactors} element={<FrontendFactors />} />
         <Route path={clientRoutes.testerFactors} element={<TesterFactors />} />
         <Route path={clientRoutes.analistFactors} element={<AnalistFactors />} />
+        <Route path={clientRoutes.sqlFactors} element={<SqlFactors />} />
         {/*<Route path={clientRoutes.analistForm1} element={<AnalistForm1  />} />*/}
         {/*<Route path={clientRoutes.analistForm2} element={<AnalistForm2 />} />*/}
         {/*<Route path={clientRoutes.analistForm3} element={<AnalistForm3 />} />*/}

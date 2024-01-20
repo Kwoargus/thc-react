@@ -6,6 +6,7 @@ export const clientRoutes = {
   frontendFactors: "/frontendFactors",
   testerFactors: "/testerFactors",
   analistFactors: "/analistFactors",
+  sqlFactors: "/sqlFactors",
   analistForm1: "/analistForm1",
   analistForm2: "/analistForm2",
   analistForm3: "/analistForm3",
@@ -16,6 +17,7 @@ export const clientRoutes = {
   analistForm8: "/analistForm8",
   analistForm9: "/analistForm9",
   analistForm10: "/analistForm10",
+  sqlForm1: "/sqlForm1",
   backForm1: "/backForm1"
 
 };

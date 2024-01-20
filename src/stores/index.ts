@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 import { AuthStore } from "./auth";
 import { BackStore } from "./back";
 import { AnalistStore } from "./analist";
+import { SqlStore } from "./sql";
 import { CommonStore } from "./common";
 
 // Создаём root стейт приложения
@@ -9,6 +10,7 @@ export const createStore = () => ({
   AuthStore: new AuthStore(),
   BackStore: new BackStore(),
   AnalistStore: new AnalistStore(),
+  SqlStore: new SqlStore(),
   CommonStore: new CommonStore()
 });
 export type RootStore = ReturnType<typeof createStore>;
