@@ -30,18 +30,18 @@ export const AnalistForm9 = observer((): JSX.Element => {
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState<LayoutType>("vertical");
     const onFormLayoutChange = ({ layout }: { layout: LayoutType }) => {
-        setFormLayout(layout);
+        // setFormLayout(layout);
     };
 
     const buttonItemLayout =
         formLayout === "horizontal"
             ? { wrapperCol: { span: 14, offset: 4 } }
             : null;
-    const [value, setValue] = useState(1);
     const formItemLayout =
         formLayout === "horizontal"
             ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } }
             : null;
+    const [value, setValue] = useState(1);
     const onChange = (e: RadioChangeEvent) => {// обрабатывать события в инпутах
         setValue(e.target.value);
         // Сохранить в store данные из инпутов
@@ -63,8 +63,14 @@ export const AnalistForm9 = observer((): JSX.Element => {
         AnalistStore.setDescription(description);
     };
 
-    const onButtonClick = (values: any) => {
-        AnalistStore.setFactor(10);
+    const onButtonClick = async (values: any) => {
+        try {
+            await form.validateFields();
+            AnalistStore.setFactor(10);
+        } catch (error) {
+            console.error('Ошибка валидации:', error);
+            alert("Заполните обязательные поля!");
+        }
 
         // form.setFieldsValue({ taskName: 'Hello world!', description: 'male' });
         let fv = form.getFieldsValue(true);
@@ -111,7 +117,7 @@ export const AnalistForm9 = observer((): JSX.Element => {
 
     return (
         <CenterDivWrapper>
-            <Title level={4}>Дополниельные данные</Title>
+            <Title level={4}>Дополнительные данные</Title>
             <Text>Для обучения нейросети мы собираем ваши описания и комментарии в текстовом виде, а также ваши экспертные колличественные оценки.</Text>
             <Text>Нейросетевой модуль построенный в соответствии с архитектурой Bag of words будет обучаться на внесённых текстах и экспертных оценках и формировать собственное предсказание трудоёмкости.</Text>
             <Form
@@ -126,21 +132,21 @@ export const AnalistForm9 = observer((): JSX.Element => {
                 <Form.Item<FieldType>
                     label="Название задачи:"
                     name="taskName"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: 'Это обязательное поле!' }]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item<FieldType>
                     label="Описание задачи:"
                     name="description"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: 'Это обязательное поле!' }]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item<FieldType>
                     label="Комментарии к задаче:"
                     name="userComment"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: 'Это обязательное поле!' }]}
                 >
                     <Input />
                 </Form.Item>
@@ -149,14 +155,14 @@ export const AnalistForm9 = observer((): JSX.Element => {
                 <Form.Item<FieldType>
                     label="В сторипоинтах: "
                     name="storyPoints"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: 'Это обязательное поле!' }]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item<FieldType>
                     label="Или в человеко-часах:"
                     name="hours"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: 'Это обязательное поле!' }]}
                 >
                     <Input />
                 </Form.Item>
