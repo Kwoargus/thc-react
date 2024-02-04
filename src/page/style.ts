@@ -7,3 +7,11 @@ export const PageLayout = styled.div`
   width: 100vw;
   height: 100vh;
 `;
+
+export const CenterDivWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+`;
