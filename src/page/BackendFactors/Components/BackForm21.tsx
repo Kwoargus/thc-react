@@ -4,19 +4,10 @@ import { Divider, Typography } from "antd";
 import { CenterDivWrapper } from "../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
-import {AnalistStore} from "../../../stores/analist";
-import {TGetAnalistTaskFactors} from "../../../api/analist/types";
-import AnalistTable from "./AnalistTable";
+import {TGetBackTaskFactors} from "../../../api/back/types";
+import BackTable from "./BackTable";
 import {useStores} from "../../../stores";
-import {AnalistForm1} from "./AnalistForm1";
-import {AnalistForm2} from "./AnalistForm2";
-import {AnalistForm3} from "./AnalistForm3";
-import {AnalistForm4} from "./AnalistForm4";
-import {AnalistForm5} from "./AnalistForm5";
-import {AnalistForm6} from "./AnalistForm6";
-import {AnalistForm7} from "./AnalistForm7";
-import {AnalistForm8} from "./AnalistForm8";
-import {AnalistForm9} from "./AnalistForm9";
+
 
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
@@ -27,9 +18,9 @@ type FieldType = {
     remember?: string;
 };
 
-export const AnalistForm10 = (): JSX.Element => {
+export const BackForm21 = (): JSX.Element => {
 
-    const {AnalistStore} = useStores();
+    const {BackStore} = useStores();
 
     const { Title, Paragraph, Text, Link } = Typography;
     const [form] = Form.useForm();
@@ -48,15 +39,9 @@ export const AnalistForm10 = (): JSX.Element => {
             ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } }
             : null;
 
-    // const navigate = useNavigate();
-    // const handleClick = () : void => {
-    //     console.log("button clicked");
-    //     navigate(clientRoutes.backendFactors)
-    // };
-
     const getTaskClassification = () : number => {
         let estimate = 0;
-        let acc = AnalistStore.getAccum();
+        let acc = BackStore.getAccum();
 
         if(acc==0){estimate = 0}
         if(acc>0 && acc<=3){estimate = 10}
@@ -92,7 +77,7 @@ export const AnalistForm10 = (): JSX.Element => {
                 <Form.Item
                     name="ResultsTable"
                 >
-                    <AnalistTable />
+                    <BackTable />
                 </Form.Item>
             </Form>
 

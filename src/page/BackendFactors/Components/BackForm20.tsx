@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
+import {Button, Form, Input, Radio, RadioChangeEvent, Space, Table} from "antd";
 import { Divider, Typography } from "antd";
 import { CenterDivWrapper } from "../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
-import {AnalistStore} from "../../../stores/analist";
-import {TGetAnalistTaskFactors} from "../../../api/analist/types";
+import {BackStore} from "../../../stores/back";
+import {TGetBackTaskFactors} from "../../../api/back/types";
 import {useStores} from "../../../stores";
 import {observer} from "mobx-react-lite";
+
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -22,9 +23,9 @@ type FieldType = {
     hours?: string;
 };
 
-export const AnalistForm9 = observer((): JSX.Element => {
+export const BackForm20 = observer((): JSX.Element => {
 
-    const {AnalistStore} = useStores();
+    const {BackStore} = useStores();
 
     const { Title, Paragraph, Text, Link } = Typography;
     const [form] = Form.useForm();
@@ -42,68 +43,75 @@ export const AnalistForm9 = observer((): JSX.Element => {
         formLayout === "horizontal"
             ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } }
             : null;
+
+    // const navigate = useNavigate();
+    // const handleClick = () : void => {
+    //     console.log("button clicked");
+    //     navigate(clientRoutes.backendFactors)
+    // };
     const onChange = (e: RadioChangeEvent) => {// обрабатывать события в инпутах
         setValue(e.target.value);
         // Сохранить в store данные из инпутов
-        let acc = AnalistStore.getAccum();
-        AnalistStore.setAutoLabel(Number(acc));
+        let acc = BackStore.getAccum();
+        BackStore.setAutoLabel(Number(acc));
         let createDate =  ""; // сгенерировать текущую дату
-        AnalistStore.setCreateDate(createDate);
+        BackStore.setCreateDate(createDate);
         let status =  ""; //Считать из инпута
-        AnalistStore.setStatus(status);
+        BackStore.setStatus(status);
         let userLabelSp =  0; //Считать из инпута
-        AnalistStore.setUserLabelSp(userLabelSp);
+        BackStore.setUserLabelSp(userLabelSp);
         let userLabelHr =  0; //Считать  из инпута
-        AnalistStore.setUserLabelHr(userLabelHr);
+        BackStore.setUserLabelHr(userLabelHr);
         let nazvanie =  ""; //Считать из инпута
-        AnalistStore.setNazvanie(nazvanie);
+        BackStore.setNazvanie(nazvanie);
         let userComments =  ""; //Считать из инпута
-        AnalistStore.setUserComments(userComments);
+        BackStore.setUserComments(userComments);
         let description =  ""; //Считать из инпута
-        AnalistStore.setDescription(description);
+        BackStore.setDescription(description);
     };
 
     const onButtonClick = (values: any) => {
-        AnalistStore.setFactor(10);
+        BackStore.setFactor(21);
 
-        // form.setFieldsValue({ taskName: 'Hello world!', description: 'male' });
         let fv = form.getFieldsValue(true);
         console.log("fv[1] = ",fv["taskName"]);
-        AnalistStore.setNazvanie(fv["taskName"]);
-        AnalistStore.setDescription(fv["description"]);
-        AnalistStore.setUserComments(fv["userComment"]);
-        AnalistStore.setUserLabelSp(fv["storyPoints"]);
-        AnalistStore.setUserLabelHr(fv["hours"]);
 
         // выбрать из store все значения для отправки на backend
-        let user_id = AnalistStore.getUserId();
-        let access = AnalistStore.getAccessFactor();
-        let job =  AnalistStore.getJobFactor();
-        let model = AnalistStore.getModelFactor();
-        let instrument = AnalistStore.getInstrumentFactor();
-        let information = AnalistStore.getInformationFactor();
-        let buziness = AnalistStore.getBuzinessFactor();
-        let ui_back = AnalistStore.getUiBackFactor();
-        let collegues = AnalistStore.getColleguesFactor();
-        let auto_label = AnalistStore.getAutoLabel();
+        let user_id = BackStore.getUserId();
+        let access = BackStore.getAccessFactor();
+        let job =  BackStore.getJobFactor();
+        let model = BackStore.getModelFactor();
+        let instrument = BackStore.getInstrumentFactor();
+        let infra = BackStore.getInfraFactor();
+        let specs = BackStore.getSpecsFactor();
+        let tables = BackStore.getTablesFactor();
+        let test_data = BackStore.getTestDataFactor();
+        let entity = BackStore.getEntityFactor();
+        let buz_func = BackStore.getBizFuncFactor();
+        let end_point = BackStore.getEndPointFactor();
+        let io_data = BackStore.getIoDataFactor();
+        let web_client = BackStore.getWebClientFactor();
+        let brocker = BackStore.getBrockerFactor();
+        let r_and_d = BackStore.getRandDFactor();
+        let unit_test = BackStore.getUnitTestFactor();
+        let log = BackStore.getLogFactor();
+        let migration = BackStore.getMigrationFactor();
+        let comments = BackStore.getCommentsFactor();
+
+        let auto_label = BackStore.getAutoLabel();
         // let create_date = "2024-01-08T20:17:03.012Z";
-        let create_date = AnalistStore.getCreateDate();
-        let status = AnalistStore.getStatus();
+        let create_date = BackStore.getCreateDate();
+        let status = BackStore.getStatus();
         let user_label_sp = fv["storyPoints"];
         let user_label_hr = fv["hours"];
         let nazvanie = fv["taskName"];
         let user_comments = fv["userComment"];
         let description = fv["description"];
-        //сохранить в БД все значения
-        let data: TGetAnalistTaskFactors = {user_id, access, job, model, instrument, information, buziness, ui_back, collegues, auto_label, create_date, status, user_label_sp, user_label_hr, nazvanie, user_comments,description};
-        AnalistStore.getAccess(data);
+        // //сохранить в БД все значения
+        let data: TGetBackTaskFactors = {user_id, access, job, model, instrument, infra, specs, tables, test_data, entity, buz_func, end_point, io_data, web_client, brocker, r_and_d, unit_test, log, migration, comments,  auto_label, create_date, status, user_label_sp, user_label_hr, nazvanie, user_comments,description};
+        BackStore.getAccess(data);
+        // BackStore.getAccess();
     }
-
-    const navigate = useNavigate();
-    const handleClick = () : void => {
-        AnalistStore.setFactor(10);
-        //navigate(clientRoutes.analistForm10)
-    };
 
     return (
         <CenterDivWrapper>

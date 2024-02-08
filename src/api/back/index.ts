@@ -6,7 +6,7 @@ export class BackApiClass extends ApiCommon {
     public getAccess = <T = TGetBackTaskFactors>(
         data: TGetBackTaskFactors
     ): TResponse<T> => {
-        const path = "/thc/v1/back";
+        const path = "/taskHardnessCalc/v1/taskBack";
         return this.post<T, TGetBackTaskFactors>(path, data);
     };
 }

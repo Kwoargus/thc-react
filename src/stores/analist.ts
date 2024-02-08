@@ -7,32 +7,29 @@ export class AnalistStore {
     accValue: number = 0;
     factorValue: number = 1;
 
-    user_id: String = "";
-    access_factor: Number = 0;
-    job_factor : Number = 0;
-    model_factor: Number = 0;
-    instrument_factor: Number = 0;
-    information_factor: Number = 0;
-    buziness_factor: Number = 0;
-    ui_back_factor: Number = 0;
-    collegues_factor: Number = 0;
-    auto_label: Number = 0;
-    create_date: String = "";
-    status: String = "";
-    user_label_sp: Number = 0;
-    user_label_hr: Number = 0;
-    nazvanie: String = "";
-    user_comments: String = "";
-    description: String = "";
+    user_id: string = "";
+    access_factor: number = 0;
+    job_factor : number = 0;
+    model_factor: number = 0;
+    instrument_factor: number = 0;
+    information_factor: number = 0;
+    buziness_factor: number = 0;
+    ui_back_factor: number = 0;
+    collegues_factor: number = 0;
+
+    auto_label: number = 0;
+    create_date: string = "";
+    status: string = "";
+    user_label_sp: number = 0;
+    user_label_hr: number = 0;
+    nazvanie: string = "";
+    user_comments: string = "";
+    description: string = "";
 
 
     constructor() {
         makeAutoObservable(this);
     }
-
-    // public getAccess = (data: TGetAnalistTaskFactors): void => {
-    //     analistApi.getAccess(data).then((res) => console.log(res));
-    // };
 
 
     public setAccum(accm:number) {
@@ -50,7 +47,7 @@ export class AnalistStore {
         return this.factorValue;
     }
 
-    public setUserId(userId:String) {
+    public setUserId(userId:string) {
         this.user_id = userId;
     }
     public getUserId() {
@@ -104,49 +101,49 @@ export class AnalistStore {
     public getColleguesFactor() {
         return this.collegues_factor;
     }
-    public setAutoLabel(autoLabel:Number) {
+    public setAutoLabel(autoLabel:number) {
         this.auto_label = autoLabel;
     }
     public getAutoLabel() {
         return this.auto_label;
     }
-    public setCreateDate(createDate:String) {
+    public setCreateDate(createDate:string) {
         this.create_date = createDate;
     }
     public getCreateDate() {
         return this.create_date;
     }
-    public setStatus(stts:String) {
+    public setStatus(stts:string) {
         this.status = stts;
     }
     public getStatus() {
         return this.status;
     }
-    public setUserLabelSp(userLabelSp:Number) {
+    public setUserLabelSp(userLabelSp:number) {
         this.user_label_sp = userLabelSp;
     }
     public getUserLabelSp() {
         return this.user_label_sp;
     }
-    public setUserLabelHr(userLabelHr:Number) {
+    public setUserLabelHr(userLabelHr:number) {
         this.user_label_hr = userLabelHr;
     }
     public gettUserLabelHr() {
         return this.user_label_hr;
     }
-    public setNazvanie(nazv:String) {
+    public setNazvanie(nazv:string) {
         this.nazvanie = nazv;
     }
     public getNazvanie() {
         return this.nazvanie;
     }
-    public setUserComments(userComments:String) {
+    public setUserComments(userComments:string) {
         this.user_comments = userComments;
     }
     public getUserComments() {
         return this.user_comments;
     }
-    public setDescription(descr:String) {
+    public setDescription(descr:string) {
         this.description = descr;
     }
     public getDescription() {
@@ -154,31 +151,7 @@ export class AnalistStore {
     }
 
 
-
-
-
     public getAccess(data: TGetAnalistTaskFactors) {
         analistApi.getAccess(data).then((res) => console.log(res));
     }
 }
-    // public getAccess() {
-    //     const data: TGetAnalistTaskFactors = {  user_id: this.user_id,
-    //         access: this.access_factor,
-    //         job: this.job_factor,
-    //         model: this.model_factor,
-    //         instrument: this.instrument_factor,
-    //         information: this.information_factor,
-    //         buziness: this.buziness_factor,
-    //         ui_back: this.ui_back_factor,
-    //         collegues: this.collegues_factor,
-    //         auto_label: this.auto_label,
-    //         create_date: this.create_date,
-    //         status: this.status,
-    //         user_label_sp: this.user_label_sp,
-    //         user_label_hr: this.user_label_hr,
-    //         nazvanie: this.nazvanie,
-    //         user_comments: this.user_comments,
-    //         description: this.description
-    //     };
-    //     analistApi.getAccess(data).then((res) => console.log(res));
-    // }

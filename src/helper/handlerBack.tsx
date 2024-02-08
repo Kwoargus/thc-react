@@ -1,12 +1,24 @@
 import { BackForm1 } from "../page/BackendFactors/Components/BackForm1";
-import { AnalistForm2 } from "../page/AnalistFactors/Components/AnalistForm2";
-import { AnalistForm3 } from "../page/AnalistFactors/Components/AnalistForm3";
-import { AnalistForm4 } from "../page/AnalistFactors/Components/AnalistForm4";
-import { AnalistForm5 } from "../page/AnalistFactors/Components/AnalistForm5";
-import { AnalistForm6 } from "../page/AnalistFactors/Components/AnalistForm6";
-import { AnalistForm7 } from "../page/AnalistFactors/Components/AnalistForm7";
-import { AnalistForm8 } from "../page/AnalistFactors/Components/AnalistForm8";
-import { AnalistForm9 } from "../page/AnalistFactors/Components/AnalistForm9";
+import { BackForm2 } from "../page/BackendFactors/Components/BackForm2";
+import { BackForm3 } from "../page/BackendFactors/Components/BackForm3";
+import { BackForm4 } from "../page/BackendFactors/Components/BackForm4";
+import { BackForm5 } from "../page/BackendFactors/Components/BackForm5";
+import { BackForm6 } from "../page/BackendFactors/Components/BackForm6";
+import { BackForm7 } from "../page/BackendFactors/Components/BackForm7";
+import { BackForm8 } from "../page/BackendFactors/Components/BackForm8";
+import { BackForm9 } from "../page/BackendFactors/Components/BackForm9";
+import { BackForm10 } from "../page/BackendFactors/Components/BackForm10";
+import { BackForm11 } from "../page/BackendFactors/Components/BackForm11";
+import { BackForm12 } from "../page/BackendFactors/Components/BackForm12";
+import { BackForm13 } from "../page/BackendFactors/Components/BackForm13";
+import { BackForm14 } from "../page/BackendFactors/Components/BackForm14";
+import { BackForm15 } from "../page/BackendFactors/Components/BackForm15";
+import { BackForm16 } from "../page/BackendFactors/Components/BackForm16";
+import { BackForm17 } from "../page/BackendFactors/Components/BackForm17";
+import { BackForm18 } from "../page/BackendFactors/Components/BackForm18";
+import { BackForm19 } from "../page/BackendFactors/Components/BackForm19";
+import { BackForm20 } from "../page/BackendFactors/Components/BackForm20";
+import { BackForm21 } from "../page/BackendFactors/Components/BackForm21";
 import React from "react";
 import {AnalistStore} from "../stores/analist";
 import {BackStore} from "../stores/back";
@@ -264,7 +276,7 @@ back_log_string[0] = "Логировать события/методы не тр
 back_log_string[1] = "Требуется логировать единичные события/методы.";
 back_log_string[2] = "Требуется логировать меньшую часть событий/методов.";
 back_log_string[3] = "Требуется логировать примерно половину событий/методов.";
-back_log_string[5] = "Требуется логировать большую часть событий/методов";
+back_log_string[5] = "Требуется логировать большую часть событий/методов.";
 back_log_string[8] = "Требуется логировать почти все события/методы.";
 back_log_string[13] = "";
 //18.
@@ -299,15 +311,53 @@ back_comments_string[13] = "";
 
 
 export const СhooseBackVariant = observer((): JSX.Element => {
-    const {AnalistStore} = useStores();
+    const {BackStore} = useStores();
     const renderContent = (): JSX.Element => {
         // let f = BackStore.getFactor();
-        // const f = AnalistStore.getFactor();
-        switch (1) {
+        const f = BackStore.getFactor();
+        switch (f) {
             case 1:
                 return  <BackForm1 />;
-            case 1:
-                return  <BackForm1 />;
+            case 2:
+                return  <BackForm2 />;
+            case 3:
+                return  <BackForm3 />;
+            case 4:
+                return  <BackForm4 />;
+            case 5:
+                return  <BackForm5 />;
+            case 6:
+                return  <BackForm6 />;
+            case 7:
+                return  <BackForm7 />;
+            case 8:
+                return  <BackForm8 />;
+            case 9:
+                return  <BackForm9 />;
+            case 10:
+                return  <BackForm10 />;
+            case 11:
+                return  <BackForm11 />;
+            case 12:
+                return  <BackForm12 />;
+            case 13:
+                return  <BackForm13 />;
+            case 14:
+                return  <BackForm14 />;
+            case 15:
+                return  <BackForm15 />;
+            case 16:
+                return  <BackForm16 />;
+            case 17:
+                return  <BackForm17 />;
+            case 18:
+                return  <BackForm18 />;
+            case 19:
+                return  <BackForm19 />;
+            case 20:
+                return  <BackForm20 />;
+            case 21:
+                return  <BackForm21 />;
             default:
                 return <BackForm1 />;
         }

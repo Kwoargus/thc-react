@@ -37,7 +37,6 @@ export const AnalistForm1 = observer((): JSX.Element => {
 
   const handleClick = () : void => {
     AnalistStore.setFactor(2);
-    //navigate(clientRoutes.analistForm2)//лучше использовать renderContent чтобы предотвратить несанкционирован переход через строку адреса
   };
 
   return (
@@ -65,7 +64,7 @@ export const AnalistForm1 = observer((): JSX.Element => {
               </Radio>
               <Radio value={3}>
                 {" "}
-                3. У разработчика нет доступа к нескольким ресурсам инфрастуктуры и/или лицензий, получить которые можно за 1-2 дня. [2 storypoints]
+                3. У аналитика нет доступа к нескольким ресурсам инфрастуктуры и/или лицензий, получить которые можно за 1-2 дня. [2 storypoints]
               </Radio>
               <Radio value={4}>
                 {" "}

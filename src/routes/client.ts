@@ -2,7 +2,6 @@ export const clientRoutes = {
   main: "/",
   auth: "/auth",
   back: "/back",
-  backendFactors: "/backendFactors",
   frontendFactors: "/frontendFactors",
   testerFactors: "/testerFactors",
   analistFactors: "/analistFactors",
@@ -16,6 +15,8 @@ export const clientRoutes = {
   analistForm8: "/analistForm8",
   analistForm9: "/analistForm9",
   analistForm10: "/analistForm10",
-  backForm1: "/backForm1"
+  backendFactors: "/backendFactors",
+  backForm1: "/backForm1",
+  backForm2: "/backForm2"
 
 };
