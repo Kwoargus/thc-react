@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
-import { CenterDivWrapper } from "../style";
+import { CenterDivWrapper } from "../../style";
 import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
