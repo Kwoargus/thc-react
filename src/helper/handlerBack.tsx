@@ -382,7 +382,7 @@ export const СhooseBackVariant = observer((): JSX.Element => {
 //             </Form.Item>
 //
 //             <Form.Item {...buttonItemLayout}>
-//                 <Button type="primary" onClick={handleClick}>Делее</Button>
+//                 <Button type="primary" onClick={handleClick}>Далее</Button>
 //             </Form.Item>
 //         </Form>
 //         </CenterDivWrapper>);

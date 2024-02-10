@@ -82,7 +82,7 @@ export const AnalistForm3 = observer((): JSX.Element => {
 
                 <Form.Item {...buttonItemLayout}>
                     <Button type="primary" onClick={handleClick}>
-                        Делее
+                        Далее
                     </Button>
                 </Form.Item>
             </Form>

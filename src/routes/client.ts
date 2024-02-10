@@ -4,7 +4,6 @@ export const clientRoutes = {
   back: "/back",
   backendFactors: "/backendFactors",
   frontendFactors: "/frontendFactors",
-  testerFactors: "/testerFactors",
   analistFactors: "/analistFactors",
   analistForm1: "/analistForm1",
   analistForm2: "/analistForm2",
@@ -16,6 +15,20 @@ export const clientRoutes = {
   analistForm8: "/analistForm8",
   analistForm9: "/analistForm9",
   analistForm10: "/analistForm10",
+  manualQAFactors: "/manualQAFactors",
+  manualQAForm1: "/manualQAForm1",
+  manualQAForm2: "/manualQAForm2",
+  manualQAForm3: "/manualQAForm3",
+  manualQAForm4: "/manualQAForm4",
+  manualQAForm5: "/manualQAForm5",
+  manualQAForm6: "/manualQAForm6",
+  manualQAForm7: "/manualQAForm7",
+  manualQAForm8: "/manualQAForm8",
+  manualQAForm9: "/manualQAForm9",
+  manualQAForm10: "/manualQAForm10",
+  manualQAForm11: "/manualQAForm11",
+  manualQAForm12: "/manualQAForm12",
+  manualQAForm13: "/manualQAForm13",
   backForm1: "/backForm1"
 
 };

@@ -5,15 +5,14 @@ import { CenterDivWrapper } from "../style";
 import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
-import {BackStore} from "../../../stores/back";
+import {ManualQAStore} from "../../../stores/manualQA";
+import {observer} from "mobx-react-lite";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
-export const BackForm1 = (): JSX.Element => {
-    let {BackStore: {  }} = useStores();
-    useEffect(() => {});
+export const ManualQAForm2 = observer((): JSX.Element => {
 
-    // let accum = BackStore.accValue;
+    const {ManualQAStore} = useStores();
 
     const { Title, Paragraph, Text, Link } = Typography;
     const [form] = Form.useForm();
@@ -34,51 +33,47 @@ export const BackForm1 = (): JSX.Element => {
             : null;
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
-        // BackStore.setAccum(Number(e.target.value));
+        ManualQAStore.setAccum(Number(e.target.value));
+        ManualQAStore.setJobFactor(Number(e.target.value));
     };
 
     const navigate = useNavigate();
     const handleClick = (): void => {
-        // navigate(clientRoutes.BackForm2)
+        ManualQAStore.setFactor(3);
+        //navigate(clientRoutes.ManualQAForm3)
     };
 
     return (
         <CenterDivWrapper>
-            <Title level={4}>Факторы влияющие на трудоёмкость задач для аналитика</Title>
+            <Title level={4}>Факторы влияющие на трудоёмкость задач для тестировщика</Title>
             <Form
                 {...formItemLayout}
                 layout={formLayout}
                 form={form}
-                // initialValues={{ layout: formLayout }}
                 onValuesChange={onFormLayoutChange}
-                // style={{ maxWidth: formLayout === 'inline' ? 'none' : 600 }}
             >
-                <Form.Item label="">
+                <Form.Item label="2. Выберите вариант уровня понимания задачи: ">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
                             <Radio value={1}>
                                 {" "}
-                                1.  [0 storypoints]
+                                1. Тестировщику понятны формулировка задачи и бизнес логика, которую необходимо реализовать. [0 storypoints]
                             </Radio>
                             <Radio value={2}>
                                 {" "}
-                                2.  [1 storypoints]
+                                2. Тестировщику не понятны небольшая часть описания задачи и некоторые функции бизнес логики, которую необходимо реализовать. [1 storypoints]
                             </Radio>
                             <Radio value={3}>
                                 {" "}
-                                3.  [2 storypoints]
+                                3. Тестировщику не понятны примерно половина описания задачи и примерно половина функций бизнес логики, которую необходимо реализовать. [2 storypoints]
                             </Radio>
                             <Radio value={4}>
                                 {" "}
-                                4.  [3 storypoints]
+                                4. Тестировщику не понятны бОльшая часть описания задачи и и бОльшая часть функции бизнес логики, которую необходимо реализовать. [3 storypoints]
                             </Radio>
                             <Radio value={5}>
                                 {" "}
-                                5.  [5 storypoints]
-                            </Radio>
-                            <Radio value={6}>
-                                {" "}
-                                6.  [8 storypoints]
+                                5. Тестировщику не понятны все описания задачи и все функции бизнес логики, которую необходимо реализовать. [5 storypoints]
                             </Radio>
                         </Space>
                     </Radio.Group>
@@ -92,4 +87,4 @@ export const BackForm1 = (): JSX.Element => {
             </Form>
         </CenterDivWrapper>
     );
-};
+});

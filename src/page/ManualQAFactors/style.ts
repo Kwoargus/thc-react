@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TesterFactors = styled.div`
+export const AnalistFactors = styled.div`
   display: flex;
 `;
 

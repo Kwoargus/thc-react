@@ -1,7 +1,7 @@
 export type TGetAnalistTaskFactors = {
     user_id: String;
     access: Number;
-    job : Number;
+    job: Number;
     model: Number;
     instrument: Number;
     information: Number;

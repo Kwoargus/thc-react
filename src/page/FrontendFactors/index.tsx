@@ -50,7 +50,7 @@ export const FrontendFactors: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item {...buttonItemLayout}>
-                    <Button type="primary">Делее</Button>
+                    <Button type="primary">Далее</Button>
                 </Form.Item>
             </Form>
         </CenterDivWrapper>
