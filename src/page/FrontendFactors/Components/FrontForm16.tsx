@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {Button, Form, Input, Radio, RadioChangeEvent, Space, Table} from "antd";
-import { Divider, Typography } from "antd";
-import { CenterDivWrapper } from "../../style";
-import { useNavigate } from "react-router-dom";
+import {Divider, Typography} from "antd";
+import {CenterDivWrapper} from "../../style";
+import {useNavigate} from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
-import {FrontStore} from "../../../stores/front";
-import {TGetFrontTaskFactors} from "../../../api/front/types";
 import FrontTable from "./FrontTable";
 import {useStores} from "../../../stores";
 
@@ -22,7 +20,7 @@ export const FrontForm16 = (): JSX.Element => {
 
     const {FrontStore} = useStores();
 
-    const { Title, Paragraph, Text, Link } = Typography;
+    const {Title, Paragraph, Text, Link} = Typography;
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState<LayoutType>("vertical");
     // const onFormLayoutChange = ({ layout }: { layout: LayoutType }) => {
@@ -31,46 +29,36 @@ export const FrontForm16 = (): JSX.Element => {
 
     const buttonItemLayout =
         formLayout === "horizontal"
-            ? { wrapperCol: { span: 14, offset: 4 } }
+            ? {wrapperCol: {span: 14, offset: 4}}
             : null;
-    const [value, setValue] = useState(1);
     const formItemLayout =
         formLayout === "horizontal"
-            ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } }
+            ? {labelCol: {span: 4}, wrapperCol: {span: 14}}
             : null;
+    const [value, setValue] = useState(1);
 
-    // const navigate = useNavigate();
-    // const handleClick = () : void => {
-    //     console.log("button clicked");
-    //     navigate(clientRoutes.backendFactors)
-    // };
-
-    const getTaskClassification = () : number => {
+    const getTaskClassification = (): number => {
         let estimate = 0;
         let acc = FrontStore.getAccum();
 
-        if(acc<=3){estimate = 10}
-        if(acc>3 && acc<=5){estimate = 20}
-        if(acc>5 && acc<=8){estimate = 30}
-        if(acc>8 && acc<=13){estimate = 40}
-        if(acc>13 && acc<=21){estimate = 80}
-        if(acc>21 && acc<=34){estimate = 160}
-        // switch (FrontStore.getAccum()) {
-        //     case 1|2|3|4|5:
-        //         return  20;
-        //     case 6|7|8:
-        //         return  40;
-        //     case 9|10|11|12|13:
-        //         return  80;
-        //     case 14|15|16|17|18|19|20|21:
-        //         return  160;
-        //     default:
-        //         return 0;
-        // }
+        if (acc == 0) {estimate = 0}
+        if (acc > 0 && acc <= 3) {estimate = 10}
+        if (acc > 3 && acc <= 5) {estimate = 20}
+        if (acc > 5 && acc <= 8) {estimate = 30}
+        if (acc > 8 && acc <= 13) {estimate = 40}
+        if (acc > 13 && acc <= 21) {estimate = 80}
+        if (acc > 21 && acc <= 34) {estimate = 160}
+        if (acc > 34 && acc <= 55) {estimate = 320}
+        if (acc > 55) {estimate = 640}
+
         return estimate;
     };
 
     let res = getTaskClassification();
+    let addition = "";
+    if (res > 160) {
+        addition = ". Эта задача избыточно трудоёмкая, ее следует декомпозировать на несколько более простых";
+    }
 
     return (
         <CenterDivWrapper>
@@ -87,11 +75,11 @@ export const FrontForm16 = (): JSX.Element => {
                 <Form.Item
                     name="ResultsTable"
                 >
-                    <FrontTable />
+                    <FrontTable/>
                 </Form.Item>
             </Form>
 
-            <Text >Итоговая трудоёмкость {res} человеко-часов</Text>
+            <Text>Итоговая трудоёмкость {res} человеко-часов{addition}</Text>
         </CenterDivWrapper>
     );
 };
