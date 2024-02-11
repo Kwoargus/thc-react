@@ -5,7 +5,7 @@ export const PageLayout = styled.div`
   display: flex;
   flex-direction: row;
   width: 100vw;
-  height: 100vh;
+  height: auto;
 `;
 
 export const CenterDivWrapper = styled.div`
