@@ -7,34 +7,38 @@ export class FrontStore {
     accValue: number = 0;
     factorValue: number = 1;
 
-    front_user_id: string = "";
+    user_id: string = "";
 
-    front_access: number = 0                //front_tag === 1
-    front_job: number = 0                   //front_tag === 2
-    front_instrument: number = 0            //front_tag === 3
-    front_infra: number = 0                 //front_tag === 4
-    front_specs: number = 0                 //front_tag === 5
-    front_pages: number = 0                 //front_tag === 6
-    front_components: number = 0            //front_tag === 7
-    front_test_data: number = 0             //front_tag === 8
-    front_endpoint: number = 0              //front_tag === 9
-    front_func: number = 0                  //front_tag === 10
-    front_authorization: number = 0         //front_tag === 11
-    front_io_data: number = 0               //front_tag === 12
-    front_back_request: number = 0          //front_tag === 13
-    front_r_and_d: number = 0               //front_tag === 14
+    access_factor: number = 0                //front_tag === 1
+    job_factor: number = 0                   //front_tag === 2
+    instrument_factor: number = 0            //front_tag === 3
+    infra_factor: number = 0                 //front_tag === 4
+    specs_factor: number = 0                 //front_tag === 5
+    pages_factor: number = 0                 //front_tag === 6
+    components_factor: number = 0            //front_tag === 7
+    test_data_factor: number = 0             //front_tag === 8
+    endpoint_factor: number = 0              //front_tag === 9
+    func_factor: number = 0                  //front_tag === 10
+    authorization_factor: number = 0         //front_tag === 11
+    io_data_factor: number = 0               //front_tag === 12
+    back_request_factor: number = 0          //front_tag === 13
+    r_and_d_factor: number = 0               //front_tag === 14
 
-    front_auto_label: number = 0
-    front_user_label_sp: number = 0
-    front_user_label_hr: number = 0
-    front_user_nazvanie: string = ""
-    front_user_description: string = ""
-    front_user_comments: string = ""
-    front_status: string = ""
-
+    auto_label: number = 0
+    create_date: string = "";
+    status: string = ""
+    user_label_sp: number = 0
+    user_label_hr: number = 0
+    nazvanie: string = ""
+    user_comments: string = ""
+    description: string = ""
 
     constructor() {
         makeAutoObservable(this);
+    }
+
+    public getAccess(data: TGetFrontTaskFactors) {
+        frontApi.getAccess(data).then((res) => console.log(res));
     }
 
 
@@ -55,185 +59,188 @@ export class FrontStore {
         return this.factorValue;
     }
 
-    public setUserId(frontUserId: string) {
-        this.front_user_id = frontUserId;
+    public setUserId(userId: string) {
+        this.user_id = userId;
     }
 
     public getUserId() {
-        return this.front_user_id;
+        return this.user_id;
     }
 
-    public setFrontAccess(frontAccess: number) {
-        this.front_access = frontAccess;
+    public setAccessFactor(accessFactor: number) {
+        this.access_factor = accessFactor;
     }
 
-    public getFrontAccess() {
-        return this.front_access;
+    public getAccessFactor() {
+        return this.access_factor;
     }
 
-    public setFrontJob(frontJob: number) {
-        this.front_job = frontJob;
+    public setJobFactor(jobFactor: number) {
+        this.job_factor = jobFactor;
     }
 
-    public getFrontJob() {
-        return this.front_job;
+    public getJobFactor() {
+        return this.job_factor;
     }
 
-    public setFrontInstrument(frontInstrument: number) {
-        this.front_instrument = frontInstrument;
+    public setInstrumentFactor(instrumentFactor: number) {
+        this.instrument_factor = instrumentFactor;
     }
 
-    public getFrontInstrument() {
-        return this.front_instrument;
+    public getInstrumentFactor() {
+        return this.instrument_factor;
     }
 
-    public setFrontInfra(frontInfra: number) {
-        this.front_infra = frontInfra;
+    public setInfraFactor(infraFactor: number) {
+        this.infra_factor = infraFactor;
     }
 
-    public getFrontInfra() {
-        return this.front_infra;
+    public getInfraFactor() {
+        return this.infra_factor;
     }
 
-    public setFrontSpecs(frontSpecs: number) {
-        this.front_specs = frontSpecs;
+    public setSpecsFactor(specsFactor: number) {
+        this.specs_factor = specsFactor;
     }
 
-    public getFrontSpecs() {
-        return this.front_specs;
+    public getSpecsFactor() {
+        return this.specs_factor;
     }
 
-    public setFrontPages(frontPages: number) {
-        this.front_pages = frontPages;
+    public setPagesFactor(pagesFactor: number) {
+        this.pages_factor = pagesFactor;
     }
 
-    public getFrontPages() {
-        return this.front_pages;
+    public getPagesFactor() {
+        return this.pages_factor;
     }
 
-    public setFrontComponents(frontComponents: number) {
-        this.front_components = frontComponents;
+    public setComponentsFactor(componentsFactor: number) {
+        this.components_factor = componentsFactor;
     }
 
-    public getFrontComponents() {
-        return this.front_components;
+    public getComponentsFactor() {
+        return this.components_factor;
     }
 
-    public setFrontTestData(frontTestData: number) {
-        this.front_test_data = frontTestData;
+    public setTestDataFactor(testDataFactor: number) {
+        this.test_data_factor = testDataFactor;
     }
 
-    public getFrontTestData() {
-        return this.front_test_data;
+    public getTestDataFactor() {
+        return this.test_data_factor;
     }
 
-    public setFrontEndpoint(frontEndpoint: number) {
-        this.front_endpoint = frontEndpoint;
+    public setEndpointFactor(endpointFactor: number) {
+        this.endpoint_factor = endpointFactor;
     }
 
-    public getFrontEndpoint() {
-        return this.front_endpoint;
+    public getEndpointFactor() {
+        return this.endpoint_factor;
     }
 
-    public setFrontFunc(frontFunc: number) {
-        this.front_func = frontFunc;
+    public setFuncFactor(funcFactor: number) {
+        this.func_factor = funcFactor;
     }
 
-    public getFrontFunc() {
-        return this.front_func;
+    public getFuncFactor() {
+        return this.func_factor;
     }
 
-    public setFrontAuthorization(frontAuthorization: number) {
-        this.front_authorization = frontAuthorization;
+    public setAuthorizationFactor(authorizationFactor: number) {
+        this.authorization_factor = authorizationFactor;
     }
 
-    public getFrontAuthorization() {
-        return this.front_authorization;
+    public getAuthorizationFactor() {
+        return this.authorization_factor;
     }
 
-    public setFrontIoData(frontIoData: number) {
-        this.front_io_data = frontIoData;
+    public setIoDataFactor(ioDataFactor: number) {
+        this.io_data_factor = ioDataFactor;
     }
 
-    public getFrontIoData() {
-        return this.front_io_data;
+    public getIoDataFactor() {
+        return this.io_data_factor;
     }
 
-    public setFrontBackRequest(frontBackRequest: number) {
-        this.front_back_request = frontBackRequest;
+    public setBackRequestFactor(backRequestFactor: number) {
+        this.back_request_factor = backRequestFactor;
     }
 
-    public getFrontBackRequest() {
-        return this.front_back_request;
+    public getBackRequestFactor() {
+        return this.back_request_factor;
     }
 
-    public setFrontRAndD(frontRAndD: number) {
-        this.front_r_and_d = frontRAndD;
+    public setRAndDFactor(rAndDFactor: number) {
+        this.r_and_d_factor = rAndDFactor;
     }
 
-    public getFrontRAndD() {
-        return this.front_r_and_d;
-    }
-
-
-    public setFrontAutoLabel(frontAutoLabel: number) {
-        this.front_auto_label = frontAutoLabel;
-    }
-
-    public getFrontAutoLabel() {
-        return this.front_auto_label;
-    }
-
-    public setFrontUserLabelSp(frontUserLabelSp: number) {
-        this.front_user_label_sp = frontUserLabelSp;
-    }
-
-    public getFrontUserLabelSp() {
-        return this.front_user_label_sp;
-    }
-
-    public setFrontUserLabelHr(frontUserLabelHr: number) {
-        this.front_user_label_hr = frontUserLabelHr;
-    }
-
-    public getFrontUserLabelHr() {
-        return this.front_user_label_hr;
-    }
-
-    public setFrontUserNazvanie(frontUserNazvanie: string) {
-        this.front_user_nazvanie = frontUserNazvanie;
-    }
-
-    public getFrontUserNazvanie() {
-        return this.front_user_nazvanie;
-    }
-
-    public setFrontUserDescription(frontUserDescription: string) {
-        this.front_user_description = frontUserDescription;
-    }
-
-    public getFrontUserDescription() {
-        return this.front_user_description;
-    }
-
-    public setFrontUserComments(frontUserComments: string) {
-        this.front_user_comments = frontUserComments;
-    }
-
-    public getFrontUserComments() {
-        return this.front_user_comments;
-    }
-
-    public setFrontStatus(frontStatus: string) {
-        this.front_status = frontStatus;
-    }
-
-    public getFrontStatus() {
-        return this.front_status;
+    public getRAndDFactor() {
+        return this.r_and_d_factor;
     }
 
 
-    public getAccess(data: TGetFrontTaskFactors) {
-        frontApi.getAccess(data).then((res) => console.log(res));
+    public setAutoLabel(autoLabel: number) {
+        this.auto_label = autoLabel;
+    }
+
+    public getAutoLabel() {
+        return this.auto_label;
+    }
+
+    public setCreateDate(createDate: string) {
+        this.create_date = createDate;
+    }
+
+    public getCreateDate() {
+        return this.create_date;
+    }
+
+    public setStatus(stts: string) {
+        this.status = stts;
+    }
+
+    public getStatus() {
+        return this.status;
+    }
+
+    public setUserLabelSp(userLabelSp: number) {
+        this.user_label_sp = userLabelSp;
+    }
+
+    public getUserLabelSp() {
+        return this.user_label_sp;
+    }
+
+    public setUserLabelHr(userLabelHr: number) {
+        this.user_label_hr = userLabelHr;
+    }
+
+    public gettUserLabelHr() {
+        return this.user_label_hr;
+    }
+
+    public setNazvanie(nazv: string) {
+        this.nazvanie = nazv;
+    }
+
+    public getNazvanie() {
+        return this.nazvanie;
+    }
+
+    public setUserComments(userComments: string) {
+        this.user_comments = userComments;
+    }
+
+    public getUserComments() {
+        return this.user_comments;
+    }
+
+    public setDescription(descr: string) {
+        this.description = descr;
+    }
+
+    public getDescription() {
+        return this.description;
     }
 }

@@ -4,8 +4,8 @@ import {Divider, Typography} from "antd";
 import {CenterDivWrapper} from "../../style";
 import {useNavigate} from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
-import {useStores} from "../../../stores";
 import {FrontStore} from "../../../stores/front";
+import {useStores} from "../../../stores";
 import {observer} from "mobx-react-lite";
 import {front_r_and_d_string} from "./FrontTable";
 
@@ -28,7 +28,7 @@ export const FrontForm14 = observer((): JSX.Element => {
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
         FrontStore.setAccum(Number(e.target.value));
-        FrontStore.setFrontRAndD(Number(e.target.value));
+        FrontStore.setRAndDFactor(Number(e.target.value));
     };
 
     // const navigate = useNavigate();
@@ -52,11 +52,11 @@ export const FrontForm14 = observer((): JSX.Element => {
                 <Form.Item label="14. Возможность провести исследование (R&D) работы новых модулей/библиотек/компонентов:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>{front_r_and_d_string[0]} [0 storypoints]</Radio>
-                            <Radio value={1}>{front_r_and_d_string[1]} [1 storypoints]</Radio>
-                            <Radio value={3}>{front_r_and_d_string[3]} [3 storypoints]</Radio>
-                            <Radio value={8}>{front_r_and_d_string[8]} [8 storypoints]</Radio>
-                            <Radio value={13}>{front_r_and_d_string[13]} [13 storypoints]</Radio>
+                            <Radio value={0}>1. {front_r_and_d_string[0]} [0 storypoints]</Radio>
+                            <Radio value={1}>2. {front_r_and_d_string[1]} [1 storypoints]</Radio>
+                            <Radio value={3}>3. {front_r_and_d_string[3]} [3 storypoints]</Radio>
+                            <Radio value={8}>4. {front_r_and_d_string[8]} [8 storypoints]</Radio>
+                            <Radio value={13}>5. {front_r_and_d_string[13]} [13 storypoints]</Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

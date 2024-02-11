@@ -141,20 +141,20 @@ const FrontTable: React.FC = () => {
 
     const {FrontStore} = useStores();
 
-    const frontAccess: string = front_access_string[FrontStore.getFrontAccess()];
-    const frontJob: string = front_job_string[FrontStore.getFrontJob()];
-    const frontInstrument: string = front_instrument_string[FrontStore.getFrontInstrument()];
-    const frontInfra: string = front_infra_string[FrontStore.getFrontInfra()];
-    const frontSpecs: string = front_specs_string[FrontStore.getFrontSpecs()];
-    const frontPages: string = front_pages_string[FrontStore.getFrontPages()];
-    const frontComponents: string = front_components_string[FrontStore.getFrontComponents()];
-    const frontTestData: string = front_test_data_string[FrontStore.getFrontTestData()];
-    const frontEndpoint: string = front_endpoint_string[FrontStore.getFrontEndpoint()];
-    const frontFunc: string = front_func_string[FrontStore.getFrontFunc()];
-    const frontAuthorization: string = front_authorization_string[FrontStore.getFrontAuthorization()];
-    const frontIoData: string = front_io_data_string[FrontStore.getFrontIoData()];
-    const frontBackRequest: string = front_back_request_string[FrontStore.getFrontBackRequest()];
-    const frontRAndD: string = front_r_and_d_string[FrontStore.getFrontRAndD()];
+    const accessFactor: string = front_access_string[FrontStore.getAccessFactor()];
+    const jobFactor: string = front_job_string[FrontStore.getJobFactor()];
+    const instrumentFactor: string = front_instrument_string[FrontStore.getInstrumentFactor()];
+    const infraFactor: string = front_infra_string[FrontStore.getInfraFactor()];
+    const specsFactor: string = front_specs_string[FrontStore.getSpecsFactor()];
+    const pagesFactor: string = front_pages_string[FrontStore.getPagesFactor()];
+    const componentsFactor: string = front_components_string[FrontStore.getComponentsFactor()];
+    const testDataFactor: string = front_test_data_string[FrontStore.getTestDataFactor()];
+    const endpointFactor: string = front_endpoint_string[FrontStore.getEndpointFactor()];
+    const funcFactor: string = front_func_string[FrontStore.getFuncFactor()];
+    const authorizationFactor: string = front_authorization_string[FrontStore.getAuthorizationFactor()];
+    const ioDataFactor: string = front_io_data_string[FrontStore.getIoDataFactor()];
+    const backRequestFactor: string = front_back_request_string[FrontStore.getBackRequestFactor()];
+    const rAndDFactor: string = front_r_and_d_string[FrontStore.getRAndDFactor()];
 
     const columns: ColumnsType<DataType> = [
         {
@@ -173,91 +173,91 @@ const FrontTable: React.FC = () => {
 
     const data = [
         {
-            key: '2',
+            key: '1',
             factorName: '1. Наличие необходимых лицензий и доступов к ресурсам инфрастуктуры:',
-            factorVariant: frontAccess,
-            factorEstimate: FrontStore.getFrontAccess().toString(),
+            factorVariant: accessFactor,
+            factorEstimate: FrontStore.getAccessFactor().toString(),
+        },
+        {
+            key: '2',
+            factorName: '2. Уровень понимания задачи:',
+            factorVariant: jobFactor,
+            factorEstimate: FrontStore.getJobFactor().toString(),
         },
         {
             key: '3',
-            factorName: '2. Уровень понимания задачи:',
-            factorVariant: frontJob,
-            factorEstimate: FrontStore.getFrontJob().toString(),
+            factorName: '3. Уровень владения инструментарием:',
+            factorVariant: instrumentFactor,
+            factorEstimate: FrontStore.getInstrumentFactor().toString(),
         },
         {
             key: '4',
-            factorName: '3. Уровень владения инструментарием:',
-            factorVariant: frontInstrument,
-            factorEstimate: FrontStore.getFrontInstrument().toString(),
+            factorName: '4. Состояние инфраструктуры:',
+            factorVariant: infraFactor,
+            factorEstimate: FrontStore.getInfraFactor().toString(),
         },
         {
             key: '5',
-            factorName: '4. Состояние инфраструктуры:',
-            factorVariant: frontInfra,
-            factorEstimate: FrontStore.getFrontInfra().toString(),
+            factorName: '5. Состояние спецификаций:',
+            factorVariant: specsFactor,
+            factorEstimate: FrontStore.getSpecsFactor().toString(),
         },
         {
             key: '6',
-            factorName: '5. Состояние спецификаций:',
-            factorVariant: frontSpecs,
-            factorEstimate: FrontStore.getFrontSpecs().toString(),
+            factorName: '6. Готовность дизайна страниц:',
+            factorVariant: pagesFactor,
+            factorEstimate: FrontStore.getPagesFactor().toString(),
         },
         {
             key: '7',
-            factorName: '6. Готовность дизайна страниц:',
-            factorVariant: frontPages,
-            factorEstimate: FrontStore.getFrontPages().toString(),
+            factorName: '7. Количество новых сложных компонентов/страниц, которые нужно разработать:',
+            factorVariant: componentsFactor,
+            factorEstimate: FrontStore.getComponentsFactor().toString(),
         },
         {
             key: '8',
-            factorName: '7. Количество новых сложных компонентов/страниц, которые нужно разработать:',
-            factorVariant: frontComponents,
-            factorEstimate: FrontStore.getFrontComponents().toString(),
+            factorName: '8. Уровень заполнения таблиц тестовыми данными:',
+            factorVariant: testDataFactor,
+            factorEstimate: FrontStore.getTestDataFactor().toString(),
         },
         {
             key: '9',
-            factorName: '8. Уровень заполнения таблиц тестовыми данными:',
-            factorVariant: frontTestData,
-            factorEstimate: FrontStore.getFrontTestData().toString(),
+            factorName: '9. Готовность эндпоинтов на бэкенде:',
+            factorVariant: endpointFactor,
+            factorEstimate: FrontStore.getEndpointFactor().toString(),
         },
         {
             key: '10',
-            factorName: '9. Готовность эндпоинтов на бэкенде:',
-            factorVariant: frontEndpoint,
-            factorEstimate: FrontStore.getFrontEndpoint().toString(),
+            factorName: '10. Количество реализуемых функций-обработчиков событий/функций логики:',
+            factorVariant: funcFactor,
+            factorEstimate: FrontStore.getFuncFactor().toString(),
         },
         {
             key: '11',
-            factorName: '10. Количество реализуемых функций-обработчиков событий/функций логики:',
-            factorVariant: frontFunc,
-            factorEstimate: FrontStore.getFrontFunc().toString(),
+            factorName: '11. Вариант реализации авторизации пользователя:',
+            factorVariant: authorizationFactor,
+            factorEstimate: FrontStore.getAuthorizationFactor().toString(),
         },
         {
             key: '12',
-            factorName: '11. Вариант реализации авторизации пользователя:',
-            factorVariant: frontAuthorization,
-            factorEstimate: FrontStore.getFrontAuthorization().toString(),
+            factorName: '12. Уровень понимания структуры и содержания наборов входных/выходных данных:',
+            factorVariant: ioDataFactor,
+            factorEstimate: FrontStore.getIoDataFactor().toString(),
         },
         {
             key: '13',
-            factorName: '12. Уровень понимания структуры и содержания наборов входных/выходных данных:',
-            factorVariant: frontIoData,
-            factorEstimate: FrontStore.getFrontIoData().toString(),
+            factorName: '13. Количество запросов данных с бэкенда:',
+            factorVariant: backRequestFactor,
+            factorEstimate: FrontStore.getBackRequestFactor().toString(),
         },
         {
             key: '14',
-            factorName: '13. Количество запросов данных с бэкенда:',
-            factorVariant: frontBackRequest,
-            factorEstimate: FrontStore.getFrontBackRequest().toString(),
+            factorName: '14. Возможность провести исследование (R&D) работы новых модулей/библиотек/компонентов:',
+            factorVariant: rAndDFactor,
+            factorEstimate: FrontStore.getRAndDFactor().toString(),
         },
         {
             key: '15',
-            factorName: '14. Возможность провести исследование (R&D) работы новых модулей/библиотек/компонентов:',
-            factorVariant: frontRAndD,
-            factorEstimate: FrontStore.getFrontRAndD().toString(),
-        },
-        {
-            key: '16',
             factorName: '',
             factorVariant: 'Сумма',
             factorEstimate: FrontStore.getAccum().toString(),

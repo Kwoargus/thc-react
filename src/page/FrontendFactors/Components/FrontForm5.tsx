@@ -28,7 +28,7 @@ export const FrontForm5 = observer((): JSX.Element => {
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
         FrontStore.setAccum(Number(e.target.value));
-        FrontStore.setFrontSpecs(Number(e.target.value));
+        FrontStore.setSpecsFactor(Number(e.target.value));
     };
 
     // const navigate = useNavigate();
@@ -52,10 +52,10 @@ export const FrontForm5 = observer((): JSX.Element => {
                 <Form.Item label="5. Состояние спецификаций:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={1}>{front_specs_string[1]} [1 storypoints]</Radio>
-                            <Radio value={2}>{front_specs_string[2]} [2 storypoints]</Radio>
-                            <Radio value={3}>{front_specs_string[3]} [3 storypoints]</Radio>
-                            <Radio value={5}>{front_specs_string[5]} [5 storypoints]</Radio>
+                            <Radio value={1}>1. {front_specs_string[1]} [1 storypoints]</Radio>
+                            <Radio value={2}>2. {front_specs_string[2]} [2 storypoints]</Radio>
+                            <Radio value={3}>3. {front_specs_string[3]} [3 storypoints]</Radio>
+                            <Radio value={5}>4. {front_specs_string[5]} [5 storypoints]</Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

@@ -28,7 +28,7 @@ export const FrontForm1 = observer((): JSX.Element => {
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
         FrontStore.setAccum(Number(e.target.value));
-        FrontStore.setFrontAccess(Number(e.target.value));
+        FrontStore.setAccessFactor(Number(e.target.value));
     };
 
     // const navigate = useNavigate();
@@ -52,12 +52,12 @@ export const FrontForm1 = observer((): JSX.Element => {
                 <Form.Item label="1. Наличие необходимых лицензий и доступов к ресурсам инфрастуктуры:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>{front_access_string[0]} [0 storypoints]</Radio>
-                            <Radio value={1}>{front_access_string[1]} [1 storypoints]</Radio>
-                            <Radio value={2}>{front_access_string[2]} [2 storypoints]</Radio>
-                            <Radio value={3}>{front_access_string[3]} [3 storypoints]</Radio>
-                            <Radio value={5}>{front_access_string[5]} [5 storypoints]</Radio>
-                            <Radio value={8}>{front_access_string[8]} [8 storypoints]</Radio>
+                            <Radio value={0}>1. {front_access_string[0]} [0 storypoints]</Radio>
+                            <Radio value={1}>2. {front_access_string[1]} [1 storypoints]</Radio>
+                            <Radio value={2}>3. {front_access_string[2]} [2 storypoints]</Radio>
+                            <Radio value={3}>4. {front_access_string[3]} [3 storypoints]</Radio>
+                            <Radio value={5}>5. {front_access_string[5]} [5 storypoints]</Radio>
+                            <Radio value={8}>6. {front_access_string[8]} [8 storypoints]</Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

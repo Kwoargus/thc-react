@@ -28,7 +28,7 @@ export const FrontForm4 = observer((): JSX.Element => {
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
         FrontStore.setAccum(Number(e.target.value));
-        FrontStore.setFrontInfra(Number(e.target.value));
+        FrontStore.setInfraFactor(Number(e.target.value));
     };
 
     // const navigate = useNavigate();
@@ -52,10 +52,10 @@ export const FrontForm4 = observer((): JSX.Element => {
                 <Form.Item label="4. Состояние инфраструктуры:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>{front_infra_string[0]} [0 storypoints]</Radio>
-                            <Radio value={1}>{front_infra_string[1]} [1 storypoints]</Radio>
-                            <Radio value={3}>{front_infra_string[3]} [3 storypoints]</Radio>
-                            <Radio value={8}>{front_infra_string[8]} [8 storypoints]</Radio>
+                            <Radio value={0}>1. {front_infra_string[0]} [0 storypoints]</Radio>
+                            <Radio value={1}>2. {front_infra_string[1]} [1 storypoints]</Radio>
+                            <Radio value={3}>3. {front_infra_string[3]} [3 storypoints]</Radio>
+                            <Radio value={8}>4. {front_infra_string[8]} [8 storypoints]</Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

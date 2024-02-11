@@ -28,7 +28,7 @@ export const FrontForm8 = observer((): JSX.Element => {
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
         FrontStore.setAccum(Number(e.target.value));
-        FrontStore.setFrontTestData(Number(e.target.value));
+        FrontStore.setTestDataFactor(Number(e.target.value));
     };
 
     // const navigate = useNavigate();
@@ -52,9 +52,9 @@ export const FrontForm8 = observer((): JSX.Element => {
                 <Form.Item label="8. Уровень заполнения таблиц тестовыми данными:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>{front_test_data_string[0]} [0 storypoints]</Radio>
-                            <Radio value={2}>{front_test_data_string[2]} [2 storypoints]</Radio>
-                            <Radio value={5}>{front_test_data_string[5]} [5 storypoints]</Radio>
+                            <Radio value={0}>1. {front_test_data_string[0]} [0 storypoints]</Radio>
+                            <Radio value={2}>2. {front_test_data_string[2]} [2 storypoints]</Radio>
+                            <Radio value={5}>3. {front_test_data_string[5]} [5 storypoints]</Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

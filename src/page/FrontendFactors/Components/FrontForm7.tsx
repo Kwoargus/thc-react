@@ -28,7 +28,7 @@ export const FrontForm7 = observer((): JSX.Element => {
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
         FrontStore.setAccum(Number(e.target.value));
-        FrontStore.setFrontComponents(Number(e.target.value));
+        FrontStore.setComponentsFactor(Number(e.target.value));
     };
 
     // const navigate = useNavigate();
@@ -52,13 +52,13 @@ export const FrontForm7 = observer((): JSX.Element => {
                 <Form.Item label="7. Количество новых сложных компонентов/страниц, которые нужно разработать:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>{front_components_string[0]} [0 storypoints]</Radio>
-                            <Radio value={1}>{front_components_string[1]} [1 storypoints]</Radio>
-                            <Radio value={2}>{front_components_string[2]} [2 storypoints]</Radio>
-                            <Radio value={3}>{front_components_string[3]} [3 storypoints]</Radio>
-                            <Radio value={5}>{front_components_string[5]} [5 storypoints]</Radio>
-                            <Radio value={8}>{front_components_string[8]} [8 storypoints]</Radio>
-                            <Radio value={13}>{front_components_string[13]} [13 storypoints]</Radio>
+                            <Radio value={0}>1. {front_components_string[0]} [0 storypoints]</Radio>
+                            <Radio value={1}>2. {front_components_string[1]} [1 storypoints]</Radio>
+                            <Radio value={2}>3. {front_components_string[2]} [2 storypoints]</Radio>
+                            <Radio value={3}>4. {front_components_string[3]} [3 storypoints]</Radio>
+                            <Radio value={5}>5. {front_components_string[5]} [5 storypoints]</Radio>
+                            <Radio value={8}>6. {front_components_string[8]} [8 storypoints]</Radio>
+                            <Radio value={13}>7. {front_components_string[13]} [13 storypoints]</Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>
