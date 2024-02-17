@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const SidebarWrapper = styled.div`
+  position: sticky;
+  top: 0;
   display: flex;
   width: 240px;
-  height: 100%;
+  height: 100vh;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
