@@ -29,6 +29,7 @@ export const Sidebar = (): JSX.Element => {
             <div onClick={() => navigate(clientRoutes.frontendFactors)}>Фронтенд</div>
             <div onClick={() => navigate(clientRoutes.testerFactors)}>Тестировщик</div>
             <div onClick={() => navigate(clientRoutes.analistFactors)}>Аналитик</div>
+            <div onClick={() => navigate(clientRoutes.sqlFactors)}>SQL-разработчик</div>
             <br/>
           </SidebarMenu>
         </SidebarHeaderAndMenu>
