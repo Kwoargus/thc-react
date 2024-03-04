@@ -6,7 +6,7 @@ import { CenterDivWrapper } from "../../style";
 import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
-import {BackStore} from "../../../stores/back";
+import {back_end_point_string} from "./BackTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -29,7 +29,7 @@ export const BackForm11 = (): JSX.Element => {
         formLayout === "horizontal"
             ? { wrapperCol: { span: 14, offset: 4 } }
             : null;
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(undefined);
 
     const formItemLayout =
         formLayout === "horizontal"
@@ -60,30 +60,12 @@ export const BackForm11 = (): JSX.Element => {
                 <Form.Item label="11. Выберите вариант количества реализуемых ендпоинтов:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>
-                                {" "}
-                                1. В задаче не будут реализовываться ендпоинты. [0 storypoints]
-                            </Radio>
-                            <Radio value={1}>
-                                {" "}
-                                2. Потребуется реализовать API с количеством ендпоинтов от 1 до 10. [1 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                3. Потребуется реализовать API с количеством ендпоинтов от 11 до 20. [2 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                4. Потребуется реализовать API с количеством ендпоинтов от 21 до 30. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. Потребуется реализовать API с количеством ендпоинтов от 31 до 40. [5 storypoints]
-                            </Radio>
-                            <Radio value={8}>
-                                {" "}
-                                6. Потребуется реализовать API с количеством ендпоинтов от 41 до 50. [8 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {back_end_point_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {back_end_point_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {back_end_point_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {back_end_point_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {back_end_point_string[5]} [5 storypoints] </Radio>
+                            <Radio value={8}> 6. {back_end_point_string[8]} [8 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

@@ -6,7 +6,7 @@ import { CenterDivWrapper } from "../../style";
 import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
-import {BackStore} from "../../../stores/back";
+import {back_biz_func_string} from "./BackTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -29,7 +29,7 @@ export const BackForm10 = (): JSX.Element => {
         formLayout === "horizontal"
             ? { wrapperCol: { span: 14, offset: 4 } }
             : null;
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(undefined);
 
     const formItemLayout =
         formLayout === "horizontal"
@@ -60,30 +60,12 @@ export const BackForm10 = (): JSX.Element => {
                 <Form.Item label="10. Выберите вариант количества реализуемых бизнес-функций:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>
-                                {" "}
-                                1. В задаче не будут реализовываться функции бизнес/прикладной логики. [0 storypoints]
-                            </Radio>
-                            <Radio value={1}>
-                                {" "}
-                                2. В бизнес логике задачи потребуется реализовать от 1 до 10 функции бизнес/прикладной логики. [1 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                3. В бизнес логике задачи потребуется реализовать от 11 до 20 функции бизнес/прикладной логики. [2 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                4. В бизнес логике задачи потребуется реализовать от 21 до 30 функции бизнес/прикладной логики. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. В бизнес логике задачи потребуется реализовать от 31 до 40 функции бизнес/прикладной логики. [5 storypoints]
-                            </Radio>
-                            <Radio value={8}>
-                                {" "}
-                                6. В бизнес логике задачи потребуется реализовать от 41 до 50 функции бизнес/прикладной логики. [8 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {back_biz_func_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {back_biz_func_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {back_biz_func_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {back_biz_func_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {back_biz_func_string[5]} [5 storypoints] </Radio>
+                            <Radio value={8}> 6. {back_biz_func_string[8]} [8 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

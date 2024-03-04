@@ -5,8 +5,8 @@ import { CenterDivWrapper } from "../../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
 import {useStores} from "../../../stores";
-import {AnalistStore} from "../../../stores/analist";
 import {observer} from "mobx-react-lite";
+import {analist_information_string} from "./AnalistTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -57,30 +57,12 @@ export const AnalistForm5 = observer((): JSX.Element => {
                 <Form.Item label="5. Выберите вариант достаточности исходных данных:  ">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={1}>
-                                {" "}
-                                1. В задаче не потребуются исходные данные/информация. [0 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                2. Из необходимых исходных данных/информации аналитику доступны все необходимые исходные данные. [1 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                3. Из необходимых исходных данных/информации аналитику доступны все кроме малого числа незначительных сведений. [2 storypoints]
-                            </Radio>
-                            <Radio value={4}>
-                                {" "}
-                                4. Из необходимых исходных данных аналитику доступны примерно половина, а на получение пока недоступных потребуется много времени. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. Из необходимых исходных данных аналитику доступны меньшая часть, а на получение пока недоступных потребуется очень много времени. [5 storypoints]
-                            </Radio>
-                            <Radio value={6}>
-                                {" "}
-                                6. Необходимые исходные данные аналитику не доступны, а на их получение потребуется неопределённо много времени. [8 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {analist_information_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {analist_information_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {analist_information_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {analist_information_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {analist_information_string[5]} [5 storypoints] </Radio>
+                            <Radio value={8}> 6. {analist_information_string[8]} [8 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

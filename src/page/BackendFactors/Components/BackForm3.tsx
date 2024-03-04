@@ -5,7 +5,7 @@ import { CenterDivWrapper } from "../../style";
 import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
-import {BackStore} from "../../../stores/back";
+import {back_model_string} from "./BackTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -28,7 +28,7 @@ export const BackForm3 = (): JSX.Element => {
         formLayout === "horizontal"
             ? { wrapperCol: { span: 14, offset: 4 } }
             : null;
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(undefined);
 
     const formItemLayout =
         formLayout === "horizontal"
@@ -59,26 +59,11 @@ export const BackForm3 = (): JSX.Element => {
                 <Form.Item label="3. Выберите вариант уровня понимания модели данных:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>
-                                {" "}
-                                1. Разработчику понятна структура модели данных и атрибутивный состав таблиц. [0 storypoints]
-                            </Radio>
-                            <Radio value={1}>
-                                {" "}
-                                2. Разработчику не понятна небольшая часть структуры модели данных и/или назначение некоторых атрибутов. [1 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                3. Разработчику не понятна примерно половина структуры модели данных и/или назначение половины атрибутов. [2 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                4. Разработчику не понятна бОльшая часть структуры модели данных и/или назначение бОльшей части атрибутов. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. Разработчику не понятна вся структура модели данных и атрибутивный состав таблиц. [5 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {back_model_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {back_model_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {back_model_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {back_model_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {back_model_string[5]} [5 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

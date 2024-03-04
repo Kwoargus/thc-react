@@ -24,7 +24,7 @@ export const FrontForm3 = observer((): JSX.Element => {
 
     const buttonItemLayout = formLayout === "horizontal" ? {wrapperCol: {span: 14, offset: 4}} : null;
     const formItemLayout = formLayout === "horizontal" ? {labelCol: {span: 4}, wrapperCol: {span: 14}} : null;
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(undefined);
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
         FrontStore.setAccum(Number(e.target.value));

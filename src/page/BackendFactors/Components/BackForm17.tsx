@@ -6,7 +6,7 @@ import { CenterDivWrapper } from "../../style";
 import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
-import {BackStore} from "../../../stores/back";
+import {back_log_string} from "./BackTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -14,22 +14,17 @@ export const BackForm17 = (): JSX.Element => {
 
     const {BackStore} = useStores();
 
-    // let {BackStore: {  }} = useStores();
-    // useEffect(() => {});
-    // let accum = BackStore.accValue;
-
     const { Title, Paragraph, Text, Link } = Typography;
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState<LayoutType>("vertical");
     const onFormLayoutChange = ({ layout }: { layout: LayoutType }) => {
-
         setFormLayout(layout);
     };
     const buttonItemLayout =
         formLayout === "horizontal"
             ? { wrapperCol: { span: 14, offset: 4 } }
             : null;
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(undefined);
 
     const formItemLayout =
         formLayout === "horizontal"
@@ -60,30 +55,12 @@ export const BackForm17 = (): JSX.Element => {
                 <Form.Item label="17. Выберите уровень покрытия методов логами.:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>
-                                {" "}
-                                1. Логировать события/методы не требуется. [0 storypoints]
-                            </Radio>
-                            <Radio value={1}>
-                                {" "}
-                                2. Требуется логировать единичные события/методы. [1 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                3. Требуется логировать меньшую часть событий/методов. [2 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                4. Требуется логировать примерно половину событий/методов. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. Требуется логировать большую часть событий/методов. [5 storypoints]
-                            </Radio>
-                            <Radio value={8}>
-                                {" "}
-                                6. Требуется логировать почти все события/методы. [8 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {back_log_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {back_log_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {back_log_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {back_log_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {back_log_string[5]} [5 storypoints] </Radio>
+                            <Radio value={8}> 6. {back_log_string[8]} [8 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

@@ -102,31 +102,7 @@ export const FrontForm15 = observer((): JSX.Element => {
         let user_comments = fv["userComment"];
         let description = fv["description"];
         //сохранить в БД все значения
-        let data: TGetFrontTaskFactors = {
-            user_id,
-            access,
-            job,
-            instrument,
-            infra,
-            specs,
-            pages,
-            components,
-            test_data,
-            endpoint,
-            func,
-            authorization,
-            io_data,
-            back_request,
-            r_and_d,
-            auto_label,
-            create_date,
-            status,
-            user_label_sp,
-            user_label_hr,
-            nazvanie,
-            user_comments,
-            description
-        };
+        let data: TGetFrontTaskFactors = {user_id, access, job, instrument, infra, specs, pages, components, test_data, endpoint, func, authorization, io_data, back_request, r_and_d, auto_label, create_date, status, user_label_sp, user_label_hr, nazvanie, user_comments, description};
         FrontStore.getAccess(data);
     }
 

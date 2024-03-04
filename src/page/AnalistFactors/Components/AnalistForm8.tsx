@@ -5,8 +5,8 @@ import { CenterDivWrapper } from "../../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
 import {useStores} from "../../../stores";
-import {AnalistStore} from "../../../stores/analist";
 import {observer} from "mobx-react-lite";
+import {analist_ui_back_string} from "./AnalistTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -33,7 +33,7 @@ export const AnalistForm8 = observer((): JSX.Element => {
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
         AnalistStore.setAccum(Number(e.target.value));
-        AnalistStore.setColleguesFactor(Number(e.target.value));
+        AnalistStore.setUiBackFactor(Number(e.target.value));
     };
 
     const navigate = useNavigate();
@@ -57,22 +57,10 @@ export const AnalistForm8 = observer((): JSX.Element => {
                 <Form.Item label="8. Выберите вариант комплексности описания задачи в спецификации: ">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={1}>
-                                {" "}
-                                1. В задаче не требуется описать ни UI ни бэкенд. [0 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                2. В задаче требуется описать только UI и не требуется описывать бэкенд. [1 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                3. В задаче требуется описать только бэкенд и не требуется описывать UI. [2 storypoints]
-                            </Radio>
-                            <Radio value={4}>
-                                {" "}
-                                4. В задаче требуется описать не только бэкенд но и UI. [3 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {analist_ui_back_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {analist_ui_back_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {analist_ui_back_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {analist_ui_back_string[3]} [3 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

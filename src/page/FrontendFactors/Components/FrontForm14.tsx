@@ -24,7 +24,7 @@ export const FrontForm14 = observer((): JSX.Element => {
 
     const buttonItemLayout = formLayout === "horizontal" ? {wrapperCol: {span: 14, offset: 4}} : null;
     const formItemLayout = formLayout === "horizontal" ? {labelCol: {span: 4}, wrapperCol: {span: 14}} : null;
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(undefined);
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
         FrontStore.setAccum(Number(e.target.value));
@@ -49,7 +49,7 @@ export const FrontForm14 = observer((): JSX.Element => {
                 // onValuesChange={onFormLayoutChange}
                 // style={{ maxWidth: formLayout === 'inline' ? 'none' : 600 }}
             >
-                <Form.Item label="14. Возможность провести исследование (R&D) работы новых модулей/библиотек/компонентов:">
+                <Form.Item label="14. Необходимость провести исследование (R&D) работы новых модулей/библиотек/компонентов:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
                             <Radio value={0}>1. {front_r_and_d_string[0]} [0 storypoints]</Radio>

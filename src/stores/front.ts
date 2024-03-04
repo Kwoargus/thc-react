@@ -33,14 +33,27 @@ export class FrontStore {
     user_comments: string = ""
     description: string = ""
 
+    data: any;
+
     constructor() {
         makeAutoObservable(this);
     }
 
-    public getAccess(data: TGetFrontTaskFactors) {
-        frontApi.getAccess(data).then((res) => console.log(res));
-    }
+    // public getAccess(data: TGetFrontTaskFactors) {
+    //     frontApi.getAccess(data).then((res) => console.log(res));
+    // }
+    public getAccess = (data: TGetFrontTaskFactors): void => {
+        frontApi.getAccess(data).then((res) => {
+            const { data} = res;
+            this.setValue(data);
+            console.log('data: ', data);
+        });
+    };
 
+
+    setValue(data:TGetFrontTaskFactors){
+        this.data = data;
+    }
 
     public setAccum(accm: number) {
         this.accValue = this.accValue + accm;

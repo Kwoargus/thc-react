@@ -5,7 +5,7 @@ import { CenterDivWrapper } from "../../style";
 import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
-import {BackStore} from "../../../stores/back";
+import {back_instrument_string} from "./BackTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -28,7 +28,7 @@ export const BackForm4 = (): JSX.Element => {
         formLayout === "horizontal"
             ? { wrapperCol: { span: 14, offset: 4 } }
             : null;
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(undefined);
 
     const formItemLayout =
         formLayout === "horizontal"
@@ -59,30 +59,11 @@ export const BackForm4 = (): JSX.Element => {
                 <Form.Item label="4. Выберите вариант уровня владения инструментарием:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>
-                                {" "}
-                                1. Из необходимых инструментов разработки, все хорошо знакомы разработчику и у него имеется достаточный опыт их использования. [0 storypoints]
-                            </Radio>
-                            <Radio value={1}>
-                                {" "}
-                                2. Из необходимых инструментов разработки, все, кроме одного, хорошо знакомы разработчику, и у него имеется достаточный опыт их использования всех кроме одного. [1 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                3. Из необходимых инструменты разработки, большая часть знакомы разработчику, и у него имеется достаточный опыт их использования с остальными опыта нет или его недостаточно. [2 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                4. Из необходимых инструменты разработки, половина, хорошо знакомы разработчику, и у него имеется достаточный опыт их использования с остальными опыта нет или его недостаточно. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. Из необходимых инструменты разработки, большая часть не знакомы и опыта их использования недостаточно. [5 storypoints]
-                            </Radio>
-                            <Radio value={8}>
-                                {" "}
-                                6. Из необходимых инструменты разработки, все не знакомы и опыта их использования нет. [8 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {back_instrument_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {back_instrument_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {back_instrument_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {back_instrument_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {back_instrument_string[5]} [5 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

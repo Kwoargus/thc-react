@@ -6,6 +6,7 @@ import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
 import {BackStore} from "../../../stores/back";
+import {back_job_string} from "./BackTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -28,7 +29,7 @@ export const BackForm2 = (): JSX.Element => {
         formLayout === "horizontal"
             ? { wrapperCol: { span: 14, offset: 4 } }
             : null;
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(undefined);
 
     const formItemLayout =
         formLayout === "horizontal"
@@ -59,26 +60,11 @@ export const BackForm2 = (): JSX.Element => {
                 <Form.Item label="2. Выберите вариант уровня понимания задачи:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>
-                                {" "}
-                                1. Разработчику понятны формулировка задачи и бизнес логика, которую необходимо реализовать. [0 storypoints]
-                            </Radio>
-                            <Radio value={1}>
-                                {" "}
-                                2. Разработчику не понятны небольшая часть описания задачи и некоторые функции бизнес логики, которую необходимо реализовать. [1 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                3. Разработчику не понятны примерно половина описания задачи и примерно половина функций бизнес логики, которую необходимо реализовать. [2 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                4. Разработчику не понятны бОльшая часть описания задачи и и бОльшая часть функции бизнес логики, которую необходимо реализовать. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. Разработчику не понятны все описания задачи и все функции бизнес логики, которую необходимо реализовать. [5 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {back_job_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {back_job_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {back_job_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {back_job_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {back_job_string[5]} [5 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

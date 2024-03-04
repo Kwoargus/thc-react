@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Form, Input, Radio, RadioChangeEvent, Space, Table} from "antd";
 import {Divider, Typography} from "antd";
 import {CenterDivWrapper} from "../../style";
@@ -36,7 +36,15 @@ export const FrontForm16 = (): JSX.Element => {
             ? {labelCol: {span: 4}, wrapperCol: {span: 14}}
             : null;
     const [value, setValue] = useState(1);
-
+    const [res, setRes] = useState(0)
+    const [addition, setAddition] = useState("")
+    useEffect(()=> {
+        const result = getTaskClassification()
+        if(result > 160){
+            setAddition (". Эта задача избыточно трудоёмкая, ее следует декомпозировать на несколько более простых");
+        }
+        setRes(result)
+    },[])
     const getTaskClassification = (): number => {
         let estimate = 0;
         let acc = FrontStore.getAccum();
@@ -53,12 +61,6 @@ export const FrontForm16 = (): JSX.Element => {
 
         return estimate;
     };
-
-    let res = getTaskClassification();
-    let addition = "";
-    if (res > 160) {
-        addition = ". Эта задача избыточно трудоёмкая, ее следует декомпозировать на несколько более простых";
-    }
 
     return (
         <CenterDivWrapper>
@@ -80,6 +82,8 @@ export const FrontForm16 = (): JSX.Element => {
             </Form>
 
             <Text>Итоговая трудоёмкость {res} человеко-часов{addition}</Text>
+            <Text >Предикт нейросети "Factors Regressor": {FrontStore.data?.factorsRegressor} человеко-часов {addition}.</Text>
+            <Text >Предикт нейросети "BagOfWords Predictor": {FrontStore.data?.BagOfWords} человеко-часов {addition}.</Text>
         </CenterDivWrapper>
     );
 };

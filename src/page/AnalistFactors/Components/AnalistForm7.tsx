@@ -5,8 +5,8 @@ import { CenterDivWrapper } from "../../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
 import {useStores} from "../../../stores";
-import {AnalistStore} from "../../../stores/analist";
 import {observer} from "mobx-react-lite";
+import {analist_collegues_string} from "./AnalistTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -33,7 +33,7 @@ export const AnalistForm7 = observer((): JSX.Element => {
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
         AnalistStore.setAccum(Number(e.target.value));
-        AnalistStore.setUiBackFactor(Number(e.target.value));
+        AnalistStore.setColleguesFactor(Number(e.target.value));
     };
 
     const navigate = useNavigate();
@@ -57,30 +57,12 @@ export const AnalistForm7 = observer((): JSX.Element => {
                 <Form.Item label="7. Выберите вариант уровня взаимодействия с коллегами из команд, с продуктами которых необходимо интегрировать разработку:  ">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={1}>
-                                {" "}
-                                1. Взаимодействие с коллегами из других команд не потребуется. [0 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                2. Взаимодействие с коллегами из других команд, максимально эффективное – быстрый отклик на запросы, ответы на вопросы содержательны и полезны согласование позиций ничем не затруднено. [1 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                3. Взаимодействие с коллегами из других команд по большей части эффективное –  задержка отклика  отклика на запрос небольшая, ответы на вопросы по большей части содержательны и полезны, согласование позиций не затруднено в большинстве случаев. [2 storypoints]
-                            </Radio>
-                            <Radio value={4}>
-                                {" "}
-                                4. Взаимодействие с коллегами из других команд в половине случаев эффективное –  задержка отклика отклика на запрос может быть значительной, ответы на вопросы в половине случаев содержательны и полезны, согласование позиций часто затруднено. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. Взаимодействие с коллегами из других команд мало эффективное –  задержка отклика на запрос  может быть значительной, ответы на вопросы в половине случаев содержательны и полезны, согласование позиций часто затруднено. [5 storypoints]
-                            </Radio>
-                            <Radio value={6}>
-                                {" "}
-                                6. Взаимодействие с коллегами из других команд не эффективное –  задержка отклика на запрос  слишком большая, ответы на вопросы безсодержательны и безполезны, согласование позиций почти невозможно. [8 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {analist_collegues_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {analist_collegues_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {analist_collegues_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {analist_collegues_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {analist_collegues_string[5]} [5 storypoints] </Radio>
+                            <Radio value={8}> 6. {analist_collegues_string[8]} [8 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

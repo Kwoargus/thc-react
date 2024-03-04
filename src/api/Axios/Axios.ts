@@ -9,7 +9,7 @@ export class AxiosService {
 
     this.axios = Axios.create({
       validateStatus: (status) => status >= 200 && status < 400,
-      timeout: 30000,
+      timeout: 300000,
       headers: {
         Accept: "application/json",
         Authorization: `${tokenType} ${accessToken}`

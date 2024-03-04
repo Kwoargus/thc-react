@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
 import {useStores} from "../../../stores";
 import {observer} from "mobx-react-lite";
+import {analist_instrument_string} from "./AnalistTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -56,22 +57,10 @@ export const AnalistForm4 = observer((): JSX.Element => {
                 <Form.Item label="4. Выберите вариант уровня владения инструментарием: ">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>
-                                {" "}
-                                1. Из необходимых инструментов анализа, все хорошо знакомы аналитику и у него имеется достаточный опыт их использования. [0 storypoints]
-                            </Radio>
-                            <Radio value={1}>
-                                {" "}
-                                2. Из необходимых инструментов анализа, все, кроме одного, хорошо знакомы аналитику, и у него имеется достаточный опыт их использования всех кроме одного. [1 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                3. Из необходимых инструменты анализа, половина, хорошо знакомы аналитику, и у него имеется достаточный опыт их использования с остальными опыта нет или его недостаточно. [3 storypoints]
-                            </Radio>
-                            <Radio value={8}>
-                                {" "}
-                                4. Из необходимых инструменты анализа, все не знакомы и опыта их использования нет или недостаточно. [8 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {analist_instrument_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {analist_instrument_string[1]} [1 storypoints] </Radio>
+                            <Radio value={3}> 3. {analist_instrument_string[3]} [3 storypoints] </Radio>
+                            <Radio value={8}> 4. {analist_instrument_string[8]} [8 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

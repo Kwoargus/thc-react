@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { backApi } from "src/api/back";
 import { TGetBackTaskFactors } from "src/api/back/types";
+import {AxiosResponse} from "axios";
 
 export class BackStore {
 
@@ -37,14 +38,27 @@ export class BackStore {
     user_comments: string = "";
     description: string = "";
 
+    data : any ;
+
     constructor() {
         makeAutoObservable(this);
     }
 
+    // public getAccess = (data: TGetBackTaskFactors): void => {
+    //     backApi.getAccess(data).then((res) => console.log(res));
+    // };
+
     public getAccess = (data: TGetBackTaskFactors): void => {
-        backApi.getAccess(data).then((res) => console.log(res));
+        backApi.getAccess(data).then((res) => {
+            const { data} = res;
+            this.setValue(data);
+            console.log('data: ', data);
+        });
     };
 
+    setValue(data:TGetBackTaskFactors){
+        this.data = data;
+    }
 
     public setAccum(accm:number) {
         this.accValue = this.accValue + accm;
@@ -230,6 +244,7 @@ export class BackStore {
     public getDescription() {
         return this.description;
     }
+
 
 
 }

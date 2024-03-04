@@ -5,8 +5,8 @@ import { CenterDivWrapper } from "../../style";
 import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
-import {AnalistStore} from "../../../stores/analist";
 import {observer} from "mobx-react-lite";
+import {analist_job_string} from "./AnalistTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -57,30 +57,12 @@ export const AnalistForm2 = observer((): JSX.Element => {
                 <Form.Item label="2. Выберите вариант уровня понимания задачи: ">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={1}>
-                                {" "}
-                                1. Аналитику понятно описание задачи и все функции бизнес логики, которые необходимо описать. [0 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                2. Аналитику не понятны небольшая часть описания задачи и некоторые функции бизнес логики, которую необходимо описать. [1 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                3. Аналитику не понятны примерно половина описания задачи и примерно половина функций бизнес логики, которую необходимо описать. [2 storypoints]
-                            </Radio>
-                            <Radio value={4}>
-                                {" "}
-                                4. Аналитику не понятны бОльшая часть описания задачи и и бОльшая часть функции бизнес логики, которую необходимо описать. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. Аналитику не понятны бОльшая часть описания задачи и и бОльшая часть функции бизнес логики, которую необходимо описать. [5 storypoints]
-                            </Radio>
-                            <Radio value={6}>
-                                {" "}
-                                6. Аналитику не понятны все описания задачи и все функции бизнес логики, которую необходимо описать. [8 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {analist_job_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {analist_job_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {analist_job_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {analist_job_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {analist_job_string[5]} [5 storypoints] </Radio>
+                            <Radio value={8}> 6. {analist_job_string[8]} [8 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>
