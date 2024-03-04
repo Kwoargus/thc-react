@@ -18,14 +18,14 @@ import { SqlForm17 } from "../page/SqlFactors/Components/SqlForm17";
 import { SqlForm18 } from "../page/SqlFactors/Components/SqlForm18";
 import {observer} from "mobx-react-lite";
 import React from "react";
+import {observer} from "mobx-react-lite";
+import React from "react";
 import {useStores} from "../stores";
 
 export const СhooseSqlVariant = observer((): JSX.Element => {
     const{SqlStore}=useStores();
     const renderContent = (): JSX.Element => {
-        //console.log("FactorValue = ", SqlStore.factorValue);
         switch (SqlStore.factorValue) {
-        //switch (1) {
                 case 1:
                 return  <SqlForm1  />;
  
@@ -82,7 +82,8 @@ export const СhooseSqlVariant = observer((): JSX.Element => {
  
             default:
                 return <SqlForm1 />;
-        }                                   // нужна ли здесь точка с запятой? Проверить. Должно быть нужна
+        };  
+
     };
 
     return renderContent();

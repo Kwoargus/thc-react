@@ -1,16 +1,14 @@
 import React, {useEffect, useState} from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
-import { CenterDivWrapper } from "../../style";
+import { CenterDivWrapper } from "../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
 import {useStores} from "../../../stores";
 import {SqlStore} from "../../../stores/sql";
 import {observer} from "mobx-react-lite";
 import {sqldev_access_string} from "./SqlTable";
-// import {AuthStore} from "../../../stores/auth";
-// import {TGetSqlTaskFactors, TGetSqlTaskFactorsResponce} from "src/api/sql/types";
-// import {uuidv4} from "uuid";//чота не находит uuid надо сделать на бэкенде
+import {TGetSqlTaskFactors, TGetSqlTaskFactorsResponce} from "src/api/sql/types";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -21,6 +19,7 @@ export const SqlForm1 = observer((): JSX.Element => {
   const { Title, Paragraph, Text, Link } = Typography;
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState<LayoutType>("vertical");
+
   // const onFormLayoutChange = ({ layout }: { layout: LayoutType }) => {
   //   setFormLayout(layout);
   // };
@@ -28,13 +27,19 @@ export const SqlForm1 = observer((): JSX.Element => {
   const buttonItemLayout = formLayout === "horizontal" ? { wrapperCol: { span: 14, offset: 4 } } : null;
   const formItemLayout =  formLayout === "horizontal" ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } } : null;
   const [value, setValue] = useState(undefined);   //undefined - нет предустановленного выбора
+//  const onFormLayoutChange = ({ layout }: { layout: LayoutType }) => {
+//    setFormLayout(layout);
+//  };
+
+//  const [value, setValue] = useState(1);
+  const formItemLayout =  formLayout === "horizontal" ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } } : null;
   const onChange = (e: RadioChangeEvent) => {
     setValue(e.target.value);
     SqlStore.setAccum(Number(e.target.value));
     SqlStore.setAccessFactor(Number(e.target.value));
   };
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleClick = () : void => {
     SqlStore.setFactor(2);
@@ -69,7 +74,7 @@ export const SqlForm1 = observer((): JSX.Element => {
 
         <Form.Item {...buttonItemLayout}>
           <Button type="primary" onClick={handleClick}>
-            Далее
+            Делее
           </Button>
         </Form.Item>
       </Form>

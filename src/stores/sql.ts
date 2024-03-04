@@ -12,7 +12,7 @@ export class SqlStore {
     access_factor: number = 0;                  //sqldev_tag === 1
     job_factor : number = 0;                    //sqldev_tag === 2
     model_factor: number = 0;                   //sqldev_tag === 3
-    tables_factor: number = 0;                          //sqldev_tag === 4
+    tables_factor: number = 0;                  //sqldev_tag === 4
     instrument_factor: number = 0;              //sqldev_tag === 5
     specs_factor: number = 0;                   //sqldev_tag === 6
     view_factor: number = 0;                    //sqldev_tag === 7
@@ -25,17 +25,6 @@ export class SqlStore {
     clean_factor: number = 0;                   //sqldev_tag === 14
     test_data_factor: number = 0;               //sqldev_tag === 15
     migration_data_factor: number = 0;          //sqldev_tag === 16
-
-    // Блок атрибутов из handler.txt - к обсуждению
-    //auto_label = 0;
-    //user_label = 0;
-    //user_description = "";
-    //user_nazvanie = "";
-    //user_comments = "";
-    //user_label_sp = "";
-    //user_label_hr = "";
-
-    // Блок атрибутов из back/analist/front (безобразно, но единообразно)
     auto_label: number = 0;
     create_date: string = "";
     status: string = "";
@@ -54,6 +43,7 @@ export class SqlStore {
     }
     
     public setAccum(accm:number) {
+
         this.accValue = this.accValue + accm;
     }
     public getAccum() {
@@ -108,6 +98,7 @@ export class SqlStore {
     public getTablesFactor() {
         return this.tables_factor;
     }
+
     public setInstrumentFactor(instrumentFactor:number) {
         this.instrument_factor = instrumentFactor;
     }
@@ -203,10 +194,6 @@ export class SqlStore {
         return this.migration_data_factor;
     }
 
-    //public getAccess(data: TGetSqlTaskFactors) {
-    //    sqlApi.getAccess(data).then((res) => console.log(res));
-    //}
-    
     public setAutoLabel(autoLabel: number) {
         this.auto_label = autoLabel;
     }
@@ -269,6 +256,7 @@ export class SqlStore {
 
     public getDescription() {
         return this.description;
-    }
+
+
 }
    

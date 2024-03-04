@@ -21,6 +21,5 @@ export const clientRoutes = {
   backForm2: "/backForm2",
   frontendFactors: "/frontendFactors",
   frontForm1: "/frontForm1",
-  sqlDevFactors: "/sqlDevFactors",
 
 };

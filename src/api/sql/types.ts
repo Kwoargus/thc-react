@@ -1,5 +1,4 @@
 export type TGetSqlTaskFactors = {
-    user_id: string;
 
     access: number;                  //sqldev_tag === 1
     job: number;                     //sqldev_tag === 2
@@ -26,6 +25,8 @@ export type TGetSqlTaskFactors = {
     nazvanie: string;
     user_comments: string;
     description: string;   
+    user_id: String;
+
 };
 
 export type TGetSqlTaskFactorsResponce = string;
