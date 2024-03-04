@@ -1,15 +1,13 @@
 import React, {useEffect, useState} from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
-import { CenterDivWrapper } from "../style";
+import { CenterDivWrapper } from "../../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
 import {useStores} from "../../../stores";
-import {AnalistStore} from "../../../stores/analist";
 import {observer} from "mobx-react-lite";
-import {AuthStore} from "../../../stores/auth";
-import {TGetAnalistTaskFactors, TGetAnalistTaskFactorsResponce} from "src/api/analist/types";
 // import {uuidv4} from "uuid";//чота не находит uuid надо сделать на бэкенде
+import {back_access_string} from "./BackTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -25,7 +23,7 @@ export const BackForm1 = observer((): JSX.Element => {
     };
 
     const buttonItemLayout = formLayout === "horizontal" ? { wrapperCol: { span: 14, offset: 4 } } : null;
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(undefined);
     const formItemLayout =  formLayout === "horizontal" ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } } : null;
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
@@ -54,30 +52,12 @@ export const BackForm1 = observer((): JSX.Element => {
                 <Form.Item label="1. Выберите вариант ситуации с доступами и лицензиями: ">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>
-                                {" "}
-                                1. У разработчика есть все необходимые доступы к ресурсам инфрастуктуры и лицензии. [0 storypoints]
-                            </Radio>
-                            <Radio value={1}>
-                                {" "}
-                                2. У разработчика нет одного из доступов к ресурсам инфрастуктуры и/или лицензий, которые будет легко получить за незначительное время. [1 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                3. У разработчика нет доступа к нескольким ресурсам инфрастуктуры и/или лицензий, получить которые можно за 1-2 дня. [2 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                4. У разработчика нет доступа к половине ресурсов инфрастуктуры и/или лицензий, получить которые можно за 3-5 дней. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. У разработчика нет доступа к большей части инфрастуктуры и/или лицензий, на получение этих доступов потребуется значителтное время. [5 storypoints]
-                            </Radio>
-                            <Radio value={8}>
-                                {" "}
-                                6. У разработчика нет доступа к большей части инфрастуктуры и/или лицензий, на получение этих доступов потребуется значителтное время. [8 storypoints]
-                            </Radio>
+                            <Radio value={0} defaultChecked={true}> 1. {back_access_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {back_access_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {back_access_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {back_access_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {back_access_string[5]} [5 storypoints] </Radio>
+                            <Radio value={8}> 6. {back_access_string[8]} [8 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>
@@ -105,7 +85,7 @@ export const BackForm1 = observer((): JSX.Element => {
 // import React, {useEffect, useState} from "react";
 // import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 // import { Divider, Typography } from "antd";
-// import { CenterDivWrapper } from "../style";
+// import { CenterDivWrapper } from "../../style";
 // import {clientRoutes} from "../../../routes/client";
 // import {useNavigate} from "react-router-dom";
 // import {useStores} from "../../../stores";

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
-import { CenterDivWrapper } from "../style";
+import { CenterDivWrapper } from "../../style";
 import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
-import {BackStore} from "../../../stores/back";
+import {back_tables_string} from "./BackTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -13,22 +13,18 @@ export const BackForm7 = (): JSX.Element => {
 
     const {BackStore} = useStores();
 
-    // let {BackStore: {  }} = useStores();
-    // useEffect(() => {});
-    // let accum = BackStore.accValue;
 
     const { Title, Paragraph, Text, Link } = Typography;
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState<LayoutType>("vertical");
     const onFormLayoutChange = ({ layout }: { layout: LayoutType }) => {
-
         setFormLayout(layout);
     };
     const buttonItemLayout =
         formLayout === "horizontal"
             ? { wrapperCol: { span: 14, offset: 4 } }
             : null;
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(undefined);
 
     const formItemLayout =
         formLayout === "horizontal"
@@ -59,30 +55,12 @@ export const BackForm7 = (): JSX.Element => {
                 <Form.Item label="7. Выберите степень готовности таблиц в БД:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>
-                                {" "}
-                                1. Все таблицы в БД созданы, атрибутивный состав полон и корректен и все необходимые связи по ключам определены. [0 storypoints]
-                            </Radio>
-                            <Radio value={1}>
-                                {" "}
-                                2. Все таблицы в БД созданы, но их атрибутивный состав не полон и/или не корректен и/или не все необходимые связи по ключам определены. [1 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                3. Небольшая часть таблиц в БД не созданы, их атрибутивный состав ещё не сформирован. [2 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                4. Примерно половина таблиц в БД не созданы, их атрибутивный состав ещё не сформирован. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. Большая часть таблиц в БД не созданы, их атрибутивный состав ещё не сформирован. [5 storypoints]
-                            </Radio>
-                            <Radio value={8}>
-                                {" "}
-                                6. Таблицы в БД не созданы, их атрибутивный состав неопределён. [8 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {back_tables_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {back_tables_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {back_tables_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {back_tables_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {back_tables_string[5]} [5 storypoints] </Radio>
+                            <Radio value={8}> 6. {back_tables_string[8]} [8 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

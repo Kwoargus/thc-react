@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
-import { CenterDivWrapper } from "../style";
+import { CenterDivWrapper } from "../../style";
 import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
-import {BackStore} from "../../../stores/back";
+import {back_infra_string} from "./BackTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -28,7 +28,7 @@ export const BackForm5 = (): JSX.Element => {
         formLayout === "horizontal"
             ? { wrapperCol: { span: 14, offset: 4 } }
             : null;
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(undefined);
 
     const formItemLayout =
         formLayout === "horizontal"
@@ -59,23 +59,11 @@ export const BackForm5 = (): JSX.Element => {
                 <Form.Item label="5. Выберите вариант состояния инфраструктуры:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>
-                                {" "}
-                                1. Все элементы инфраструктуры корректно настроены и работают стабильно. [0 storypoints]
-                            </Radio>
-                            <Radio value={1}>
-                                {" "}
-                                2. Все элементы инфраструктуры корректно настроены но некоторые работают иногда не стабильно. [1 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                3. Некоторые элементы инфраструктуры настроены не вполне корректно и работают не стабильно. [3 storypoints]
-                            </Radio>
-                            <Radio value={8}>
-                                {" "}
-                                4. Некоторые элементы инфраструктуры не корректно настроены и работают нестабильно. [8 storypoints]
-                            </Radio>
-                       </Space>
+                            <Radio value={0}> 1. {back_infra_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {back_infra_string[1]} [1 storypoints] </Radio>
+                            <Radio value={3}> 3. {back_infra_string[3]} [3 storypoints] </Radio>
+                            <Radio value={8}> 4. {back_infra_string[8]} [8 storypoints] </Radio>
+                        </Space>
                     </Radio.Group>
                 </Form.Item>
 

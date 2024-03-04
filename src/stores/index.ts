@@ -1,7 +1,9 @@
 import { createContext, useContext } from "react";
 import { AuthStore } from "./auth";
 import { BackStore } from "./back";
+import { FrontStore } from "./front";
 import { AnalistStore } from "./analist";
+import { TesterStore } from "./tester";
 import { SqlStore } from "./sql";
 import { CommonStore } from "./common";
 
@@ -9,7 +11,9 @@ import { CommonStore } from "./common";
 export const createStore = () => ({
   AuthStore: new AuthStore(),
   BackStore: new BackStore(),
+  FrontStore: new FrontStore(),
   AnalistStore: new AnalistStore(),
+  TesterStore: new TesterStore(),
   SqlStore: new SqlStore(),
   CommonStore: new CommonStore()
 });

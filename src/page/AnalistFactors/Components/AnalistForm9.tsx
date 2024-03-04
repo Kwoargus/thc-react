@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
-import { CenterDivWrapper } from "../style";
+import { CenterDivWrapper } from "../../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
 import {AnalistStore} from "../../../stores/analist";
@@ -30,18 +30,18 @@ export const AnalistForm9 = observer((): JSX.Element => {
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState<LayoutType>("vertical");
     const onFormLayoutChange = ({ layout }: { layout: LayoutType }) => {
-        setFormLayout(layout);
+        // setFormLayout(layout);
     };
 
     const buttonItemLayout =
         formLayout === "horizontal"
             ? { wrapperCol: { span: 14, offset: 4 } }
             : null;
-    const [value, setValue] = useState(1);
     const formItemLayout =
         formLayout === "horizontal"
             ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } }
             : null;
+    const [value, setValue] = useState(1);
     const onChange = (e: RadioChangeEvent) => {// обрабатывать события в инпутах
         setValue(e.target.value);
         // Сохранить в store данные из инпутов
@@ -63,8 +63,14 @@ export const AnalistForm9 = observer((): JSX.Element => {
         AnalistStore.setDescription(description);
     };
 
-    const onButtonClick = (values: any) => {
-        AnalistStore.setFactor(10);
+    const onButtonClick = async (values: any) => {
+        try {
+            await form.validateFields();
+            AnalistStore.setFactor(10);
+        } catch (error) {
+            console.error('Ошибка валидации:', error);
+            alert("Заполните обязательные поля!");
+        }
 
         // form.setFieldsValue({ taskName: 'Hello world!', description: 'male' });
         let fv = form.getFieldsValue(true);

@@ -2,11 +2,11 @@
 import React, {useEffect, useState} from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
-import { CenterDivWrapper } from "../style";
+import { CenterDivWrapper } from "../../style";
 import {clientRoutes} from "../../../routes/client";
 import {useNavigate} from "react-router-dom";
 import {useStores} from "../../../stores";
-import {BackStore} from "../../../stores/back";
+import {back_io_data_string} from "./BackTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -14,22 +14,18 @@ export const BackForm12 = (): JSX.Element => {
 
     const {BackStore} = useStores();
 
-    // let {BackStore: {  }} = useStores();
-    // useEffect(() => {});
-    // let accum = BackStore.accValue;
 
     const { Title, Paragraph, Text, Link } = Typography;
     const [form] = Form.useForm();
     const [formLayout, setFormLayout] = useState<LayoutType>("vertical");
     const onFormLayoutChange = ({ layout }: { layout: LayoutType }) => {
-
         setFormLayout(layout);
     };
     const buttonItemLayout =
         formLayout === "horizontal"
             ? { wrapperCol: { span: 14, offset: 4 } }
             : null;
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(undefined);
 
     const formItemLayout =
         formLayout === "horizontal"
@@ -60,22 +56,10 @@ export const BackForm12 = (): JSX.Element => {
                 <Form.Item label="12. Выберите вариант уровня понимания структуры и содержания наборов входных/выходных данных:">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={0}>
-                                {" "}
-                                1. В задаче не будут использоваться входные/выходные данные. [0 storypoints]
-                            </Radio>
-                            <Radio value={1}>
-                                {" "}
-                                2. Разработчику понятны все форматы входных и выходных данных для ендпоинтов / брокера сообщений / web-клиента. [1 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                3. Разработчику понятны только часть форматов входных и выходных данных для ендпоинтов / брокера сообщений / web-клиента. [2 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                4. Разработчику НЕ понятны форматы входных и выходных данных для ендпоинтов / брокера сообщений / web-клиента. [3 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {back_io_data_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {back_io_data_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {back_io_data_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {back_io_data_string[3]} [3 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Form, Input, Radio, RadioChangeEvent, Space, Table} from "antd";
 import { Divider, Typography } from "antd";
-import { CenterDivWrapper } from "../style";
+import { CenterDivWrapper } from "../../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
 import {TGetBackTaskFactors} from "../../../api/back/types";
 import BackTable from "./BackTable";
 import {useStores} from "../../../stores";
+import {observer} from "mobx-react-lite";
 
 
 
@@ -18,7 +19,7 @@ type FieldType = {
     remember?: string;
 };
 
-export const BackForm21 = (): JSX.Element => {
+export const BackForm21 = observer((): JSX.Element => {
 
     const {BackStore} = useStores();
 
@@ -38,11 +39,19 @@ export const BackForm21 = (): JSX.Element => {
         formLayout === "horizontal"
             ? { labelCol: { span: 4 }, wrapperCol: { span: 14 } }
             : null;
-
+    const [res, setRes] = useState(0)
+    const [addition, setAddition] = useState("")
+    useEffect(()=> {
+        const result = getTaskClassification()
+        if(result > 160){
+            setAddition (". Эта задача избыточно трудоёмкая, ее следует декомпозировать на несколько более простых");
+        }
+        setRes(result)
+    },[])
     const getTaskClassification = () : number => {
         let estimate = 0;
-        let acc = BackStore.getAccum();
 
+        let acc = BackStore.getAccum();
         if(acc==0){estimate = 0}
         if(acc>0 && acc<=3){estimate = 10}
         if(acc>3 && acc<=5){estimate = 20}
@@ -51,16 +60,10 @@ export const BackForm21 = (): JSX.Element => {
         if(acc>13 && acc<=21){estimate = 80}
         if(acc>21 && acc<=34){estimate = 160}
         if(acc>34 && acc<=55){estimate = 320}
-        if(acc>55 && acc<=89){estimate = 640}
 
+        if(acc>55 && acc<=89){estimate = 640}
         return estimate;
     };
-
-    let res = getTaskClassification();
-    let addition = "";
-    if(res > 160){
-        addition = ". Эта задача избыточно трудоёмкая, ее следует декомпозировать на несколько более простых";
-    }
 
     return (
         <CenterDivWrapper>
@@ -81,7 +84,9 @@ export const BackForm21 = (): JSX.Element => {
                 </Form.Item>
             </Form>
 
-            <Text >Итоговая трудоёмкость {res} человеко-часов{addition}.</Text>
+            <Text >Итоговая накопленная трудоёмкость {BackStore.data?.roolBased} человеко-часов {addition}.</Text>
+            <Text >Предикт нейросети "Factors Regressor": {BackStore.data?.factorsRegressor} человеко-часов {addition}.</Text>
+            <Text >Предикт нейросети "BagOfWords Predictor": {BackStore.data?.BagOfWords} человеко-часов {addition}.</Text>
         </CenterDivWrapper>
     );
-};
+});

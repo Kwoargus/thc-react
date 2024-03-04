@@ -1,7 +1,7 @@
 {
-  "name": "thc",
+  "name": "thc-react",
   "version": "1.0.0",
-  "description": "thc",
+  "description": "thc-react",
   "main": "src/index.tsx",
   "scripts": {
     "start": "webpack-dev-server --env NODE_ENV=development --mode=development --config configs/webpack.config.js",
@@ -14,7 +14,7 @@
     "mobx": "6.9.0",
     "mobx-react-devtools": "^6.1.1",
     "mobx-react-lite": "3.4.3",
-    "react": "18.2.0",
+    "react": "16.0.0",
     "react-dom": "18.2.0",
     "react-router": "6.2.1",
     "react-router-dom": "6.2.1",

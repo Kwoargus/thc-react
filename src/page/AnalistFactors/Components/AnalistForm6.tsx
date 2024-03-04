@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
-import { CenterDivWrapper } from "../style";
+import { CenterDivWrapper } from "../../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
 import {useStores} from "../../../stores";
-import {AnalistStore} from "../../../stores/analist";
 import {observer} from "mobx-react-lite";
+import {analist_buziness_string} from "./AnalistTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -57,26 +57,11 @@ export const AnalistForm6 = observer((): JSX.Element => {
                 <Form.Item label="6. Выберите вариант уровня взаимодействия с бизнес заказчиком:  ">
                     <Radio.Group onChange={onChange} value={value}>
                         <Space direction="vertical">
-                            <Radio value={1}>
-                                {" "}
-                                1. Взаимодействие с бизнес-заказчиком максимально эффективное – быстрый отклик, функциональные требования всегда корректны и полны, ответы на вопросы содержательны и полезны. [0 storypoints]
-                            </Radio>
-                            <Radio value={2}>
-                                {" "}
-                                2. Взаимодействие с бизнес-заказчиком по большей части эффективное –  отклик достаточно быстрый, функциональные требования всегда корректны и полны, ответы на вопросы иногда недостаточно содержательны или полезны. [1 storypoints]
-                            </Radio>
-                            <Radio value={3}>
-                                {" "}
-                                3. Взаимодействие с бизнес-заказчиком не всегда эффективное –  отклик не редко с задержкой, функциональные требования иногда не корректны и/или не полны, ответы на вопросы не редко недостаточно  содержательны или полезны. [2 storypoints]
-                            </Radio>
-                            <Radio value={4}>
-                                {" "}
-                                4. Взаимодействие с бизнес-заказчиком часто не эффективное –  отклик часто с задержкой, функциональные требования часто не корректны и/или не полны, ответы на вопросы часто недостаточно содержательны или полезны. [3 storypoints]
-                            </Radio>
-                            <Radio value={5}>
-                                {" "}
-                                5. Взаимодействие с бизнес-заказчиком не эффективное –  отклик с большой задержкой, функциональные требования не корректны и/или не полны, ответы на вопросы безсодержательны и безполезны. [5 storypoints]
-                            </Radio>
+                            <Radio value={0}> 1. {analist_buziness_string[0]} [0 storypoints] </Radio>
+                            <Radio value={1}> 2. {analist_buziness_string[1]} [1 storypoints] </Radio>
+                            <Radio value={2}> 3. {analist_buziness_string[2]} [2 storypoints] </Radio>
+                            <Radio value={3}> 4. {analist_buziness_string[3]} [3 storypoints] </Radio>
+                            <Radio value={5}> 5. {analist_buziness_string[5]} [5 storypoints] </Radio>
                         </Space>
                     </Radio.Group>
                 </Form.Item>

@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { Button, Form, Input, Radio, RadioChangeEvent, Space } from "antd";
 import { Divider, Typography } from "antd";
-import { CenterDivWrapper } from "../style";
+import { CenterDivWrapper } from "../../style";
 import { useNavigate } from "react-router-dom";
 import {clientRoutes} from "../../../routes/client";
 import {useStores} from "../../../stores";
-import {AnalistStore} from "../../../stores/analist";
 import {observer} from "mobx-react-lite";
-import {AuthStore} from "../../../stores/auth";
-import {TGetAnalistTaskFactors, TGetAnalistTaskFactorsResponce} from "src/api/analist/types";
-// import {uuidv4} from "uuid";//чота не находит uuid надо сделать на бэкенде
+import {analist_access_string} from "./AnalistTable";
 
 type LayoutType = Parameters<typeof Form>[0]["layout"];
 
@@ -54,30 +51,12 @@ export const AnalistForm1 = observer((): JSX.Element => {
           <Form.Item label="1. Выберите вариант ситуации с доступами и лицензиями: ">
           <Radio.Group onChange={onChange} value={value}>
             <Space direction="vertical">
-              <Radio value={1}>
-                {" "}
-                1. У аналитика есть все необходимые доступы к ресурсам инфрастуктуры и лицензии. [0 storypoints]
-              </Radio>
-              <Radio value={2}>
-                {" "}
-                2. У аналитика нет одного из доступов к ресурсам инфрастуктуры и/или лицензий, которые будет легко получить за незначительное время. [1 storypoints]
-              </Radio>
-              <Radio value={3}>
-                {" "}
-                3. У аналитика нет доступа к нескольким ресурсам инфрастуктуры и/или лицензий, получить которые можно за 1-2 дня. [2 storypoints]
-              </Radio>
-              <Radio value={4}>
-                {" "}
-                4. У аналитика нет доступа к половине ресурсов инфрастуктуры и/или лицензий, получить которые можно за 3-5 дней. [3 storypoints]
-              </Radio>
-              <Radio value={5}>
-                {" "}
-                5. У аналитика нет доступа к большей части инфрастуктуры и/или лицензий, на получение этих доступов потребуется значителтное время. [5 storypoints]
-              </Radio>
-              <Radio value={6}>
-                {" "}
-                6. У аналитика нет доступа к большей части инфрастуктуры и/или лицензий, на получение этих доступов потребуется значителтное время. [8 storypoints]
-              </Radio>
+              <Radio value={0}> 1. {analist_access_string[0]} [0 storypoints] </Radio>
+              <Radio value={1}> 2. {analist_access_string[1]} [1 storypoints] </Radio>
+              <Radio value={2}> 3. {analist_access_string[2]} [2 storypoints] </Radio>
+              <Radio value={3}> 4. {analist_access_string[3]} [3 storypoints] </Radio>
+              <Radio value={5}> 5. {analist_access_string[5]} [5 storypoints] </Radio>
+              <Radio value={8}> 6. {analist_access_string[8]} [8 storypoints] </Radio>
             </Space>
           </Radio.Group>
         </Form.Item>
