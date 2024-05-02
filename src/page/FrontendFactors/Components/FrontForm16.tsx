@@ -35,7 +35,7 @@ export const FrontForm16 = (): JSX.Element => {
         formLayout === "horizontal"
             ? {labelCol: {span: 4}, wrapperCol: {span: 14}}
             : null;
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(undefined);
 
     const getTaskClassification = (): number => {
         let estimate = 0;

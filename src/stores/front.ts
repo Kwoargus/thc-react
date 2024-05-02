@@ -9,29 +9,29 @@ export class FrontStore {
 
     user_id: string = "";
 
-    access_factor: number = 0                //front_tag === 1
-    job_factor: number = 0                   //front_tag === 2
-    instrument_factor: number = 0            //front_tag === 3
-    infra_factor: number = 0                 //front_tag === 4
-    specs_factor: number = 0                 //front_tag === 5
-    pages_factor: number = 0                 //front_tag === 6
-    components_factor: number = 0            //front_tag === 7
-    test_data_factor: number = 0             //front_tag === 8
-    endpoint_factor: number = 0              //front_tag === 9
-    func_factor: number = 0                  //front_tag === 10
-    authorization_factor: number = 0         //front_tag === 11
-    io_data_factor: number = 0               //front_tag === 12
-    back_request_factor: number = 0          //front_tag === 13
-    r_and_d_factor: number = 0               //front_tag === 14
+    access_factor: number = 0;                //front_tag === 1
+    job_factor: number = 0;                   //front_tag === 2
+    instrument_factor: number = 0;            //front_tag === 3
+    infra_factor: number = 0;                 //front_tag === 4
+    specs_factor: number = 0;                 //front_tag === 5
+    pages_factor: number = 0;                 //front_tag === 6
+    components_factor: number = 0;            //front_tag === 7
+    test_data_factor: number = 0;             //front_tag === 8
+    endpoint_factor: number = 0;              //front_tag === 9
+    func_factor: number = 0;                  //front_tag === 10
+    authorization_factor: number = 0;         //front_tag === 11
+    io_data_factor: number = 0;               //front_tag === 12
+    back_request_factor: number = 0;          //front_tag === 13
+    r_and_d_factor: number = 0;               //front_tag === 14
 
-    auto_label: number = 0
+    auto_label: number = 0;
     create_date: string = "";
-    status: string = ""
-    user_label_sp: number = 0
-    user_label_hr: number = 0
-    nazvanie: string = ""
-    user_comments: string = ""
-    description: string = ""
+    status: string = "";
+    user_label_sp: number = 0;
+    user_label_hr: number = 0;
+    nazvanie: string = "";
+    user_comments: string = "";
+    description: string = "";
 
     constructor() {
         makeAutoObservable(this);

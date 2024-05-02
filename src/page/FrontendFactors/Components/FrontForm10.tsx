@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useDebugValue, useEffect, useState} from "react";
 import {Button, Form, Input, Radio, RadioChangeEvent, Space} from "antd";
 import {Divider, Typography} from "antd";
 import {CenterDivWrapper} from "../../style";
@@ -24,7 +24,7 @@ export const FrontForm10 = observer((): JSX.Element => {
 
     const buttonItemLayout = formLayout === "horizontal" ? {wrapperCol: {span: 14, offset: 4}} : null;
     const formItemLayout = formLayout === "horizontal" ? {labelCol: {span: 4}, wrapperCol: {span: 14}} : null;
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(undefined);
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
         FrontStore.setAccum(Number(e.target.value));

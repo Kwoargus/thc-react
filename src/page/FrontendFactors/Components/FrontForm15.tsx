@@ -41,7 +41,8 @@ export const FrontForm15 = observer((): JSX.Element => {
         formLayout === "horizontal"
             ? {labelCol: {span: 4}, wrapperCol: {span: 14}}
             : null;
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(undefined);
+
     const onChange = (e: RadioChangeEvent) => {// обрабатывать события в инпутах
         setValue(e.target.value);
         // Сохранить в store данные из инпутов
@@ -69,7 +70,7 @@ export const FrontForm15 = observer((): JSX.Element => {
             FrontStore.setFactor(16);
         } catch (error) {
             console.error('Ошибка валидации:', error);
-            alert("Заполните обязательные поля!");
+            // alert("Заполните обязательные поля!");
         }
 
         let fv = form.getFieldsValue(true);
@@ -148,6 +149,7 @@ export const FrontForm15 = observer((): JSX.Element => {
                     label="Название задачи:"
                     name="taskName"
                     rules={[{required: true, message: 'Please input task name!'}]}
+                    validateTrigger={['onChange', 'onBlur']}
                 >
                     <Input/>
                 </Form.Item>
@@ -155,6 +157,7 @@ export const FrontForm15 = observer((): JSX.Element => {
                     label="Описание задачи:"
                     name="description"
                     rules={[{required: true, message: 'Please input description of the task!'}]}
+                    validateTrigger={['onChange', 'onBlur']}
                 >
                     <Input/>
                 </Form.Item>
@@ -162,6 +165,7 @@ export const FrontForm15 = observer((): JSX.Element => {
                     label="Комментарии к задаче:"
                     name="userComment"
                     rules={[{required: true, message: 'Please input your comment!'}]}
+                    validateTrigger={['onChange', 'onBlur']}
                 >
                     <Input/>
                 </Form.Item>
@@ -171,6 +175,7 @@ export const FrontForm15 = observer((): JSX.Element => {
                     label="В сторипоинтах: "
                     name="storyPoints"
                     rules={[{required: true, message: 'Please input your estimate in story points!'}]}
+                    validateTrigger={['onChange', 'onBlur']}
                 >
                     <Input/>
                 </Form.Item>
@@ -178,6 +183,7 @@ export const FrontForm15 = observer((): JSX.Element => {
                     label="Или в человеко-часах:"
                     name="hours"
                     rules={[{required: true, message: 'Please input your estimate in hours!'}]}
+                    validateTrigger={['onChange', 'onBlur']}
                 >
                     <Input/>
                 </Form.Item>
