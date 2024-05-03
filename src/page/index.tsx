@@ -10,12 +10,12 @@ import {AnalistFactors} from "./AnalistFactors";
 import {SqlFactors} from "./SqlFactors";
 import {PageLayout} from "./style";
 import {clientRoutes} from "src/routes/client";
-import {Breadcrumb, Layout, Menu, type MenuProps, theme} from "antd";
+import {Breadcrumb, ConfigProvider, Layout, Menu, type MenuProps, theme} from "antd";
 import {DesktopOutlined, PieChartOutlined, TeamOutlined, UserOutlined} from "@ant-design/icons";
 import Logo from "src/assets/calculator.svg";
 
 // import {useStores} from "src/stores";
-// import {Sidebar} from "../components/Sidebar";
+import {Sidebar} from "../components/Sidebar";
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -75,8 +75,35 @@ export const Page = observer((): JSX.Element => {
     // });
 
 
+
     return (
         <PageLayout>
+            {/*<Sidebar/>*/}
+            <ConfigProvider
+                theme={{
+                    token: { // Глобальные стили
+
+                        // Seed Token
+                        // colorPrimary: '#00b96b',
+                        // borderRadius: 100,
+
+                        // Отключение анимации:
+                        // motion: false,
+
+                        // Alias Token
+                        // colorBgContainer: '#f6ffed',
+                    },
+                    components: {
+                        Layout: {
+                            bodyBg: 'white', // цвет фона контейнера
+                            siderBg: '#77ffff', // цвет бокового меню
+                            triggerBg: '#77eeee', // цвет триггера
+                            triggerColor: 'black', // цвет "значка" триггера
+                        },
+                    },
+                }}
+            >
+
             <Layout style={{minHeight: '100vh'}}>
                 <Sider
                     style={{userSelect: 'none'}}
@@ -86,7 +113,7 @@ export const Page = observer((): JSX.Element => {
                     onCollapse={(value) => setCollapsed(value)}>
                     <Logo onClick={() => navigate(clientRoutes.main)}
                           style={{
-                              background: "#77ffff",
+                              background: "#77ffff", // цвет фона лого
                               maxWidth: '100%',
                               maxHeight: '100%',
                               height: '64px',
@@ -95,7 +122,9 @@ export const Page = observer((): JSX.Element => {
                               padding: '3px'
                           }}/>
                     <Menu
-                        theme="dark"
+                        // theme="dark"
+                        theme="light"
+                        style={{backgroundColor: '#77ffff'}} // цвет фона пунктов меню сайдера
                         defaultSelectedKeys={['1']}
                         defaultOpenKeys={['sub1']}
                         mode="inline"
@@ -103,25 +132,25 @@ export const Page = observer((): JSX.Element => {
                         onClick={({key}) => navigate(key)}/>
                 </Sider>
                 <Layout>
-                    <Header style={{background: "#e8e8e8", display: 'flex', alignItems: 'center'}}>
-                        <div style={{flex: '1'}}>
-                            Header
-                        </div>
-                        <div style={{marginRight: '5px'}}>
-                            Войти
-                        </div>
-                        <div style={{
-                            marginRight: '10px',
-                            borderRadius: '50%',
-                            background: 'white',
-                            padding: '5px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            border: "1px solid black"
-                        }}>
-                            <UserOutlined style={{fontSize: '25px', color: 'black'}} rev={undefined}/>
-                        </div>
-                    </Header>
+                    {/*<Header style={{background: "#e8e8e8", display: 'flex', alignItems: 'center'}}>*/}
+                    {/*    <div style={{flex: '1'}}>*/}
+                    {/*        Header*/}
+                    {/*    </div>*/}
+                    {/*    <div style={{marginRight: '5px'}}>*/}
+                    {/*        Войти*/}
+                    {/*    </div>*/}
+                    {/*    <div style={{*/}
+                    {/*        marginRight: '10px',*/}
+                    {/*        borderRadius: '50%',*/}
+                    {/*        background: 'white',*/}
+                    {/*        padding: '5px',*/}
+                    {/*        display: 'flex',*/}
+                    {/*        alignItems: 'center',*/}
+                    {/*        border: "1px solid black"*/}
+                    {/*    }}>*/}
+                    {/*        <UserOutlined style={{fontSize: '25px', color: 'black'}} rev={undefined}/>*/}
+                    {/*    </div>*/}
+                    {/*</Header>*/}
                     <Content style={{margin: '0 8px'}}>
                         {/*<Breadcrumb style={{margin: '8px 0', backgroundColor: '#cfcccc', padding: '5px'}}>*/}
                         {/*    <Breadcrumb.Item>User</Breadcrumb.Item>*/}
@@ -131,8 +160,8 @@ export const Page = observer((): JSX.Element => {
                             style={{
                                 padding: 24,
                                 minHeight: 360,
-                                // background: colorBgContainer,
-                                // borderRadius: borderRadiusLG,
+                                background: colorBgContainer, // цвет фона контента
+                                borderRadius: borderRadiusLG, // закругление блока контента
                             }}
                         >
                             <Routes>
@@ -153,6 +182,7 @@ export const Page = observer((): JSX.Element => {
                     </Footer>
                 </Layout>
             </Layout>
+            </ConfigProvider>
         </PageLayout>
     );
 });
