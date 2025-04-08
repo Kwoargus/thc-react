@@ -8,39 +8,37 @@ import {FrontendFactors} from "./FrontendFactors";
 import {TesterFactors} from "./TesterFactors";
 import {AnalistFactors} from "./AnalistFactors";
 import {SqlFactors} from "./SqlFactors";
-import {PageLayout} from "./style";
 import {clientRoutes} from "src/routes/client";
 import {useStores} from "src/stores";
-import {Sidebar} from "../components/Sidebar";
-import {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
-    LaptopOutlined,
-    ConsoleSqlOutlined,
-    PieChartOutlined,
-    DatabaseOutlined,
-    BugOutlined,
-} from '@ant-design/icons';
-import {Button, ConfigProvider, Layout, Menu, theme} from 'antd';
+import {MenuFoldOutlined, MenuUnfoldOutlined, LaptopOutlined, ConsoleSqlOutlined, PieChartOutlined, DatabaseOutlined, BugOutlined, SunOutlined, MoonOutlined} from '@ant-design/icons';
+import {Button, ConfigProvider, Layout, Menu, theme, Switch} from 'antd';
 import Logo from "../assets/calculator.svg";
+import {
+    layoutStyle,
+    siderStyle,
+    logoStyle,
+    headerStyle,
+    headerTitleStyle,
+    headerAuthStyle,
+    contentStyle,
+    footerStyle,
+    menuMode,
+    getThemeConfig
+} from "./style";
 
 const {Header, Sider, Content, Footer} = Layout;
 
 export const Page = observer((): JSX.Element => {
     const [collapsed, setCollapsed] = useState(false);
     const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
     const {
-        token: {colorBgContainer, borderRadiusLG},
+        token: {borderRadiusLG},
     } = theme.useToken();
 
     const {
         AuthStore: {isAuth}
-    } = useStores();
-    let {
-        AnalistStore: {}
     } = useStores();
 
     const navigate = useNavigate();
@@ -49,6 +47,18 @@ export const Page = observer((): JSX.Element => {
     useEffect(() => {
         !isAuth && navigate(clientRoutes.auth);
     }, [isAuth]);
+
+    useEffect(() => {
+        // Проверяем предпочтения пользователя в системе
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setIsDarkMode(prefersDark);
+
+        // Можно также проверить localStorage, если сохраняли тему там
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setIsDarkMode(savedTheme === 'dark');
+        }
+    }, []);
 
     useEffect(() => {
         const currentPath = location.pathname;
@@ -61,39 +71,33 @@ export const Page = observer((): JSX.Element => {
     }, [location.pathname]);
 
     const menuItems = [
-        // {
-        //     key: 'main',
-        //     icon: <UserOutlined rev={undefined}/>,
-        //     label: 'Главная',
-        //     path: clientRoutes.main,
-        // },
         {
             key: 'backendFactors',
-            icon: <DatabaseOutlined rev={undefined}/>,
+            icon: <DatabaseOutlined />,
             label: 'Бэкенд',
             path: clientRoutes.backendFactors,
         },
         {
             key: 'frontendFactors',
-            icon: <LaptopOutlined rev={undefined}/>,
+            icon: <LaptopOutlined />,
             label: 'Фронтенд',
             path: clientRoutes.frontendFactors,
         },
         {
             key: 'testerFactors',
-            icon: <BugOutlined rev={undefined}/>,
+            icon: <BugOutlined />,
             label: 'Тестировщик',
             path: clientRoutes.testerFactors,
         },
         {
             key: 'analistFactors',
-            icon: <PieChartOutlined rev={undefined}/>,
+            icon: <PieChartOutlined />,
             label: 'Аналитик',
             path: clientRoutes.analistFactors,
         },
         {
             key: 'sqlFactors',
-            icon: <ConsoleSqlOutlined rev={undefined}/>,
+            icon: <ConsoleSqlOutlined />,
             label: 'SQL-Разработчик',
             path: clientRoutes.sqlFactors,
         },
@@ -106,65 +110,41 @@ export const Page = observer((): JSX.Element => {
         }
     };
 
+    const toggleTheme = () => {
+        const newTheme = !isDarkMode;
+        setIsDarkMode(newTheme);
+        localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    };
+
     return (
-        <ConfigProvider
-            theme={{
-                components: {
-                    Layout: {
-                        footerBg: 'colorBgContainer',
-                    },
-                    Menu: {
-                        // itemBorderRadius: 0,
-                        // itemHoverBg: 'transparent',
-                        // itemSelectedBg: 'transparent',
-                        // itemSelectedColor: '#00C2CB',
-                        activeBarBorderWidth: 0,
-                    },
-                },
-                token: {
-                    colorPrimary: '#00C2CB',
-                },
-            }}
-        >
-            <Layout style={{
-                minHeight: "100vh",
-            }}>
+        <ConfigProvider theme={getThemeConfig(isDarkMode)}>
+            <Layout style={layoutStyle}>
                 <Sider
-                    style={{userSelect: "none"}}
+                    style={siderStyle(isDarkMode)}
                     trigger={null}
                     collapsible
                     collapsed={collapsed}
-                    theme="light"
+                    theme={isDarkMode ? 'dark' : 'light'}
                     width={240}
                 >
                     <div className="demo-logo-vertical"/>
-                    <Logo onClick={() => navigate(clientRoutes.main)}
-                          style={{
-                              maxWidth: '100%',
-                              maxHeight: '100%',
-                              height: '64px',
-                              display: 'block',
-                              margin: 'auto',
-                              padding: '5px',
-                          }}/>
+                    <Logo
+                        onClick={() => navigate(clientRoutes.main)}
+                        style={logoStyle}
+                    />
                     <Menu
-                        theme="light"
-                        mode="inline"
+                        theme={isDarkMode ? 'dark' : 'light'}
+                        mode={menuMode}
                         selectedKeys={selectedKeys}
                         onClick={handleMenuClick}
                         items={menuItems}
                     />
                 </Sider>
                 <Layout>
-                    <Header style={{
-                        padding: 0,
-                        background: colorBgContainer,
-                        display: 'flex',
-                    }}>
+                    <Header style={headerStyle(isDarkMode)}>
                         <Button
                             type="text"
-                            icon={collapsed ? <MenuUnfoldOutlined rev={undefined}/> :
-                                <MenuFoldOutlined rev={undefined}/>}
+                            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
                             onClick={() => setCollapsed(!collapsed)}
                             style={{
                                 fontSize: '16px',
@@ -172,22 +152,29 @@ export const Page = observer((): JSX.Element => {
                                 height: 64,
                             }}
                         />
-                        <div style={{flex: '2', marginLeft: '18px'}}>
-                            <h1>Task Hardness Calculator</h1>
+                        <div style={headerTitleStyle}>
+                            <h1 style={{color: isDarkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.88)'}}>
+                                Task Hardness Calculator
+                            </h1>
                         </div>
-                        <div style={{marginRight: '42px'}}>
-                            <h2><a onClick={() => navigate(clientRoutes.auth)} style={{cursor: 'pointer'}}>Войти</a></h2>
+                        <div style={headerAuthStyle}>
+                            <Switch
+                                checkedChildren={<SunOutlined/>}
+                                unCheckedChildren={<MoonOutlined/>}
+                                checked={isDarkMode}
+                                onChange={toggleTheme}
+                            />
+                            {/*<a onClick={() => navigate(clientRoutes.auth)} style={authLinkStyle}>*/}
+                            {/*    <span style={{color: isDarkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.88)'}}>*/}
+                            {/*      Войти*/}
+                            {/*    </span>*/}
+                            {/*</a>*/}
+                            <div style={{marginRight: '42px'}}>
+                                <h2><a onClick={() => navigate(clientRoutes.auth)} style={{cursor: 'pointer'}}>Войти</a></h2>
+                            </div>
                         </div>
                     </Header>
-                    <Content
-                        style={{
-                            margin: '24px 16px',
-                            padding: 24,
-                            minHeight: 280,
-                            background: colorBgContainer,
-                            borderRadius: borderRadiusLG,
-                        }}
-                    >
+                    <Content style={contentStyle(isDarkMode, { borderRadiusLG })}>
                         <Routes>
                             <Route path={clientRoutes.auth} element={<AuthPage/>}/>
                             <Route path={clientRoutes.main} element={<MainPage/>}/>
@@ -198,10 +185,12 @@ export const Page = observer((): JSX.Element => {
                             <Route path={clientRoutes.sqlFactors} element={<SqlFactors/>}/>
                         </Routes>
                     </Content>
-                    <Footer style={{textAlign: 'center', backgroundColor: '#e8e8e8'}}>
-                        Все права защищены © 2022–{new Date().getFullYear()}
-                        <br/>
-                        TheFst Production
+                    <Footer style={footerStyle(isDarkMode)}>
+            <span style={{color: isDarkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.88)'}}>
+              Все права защищены © 2022–{new Date().getFullYear()}
+                <br/>
+              TheFst Production
+            </span>
                     </Footer>
                 </Layout>
             </Layout>
