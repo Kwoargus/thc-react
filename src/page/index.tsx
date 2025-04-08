@@ -10,9 +10,19 @@ import {AnalistFactors} from "./AnalistFactors";
 import {SqlFactors} from "./SqlFactors";
 import {clientRoutes} from "src/routes/client";
 import {useStores} from "src/stores";
-import {MenuFoldOutlined, MenuUnfoldOutlined, LaptopOutlined, ConsoleSqlOutlined, PieChartOutlined, DatabaseOutlined, BugOutlined, SunOutlined, MoonOutlined} from '@ant-design/icons';
+import {
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+    LaptopOutlined,
+    ConsoleSqlOutlined,
+    PieChartOutlined,
+    DatabaseOutlined,
+    BugOutlined,
+    SunOutlined,
+    MoonOutlined
+} from '@ant-design/icons';
 import {Button, ConfigProvider, Layout, Menu, theme, Switch} from 'antd';
-import Logo from "../assets/calculator.svg";
+import Logo from "../assets/calculator2.svg";
 import {
     layoutStyle,
     siderStyle,
@@ -73,31 +83,31 @@ export const Page = observer((): JSX.Element => {
     const menuItems = [
         {
             key: 'backendFactors',
-            icon: <DatabaseOutlined />,
+            icon: <DatabaseOutlined/>,
             label: 'Бэкенд',
             path: clientRoutes.backendFactors,
         },
         {
             key: 'frontendFactors',
-            icon: <LaptopOutlined />,
+            icon: <LaptopOutlined/>,
             label: 'Фронтенд',
             path: clientRoutes.frontendFactors,
         },
         {
             key: 'testerFactors',
-            icon: <BugOutlined />,
+            icon: <BugOutlined/>,
             label: 'Тестировщик',
             path: clientRoutes.testerFactors,
         },
         {
             key: 'analistFactors',
-            icon: <PieChartOutlined />,
+            icon: <PieChartOutlined/>,
             label: 'Аналитик',
             path: clientRoutes.analistFactors,
         },
         {
             key: 'sqlFactors',
-            icon: <ConsoleSqlOutlined />,
+            icon: <ConsoleSqlOutlined/>,
             label: 'SQL-Разработчик',
             path: clientRoutes.sqlFactors,
         },
@@ -125,7 +135,7 @@ export const Page = observer((): JSX.Element => {
                     collapsible
                     collapsed={collapsed}
                     theme={isDarkMode ? 'dark' : 'light'}
-                    width={240}
+                    width={300}
                 >
                     <div className="demo-logo-vertical"/>
                     <Logo
@@ -144,7 +154,7 @@ export const Page = observer((): JSX.Element => {
                     <Header style={headerStyle(isDarkMode)}>
                         <Button
                             type="text"
-                            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                            icon={collapsed ? <MenuUnfoldOutlined/> : <MenuFoldOutlined/>}
                             onClick={() => setCollapsed(!collapsed)}
                             style={{
                                 fontSize: '16px',
@@ -170,11 +180,15 @@ export const Page = observer((): JSX.Element => {
                             {/*    </span>*/}
                             {/*</a>*/}
                             <div style={{marginRight: '42px'}}>
-                                <h2><a onClick={() => navigate(clientRoutes.auth)} style={{cursor: 'pointer'}}>Войти</a></h2>
+                                <h2>
+                                    <a onClick={() => navigate(clientRoutes.auth)} style={{cursor: 'pointer'}}>
+                                        Войти
+                                    </a>
+                                </h2>
                             </div>
                         </div>
                     </Header>
-                    <Content style={contentStyle(isDarkMode, { borderRadiusLG })}>
+                    <Content style={contentStyle(isDarkMode, {borderRadiusLG})}>
                         <Routes>
                             <Route path={clientRoutes.auth} element={<AuthPage/>}/>
                             <Route path={clientRoutes.main} element={<MainPage/>}/>
@@ -186,11 +200,11 @@ export const Page = observer((): JSX.Element => {
                         </Routes>
                     </Content>
                     <Footer style={footerStyle(isDarkMode)}>
-            <span style={{color: isDarkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.88)'}}>
-              Все права защищены © 2022–{new Date().getFullYear()}
-                <br/>
-              TheFst Production
-            </span>
+                        <span style={{color: isDarkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(0, 0, 0, 0.88)'}}>
+                          Все права защищены © 2022–{new Date().getFullYear()}
+                            <br/>
+                          TheFst Production
+                        </span>
                     </Footer>
                 </Layout>
             </Layout>
