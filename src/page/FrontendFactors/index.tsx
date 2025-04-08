@@ -11,9 +11,9 @@ export const FrontendFactors: React.FC = () => {
     const [value, setValue] = useState(1);
 
     return (
-        <CenterDivWrapper>
+        // <CenterDivWrapper>
             <СhooseFrontVariant />
-        </CenterDivWrapper>
+        // </CenterDivWrapper>
     );
 };
 

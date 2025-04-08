@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Routes, Route, useNavigate} from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {Routes, Route, useNavigate, useLocation} from "react-router-dom";
 import {observer} from "mobx-react-lite";
 import {AuthPage} from "./Auth";
 import {MainPage} from "./Main";
@@ -10,170 +10,193 @@ import {AnalistFactors} from "./AnalistFactors";
 import {SqlFactors} from "./SqlFactors";
 import {PageLayout} from "./style";
 import {clientRoutes} from "src/routes/client";
-import {Breadcrumb, ConfigProvider, Layout, Menu, type MenuProps, theme} from "antd";
-import {DesktopOutlined, PieChartOutlined, TeamOutlined, UserOutlined} from "@ant-design/icons";
-import Logo from "src/assets/calculator.svg";
-
-// import {useStores} from "src/stores";
+import {useStores} from "src/stores";
 import {Sidebar} from "../components/Sidebar";
+import {
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+    UploadOutlined,
+    UserOutlined,
+    VideoCameraOutlined,
+    LaptopOutlined,
+    ConsoleSqlOutlined,
+    PieChartOutlined,
+    DatabaseOutlined,
+    BugOutlined,
+} from '@ant-design/icons';
+import {Button, ConfigProvider, Layout, Menu, theme} from 'antd';
+import Logo from "../assets/calculator.svg";
 
-const {Header, Content, Footer, Sider} = Layout;
-
-type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(
-    label: React.ReactNode,
-    key: React.Key,
-    icon?: React.ReactNode,
-    children?: MenuItem[],
-): MenuItem {
-    return {
-        label,
-        key,
-        icon,
-        children,
-    } as MenuItem;
-}
-
-const items: MenuItem[] = [
-    getItem('WEB-разработка', 'sub1', <DesktopOutlined rev={undefined}/>, [
-        getItem('Бэкенд', clientRoutes.backendFactors),
-        getItem('Фронтенд', clientRoutes.frontendFactors),
-        getItem('Тестировщик', clientRoutes.testerFactors),
-        getItem('Аналитик', clientRoutes.analistFactors, <PieChartOutlined rev={undefined}/>),
-        getItem('SQL-разработчик', clientRoutes.sqlFactors),
-    ]),
-    getItem('1С', 'sub2', <TeamOutlined rev={undefined}/>, [
-        getItem('1С-разработчик', '1'),
-        getItem('1С-консультант', '2')
-    ]),
-];
-
+const {Header, Sider, Content, Footer} = Layout;
 
 export const Page = observer((): JSX.Element => {
-
-    const navigate = useNavigate();
     const [collapsed, setCollapsed] = useState(false);
+    const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
     const {
         token: {colorBgContainer, borderRadiusLG},
     } = theme.useToken();
 
-    // const {
-    //     AuthStore: {isAuth}
-    // } = useStores();
-    // let {
-    //     AnalistStore: {}
-    // } = useStores();
+    const {
+        AuthStore: {isAuth}
+    } = useStores();
+    let {
+        AnalistStore: {}
+    } = useStores();
 
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    // useEffect(() => {
-    //     !isAuth && navigate(clientRoutes.auth);
-    // }, [isAuth]);
-    //
-    // useEffect(() => {
-    //
-    // });
+    useEffect(() => {
+        !isAuth && navigate(clientRoutes.auth);
+    }, [isAuth]);
 
+    useEffect(() => {
+        const currentPath = location.pathname;
+        const selectedItem = menuItems.find(item => item.path === currentPath);
+        if (selectedItem) {
+            setSelectedKeys([selectedItem.key]);
+        } else {
+            setSelectedKeys([]);
+        }
+    }, [location.pathname]);
 
+    const menuItems = [
+        // {
+        //     key: 'main',
+        //     icon: <UserOutlined rev={undefined}/>,
+        //     label: 'Главная',
+        //     path: clientRoutes.main,
+        // },
+        {
+            key: 'backendFactors',
+            icon: <DatabaseOutlined rev={undefined}/>,
+            label: 'Бэкенд',
+            path: clientRoutes.backendFactors,
+        },
+        {
+            key: 'frontendFactors',
+            icon: <LaptopOutlined rev={undefined}/>,
+            label: 'Фронтенд',
+            path: clientRoutes.frontendFactors,
+        },
+        {
+            key: 'testerFactors',
+            icon: <BugOutlined rev={undefined}/>,
+            label: 'Тестировщик',
+            path: clientRoutes.testerFactors,
+        },
+        {
+            key: 'analistFactors',
+            icon: <PieChartOutlined rev={undefined}/>,
+            label: 'Аналитик',
+            path: clientRoutes.analistFactors,
+        },
+        {
+            key: 'sqlFactors',
+            icon: <ConsoleSqlOutlined rev={undefined}/>,
+            label: 'SQL-Разработчик',
+            path: clientRoutes.sqlFactors,
+        },
+    ];
+
+    const handleMenuClick = (e: { key: string }) => {
+        const selectedItem = menuItems.find(item => item.key === e.key);
+        if (selectedItem) {
+            navigate(selectedItem.path);
+        }
+    };
 
     return (
-        <PageLayout>
-            {/*<Sidebar/>*/}
-            <ConfigProvider
-                theme={{
-                    token: { // Глобальные стили
-
-                        // Seed Token
-                        // colorPrimary: '#00b96b',
-                        // borderRadius: 100,
-
-                        // Отключение анимации:
-                        // motion: false,
-
-                        // Alias Token
-                        // colorBgContainer: '#f6ffed',
+        <ConfigProvider
+            theme={{
+                components: {
+                    Layout: {
+                        footerBg: 'colorBgContainer',
                     },
-                    components: {
-                        Layout: {
-                            bodyBg: 'white', // цвет фона контейнера
-                            siderBg: '#77ffff', // цвет бокового меню
-                            triggerBg: '#77eeee', // цвет триггера
-                            triggerColor: 'black', // цвет "значка" триггера
-                        },
+                    Menu: {
+                        // itemBorderRadius: 0,
+                        // itemHoverBg: 'transparent',
+                        // itemSelectedBg: 'transparent',
+                        // itemSelectedColor: '#00C2CB',
+                        activeBarBorderWidth: 0,
                     },
-                }}
-            >
-
-            <Layout style={{minHeight: '100vh'}}>
+                },
+                token: {
+                    colorPrimary: '#00C2CB',
+                },
+            }}
+        >
+            <Layout style={{
+                minHeight: "100vh",
+            }}>
                 <Sider
-                    style={{userSelect: 'none'}}
+                    style={{userSelect: "none"}}
+                    trigger={null}
                     collapsible
                     collapsed={collapsed}
+                    theme="light"
                     width={240}
-                    onCollapse={(value) => setCollapsed(value)}>
+                >
+                    <div className="demo-logo-vertical"/>
                     <Logo onClick={() => navigate(clientRoutes.main)}
                           style={{
-                              background: "#77ffff", // цвет фона лого
                               maxWidth: '100%',
                               maxHeight: '100%',
                               height: '64px',
                               display: 'block',
                               margin: 'auto',
-                              padding: '3px'
+                              padding: '5px',
                           }}/>
                     <Menu
-                        // theme="dark"
                         theme="light"
-                        style={{backgroundColor: '#77ffff'}} // цвет фона пунктов меню сайдера
-                        defaultSelectedKeys={['1']}
-                        defaultOpenKeys={['sub1']}
                         mode="inline"
-                        items={items}
-                        onClick={({key}) => navigate(key)}/>
+                        selectedKeys={selectedKeys}
+                        onClick={handleMenuClick}
+                        items={menuItems}
+                    />
                 </Sider>
                 <Layout>
-                    {/*<Header style={{background: "#e8e8e8", display: 'flex', alignItems: 'center'}}>*/}
-                    {/*    <div style={{flex: '1'}}>*/}
-                    {/*        Header*/}
-                    {/*    </div>*/}
-                    {/*    <div style={{marginRight: '5px'}}>*/}
-                    {/*        Войти*/}
-                    {/*    </div>*/}
-                    {/*    <div style={{*/}
-                    {/*        marginRight: '10px',*/}
-                    {/*        borderRadius: '50%',*/}
-                    {/*        background: 'white',*/}
-                    {/*        padding: '5px',*/}
-                    {/*        display: 'flex',*/}
-                    {/*        alignItems: 'center',*/}
-                    {/*        border: "1px solid black"*/}
-                    {/*    }}>*/}
-                    {/*        <UserOutlined style={{fontSize: '25px', color: 'black'}} rev={undefined}/>*/}
-                    {/*    </div>*/}
-                    {/*</Header>*/}
-                    <Content style={{margin: '0 8px'}}>
-                        {/*<Breadcrumb style={{margin: '8px 0', backgroundColor: '#cfcccc', padding: '5px'}}>*/}
-                        {/*    <Breadcrumb.Item>User</Breadcrumb.Item>*/}
-                        {/*    <Breadcrumb.Item>Bill</Breadcrumb.Item>*/}
-                        {/*</Breadcrumb>*/}
-                        <div
+                    <Header style={{
+                        padding: 0,
+                        background: colorBgContainer,
+                        display: 'flex',
+                    }}>
+                        <Button
+                            type="text"
+                            icon={collapsed ? <MenuUnfoldOutlined rev={undefined}/> :
+                                <MenuFoldOutlined rev={undefined}/>}
+                            onClick={() => setCollapsed(!collapsed)}
                             style={{
-                                padding: 24,
-                                minHeight: 360,
-                                background: colorBgContainer, // цвет фона контента
-                                borderRadius: borderRadiusLG, // закругление блока контента
+                                fontSize: '16px',
+                                width: 64,
+                                height: 64,
                             }}
-                        >
-                            <Routes>
-                                <Route path={clientRoutes.auth} element={<AuthPage/>}/>
-                                <Route path={clientRoutes.main} element={<MainPage/>}/>
-                                <Route path={clientRoutes.backendFactors} element={<BackendFactors/>}/>
-                                <Route path={clientRoutes.frontendFactors} element={<FrontendFactors/>}/>
-                                <Route path={clientRoutes.testerFactors} element={<TesterFactors/>}/>
-                                <Route path={clientRoutes.analistFactors} element={<AnalistFactors/>}/>
-                                <Route path={clientRoutes.sqlFactors} element={<SqlFactors/>}/>
-                            </Routes>
+                        />
+                        <div style={{flex: '2', marginLeft: '18px'}}>
+                            <h1>Task Hardness Calculator</h1>
                         </div>
+                        <div style={{marginRight: '42px'}}>
+                            <h2><a onClick={() => navigate(clientRoutes.auth)} style={{cursor: 'pointer'}}>Войти</a></h2>
+                        </div>
+                    </Header>
+                    <Content
+                        style={{
+                            margin: '24px 16px',
+                            padding: 24,
+                            minHeight: 280,
+                            background: colorBgContainer,
+                            borderRadius: borderRadiusLG,
+                        }}
+                    >
+                        <Routes>
+                            <Route path={clientRoutes.auth} element={<AuthPage/>}/>
+                            <Route path={clientRoutes.main} element={<MainPage/>}/>
+                            <Route path={clientRoutes.backendFactors} element={<BackendFactors/>}/>
+                            <Route path={clientRoutes.frontendFactors} element={<FrontendFactors/>}/>
+                            <Route path={clientRoutes.testerFactors} element={<TesterFactors/>}/>
+                            <Route path={clientRoutes.analistFactors} element={<AnalistFactors/>}/>
+                            <Route path={clientRoutes.sqlFactors} element={<SqlFactors/>}/>
+                        </Routes>
                     </Content>
                     <Footer style={{textAlign: 'center', backgroundColor: '#e8e8e8'}}>
                         Все права защищены © 2022–{new Date().getFullYear()}
@@ -182,8 +205,6 @@ export const Page = observer((): JSX.Element => {
                     </Footer>
                 </Layout>
             </Layout>
-            </ConfigProvider>
-        </PageLayout>
+        </ConfigProvider>
     );
 });
-

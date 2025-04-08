@@ -11,9 +11,9 @@ export const AnalistFactors: React.FC = () => {
     const [value, setValue] = useState(1);
 
     return (
-        <CenterDivWrapper>
+        // <CenterDivWrapper>
             <СhooseAnalistVariant />
-        </CenterDivWrapper>
+        // </CenterDivWrapper>
     );
 };
 

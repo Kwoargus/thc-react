@@ -11,9 +11,9 @@ export const BackendFactors: React.FC = () => {
     const [value, setValue] = useState(1);
 
     return (
-        <CenterDivWrapper>
+        // <CenterDivWrapper>
             <СhooseBackVariant />
-        </CenterDivWrapper>
+        // </CenterDivWrapper>
     );
 };
 

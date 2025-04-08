@@ -11,9 +11,9 @@ export const SqlFactors: React.FC = () => {
     const [value, setValue] = useState(1);
 
     return (
-        <CenterDivWrapper>
+        // <CenterDivWrapper>
             <СhooseSqlVariant />
-        </CenterDivWrapper>
+        // </CenterDivWrapper>
     );
 };
 
