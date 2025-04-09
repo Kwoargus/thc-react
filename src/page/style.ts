@@ -43,6 +43,16 @@ export const authLinkStyle: React.CSSProperties = {
     cursor: 'pointer'
 };
 
+// Стили для хлебных крошек
+export const breadcrumbStyle = (isDark: boolean, token: any): React.CSSProperties => ({
+    margin: '8px 0',
+    padding: '5px',
+    // background: isDark ? '#00423c' : '#e6fffc',
+    color: isDark ? '#3ef6ff' : '#00C2CB',
+    // borderRadius: token.borderRadiusLG,
+    // border: isDark ? '1px solid #333' : '1px solid #d9d9d9',
+});
+
 export const contentStyle = (isDark: boolean, token: any): React.CSSProperties => ({
     margin: '24px 16px',
     padding: 24,
@@ -74,8 +84,11 @@ export const getThemeConfig = (isDark: boolean) => ({
             subMenuItemBg: isDark ? '#181a1b' : '#fff', // Фон подменю
             itemBg: isDark ? 'transparent' : '#fff', // Оптимальное значение для работы темной темы
             darkItemBg: '#181a1b', // Явное задание фона для темной темы
+            darkSubMenuItemBg: '#181a1b', // Фон для вложенных пунктов
             darkItemSelectedBg: '#00423c', // Ключевой параметр для выбранного пункта в темной теме
             darkItemSelectedColor: '#3ef6ff', // Цвет текста выбранного пункта в темной теме
+
+            // darkPopupBg: '#181a1b', // Фон выпадающих меню в темной теме
 
             // Настройки состояний
             itemHoverBg: isDark ? '#25282a' : '#f5f5f5', // Фон при наведении
